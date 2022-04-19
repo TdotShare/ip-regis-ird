@@ -1,12 +1,15 @@
-import React  from 'react'
+import React from 'react'
 import Button from '../../components/Button'
 import ContentHeader from '../../components/content-header/ContentHeader'
+import LoadingData from '../../components/LoadingData'
 import RegisCreateVM from '../../viewmodel/0-Regis/RegisCreateVM'
 
 function RegisCreate() {
 
     const viewModel = RegisCreateVM()
-    
+
+
+
     return (
         <div className="content-wrapper">
             <ContentHeader
@@ -51,26 +54,43 @@ function RegisCreate() {
                                 <div className="card-body">
                                     <div className="form-row">
                                         <div className="form-group col-md-12">
-                                            <select className="custom-select" name='ip_category_id' defaultValue={0} onChange={viewModel.actionSelectChange}>
-                                                <option value={0} >เลือกประเภทของทรัพย์สินทางปัญญา</option>
-                                                {
-                                                    viewModel.ip_category_data.map((el, index) => (
-                                                        <option key={index} value={el.category_ip_id}>{el.category_ip_name}</option>
-                                                    ))
-                                                }
-                                            </select>
+
+                                            {viewModel.query_categoryip_data.isLoading ?
+
+
+                                                <LoadingData /> :
+
+                                                <select className="custom-select" name='ip_category_id' defaultValue={0} onChange={viewModel.actionSelectChange}>
+                                                    <option value={0} >เลือกประเภทของทรัพย์สินทางปัญญา</option>
+
+                                                    {
+
+                                                        viewModel.query_categoryip_data.data?.data.map((el, index) => (
+                                                            <option key={index} value={el.category_ip_id}>{el.category_ip_name}</option>
+                                                        ))
+
+
+                                                    }
+
+                                                </select>
+
+                                            }
+
                                         </div>
                                     </div>
 
                                     {
-                                        viewModel.ip_category_option
-                                        &&
+                                        viewModel.ip_category_option === 1 ?
                                         <div className="form-row">
                                             <div className="form-group col-md-12">
                                                 <label >โปรดระบุเพิ่มเติม (ลิขสิทธิ์ประเภท ... , อื่น ระบบ ...)</label>
                                                 <input type="text" className="form-control" name="ip_category_sub" onChange={viewModel.onChange} defaultValue={viewModel.ip_category_sub} />
                                             </div>
                                         </div>
+
+                                        :
+
+                                        <></>
                                     }
                                 </div>
                             </div>

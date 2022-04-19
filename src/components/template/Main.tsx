@@ -43,7 +43,7 @@ function Main() {
                         <span className="brand-text font-weight-light">{titleConfig.NameFull}</span>
                     </NavLink>
                     <div className="sidebar">
-                        <UserPanel name={`${user.firstname} ${user.lastname}`} />
+                        <UserPanel name={`${user.firstname_th} ${user.lastname_th}`} />
 
                         {/* Sidebar Menu */}
                         <MenuSidebar />

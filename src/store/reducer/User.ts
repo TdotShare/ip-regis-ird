@@ -1,12 +1,12 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit'
 
 type UserType = {
-    user_id : number, 
-    firstname : string,
-    lastname : string,  
-    uid : string,
-    idcard: string,
-    email : string,
+    id: number;
+    uid: string
+    card_id : string;
+    firstname_th : string;
+    lastname_th : string;
+    email : string;
     token: string,
     role : string,
 }
@@ -18,7 +18,7 @@ export interface UserState {
 
 const initialState: UserState = {
     auth: false,
-    data: { user_id : 0 , firstname : "" , lastname : "" , uid : "" , idcard: "", email : "" ,  token: "" , role : "" }
+    data: { id : 0 , uid : ""  , card_id : "", firstname_th : "" , lastname_th : "" , email : "" ,  token: "" , role : "" }
 }
 
 export const userSlice = createSlice({
@@ -29,7 +29,7 @@ export const userSlice = createSlice({
             state.data = action.payload
         },
         deleteUser: (state) => {
-            state.data = { user_id : 0 , firstname : "" , lastname : "" , uid : "" , idcard: "", email : "" ,  token: "" ,  role : "" }
+            state.data = { id : 0 , uid : ""  , card_id : "", firstname_th : "" , lastname_th : "" , email : "" ,  token: "" , role : "" }
         },
         setLoginSuccess: (state) => {
             state.auth = true
