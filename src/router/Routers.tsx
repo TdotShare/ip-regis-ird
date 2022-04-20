@@ -17,6 +17,12 @@ import AuthLogin from '../screen/1-Auth/AuthLogin';
 
 import Regis from '../screen/0-Regis/Regis';
 import RegisCreate from '../screen/0-Regis/RegisCreate';
+import RegisView from '../screen/0-Regis/RegisView';
+
+
+import People from '../screen/3-People/People';
+import Publicize from '../screen/4-Publicize/Publicize';
+
 
 import AuthLogout from '../screen/1-Auth/AuthLogout';
 
@@ -40,7 +46,10 @@ function Routers() {
                     <Route path="/" element={<Main />}>
                         <Route path="/" element={<Navigate to={routerPathUser.Regis} />} />
                         <Route path={routerPathUser.Regis} element={<Regis />} />
-                        <Route path={routerPathUser.RegisCreate} element={<RegisCreate />} />
+                        <Route  path={`${routerPathUser.Regis}/create`} element={<RegisCreate />} />
+                        <Route path={`${routerPathUser.Regis}/view/:id`} element={<RegisView />} />
+                        <Route path={`${routerPathUser.Regis}/people/:id`} element={<People />} />
+                        <Route path={`${routerPathUser.Regis}/publicize/:id`} element={<Publicize />} />
                         <Route path="/logout" element={<AuthLogout />} />
                         <Route path="/account" element={<RequireAuth><Account /></RequireAuth>} />
                     </Route>

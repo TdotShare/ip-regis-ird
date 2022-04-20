@@ -100,7 +100,7 @@ function RegisCreate() {
 
                     <div className='row'>
                         <div className='col'>
-                            <Button onClick={viewModel.actionCreate} btn_block={true} >สร้าง</Button>
+                            <Button className='btn btn-block btn-success' onClick={viewModel.actionCreate} >สร้าง</Button>
                         </div>
                     </div>
 

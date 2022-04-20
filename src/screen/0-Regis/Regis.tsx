@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react'
+import React from 'react'
 import { Link } from 'react-router-dom'
 import Button from '../../components/Button'
 import ContentHeader from '../../components/content-header/ContentHeader'
@@ -22,7 +22,7 @@ function Regis() {
 
                     <div className='row'>
                         <div className='col'>
-                            <Link to={routerPathUser.RegisCreate}><Button ><i className="fas fa-plus"></i> ยื่นขอจดทะเบียน</Button></Link>
+                            <Link to={`${routerPathUser.Regis}/create`}><Button className='btn btn-primary'><i className="fas fa-plus"></i> ยื่นขอจดทะเบียน</Button></Link>
                         </div>
                     </div>
 
@@ -65,8 +65,8 @@ function Regis() {
                                                                 <td>{el.category_ip_name}</td>
                                                                 <td>{el.project_status}</td>
                                                                 <td>{el.project_create_at}</td>
-                                                                <td><Link to={``} ><button  className='btn btn-block btn-primary'>เพิ่มรายละเอียด</button></Link></td>
-                                                                <td><button onClick={() => viewModel.actionDelete(1)} className='btn btn-block btn-danger'>ลบข้อมูล</button></td>
+                                                                <td><Link to={`${routerPathUser.Regis}/view/${el.project_id}`} ><button  className='btn btn-block btn-primary'>เพิ่มรายละเอียด</button></Link></td>
+                                                                <td><button onClick={() => viewModel.actionDelete(el.project_id)} className='btn btn-block btn-danger'>ลบข้อมูล</button></td>
                                                             
                                                             </tr>
                                                         ))

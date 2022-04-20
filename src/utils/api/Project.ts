@@ -27,7 +27,7 @@ const createProject = async (data : any , token : String) => {
 
 
 const deleteProject = async (id : number , token : String) => {
-    const res = await axios.get<APIResponse_data>(`${API}/admin/project/delete/${id}` , {
+    const res = await axios.delete<APIResponse_data>(`${API}/admin/project/delete/${id}` , {
         headers: {
             'Authorization': `Bearer ${token}`
         },
