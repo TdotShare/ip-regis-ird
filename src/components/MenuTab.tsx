@@ -22,15 +22,15 @@ const MenuTab = ({ collapsed , project_id }: AppProps) => {
     const MenuList = [
         { number: "3", name: "รายชื่อผู้ประดิษฐ์ / ผู้สร้างสรรค์", path: `${routerPathUser.Regis}/people` , ac : "people" },
         { number: "4", name: "ผลงานที่นำเสนอ / การเปิดเผยสาระสำคัญ / การเผยแพร่ผลงาน", path: `${routerPathUser.Regis}/publicize` , ac : "publicize"},
-        { number: "5", name: "การประดิษฐ์นี้มีการพัฒนาต่อยอด", path: "furtherdev" , ac : "furtherdev" },
-        { number: "6", name: "การสืบค้นข้อมูลสิทธิบัตร/อนุสิทธิบัตร (แนบเอกสารประกอบได้)", path: "keyword" , ac : "keyword" },
-        { number: "7", name: "การประดิษฐ์นี้เคยนำไปยื่นขอรับสิทธิบัตรหรืออนุสิทธิบัตรหรือไม่", path: "movant" , ac : "movant"  },
-        { number: "8", name: "การประดิษฐ์นี้ได้รับทุนอุดหนุนหรืออยู่ภายใต้ข้อตกลง หรือสัญญาใด ๆ กับหน่วยงานอื่นหรือไม่", path: "fund" , ac : "fund" },
-        { number: "9 - 10", name: "งบประมาณในการทำ / ระยะเวลาในการทำ", path: "budget"  , ac : "budget" },
-        { number: "11", name: "การประดิษฐ์นี้มีการใช้ทรัพยากรชีวภาพ", path: "bioreso" , ac : "bioreso" },
-        { number: "12", name: "ผลการวิจัย หรือผลการทดสอบ หรือผลการทดลอง", path: "a"  , ac : "a" },
-        { number: "13 - 14 - 15", name: "ข้อดีและลักษณะเฉพาะ / ที่มา ข้อมูลเบื้องต้น / สรุปจุดเด่น", path: "infer" , ac : "infer" },
-        { number: "16", name: "ข้อมูลทางการตลาด/ธุรกิจ/ อุตสาหกรรม", path: "market" , ac : "market" },
+        { number: "5", name: "การประดิษฐ์นี้มีการพัฒนาต่อยอด", path: `${routerPathUser.Regis}/furtherdev` , ac : "furtherdev" },
+        { number: "6", name: "การสืบค้นข้อมูลสิทธิบัตร/อนุสิทธิบัตร (แนบเอกสารประกอบได้)", path: `${routerPathUser.Regis}/keyword` , ac : "keyword" },
+        { number: "7", name: "การประดิษฐ์นี้เคยนำไปยื่นขอรับสิทธิบัตรหรืออนุสิทธิบัตรหรือไม่", path: `${routerPathUser.Regis}/movant` , ac : "movant"  },
+        { number: "8", name: "การประดิษฐ์นี้ได้รับทุนอุดหนุนหรืออยู่ภายใต้ข้อตกลง หรือสัญญาใด ๆ กับหน่วยงานอื่นหรือไม่", path: `${routerPathUser.Regis}/fund` , ac : "fund" },
+        { number: "9 - 10", name: "งบประมาณในการทำ / ระยะเวลาในการทำ", path: `${routerPathUser.Regis}/budget`  , ac : "budget" },
+        { number: "11", name: "การประดิษฐ์นี้มีการใช้ทรัพยากรชีวภาพ", path: `${routerPathUser.Regis}/bioreso` , ac : "bioreso" },
+        { number: "12", name: "ผลการวิจัย หรือผลการทดสอบ หรือผลการทดลอง", path: `${routerPathUser.Regis}/results`  , ac : "results" },
+        { number: "13 - 14 - 15", name: "ข้อดีและลักษณะเฉพาะ / ที่มา ข้อมูลเบื้องต้น / สรุปจุดเด่น", path: `${routerPathUser.Regis}/infer` , ac : "infer" },
+        { number: "16", name: "ข้อมูลทางการตลาด/ธุรกิจ/ อุตสาหกรรม", path: `${routerPathUser.Regis}/market` , ac : "market" },
     ]
 
     const actionGetMenu = (path: string) => {
