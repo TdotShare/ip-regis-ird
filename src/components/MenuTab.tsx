@@ -31,6 +31,9 @@ const MenuTab = ({ collapsed , project_id }: AppProps) => {
         { number: "12", name: "ผลการวิจัย หรือผลการทดสอบ หรือผลการทดลอง", path: `${routerPathUser.Regis}/results`  , ac : "results" },
         { number: "13 - 14 - 15", name: "ข้อดีและลักษณะเฉพาะ / ที่มา ข้อมูลเบื้องต้น / สรุปจุดเด่น", path: `${routerPathUser.Regis}/infer` , ac : "infer" },
         { number: "16", name: "ข้อมูลทางการตลาด/ธุรกิจ/ อุตสาหกรรม", path: `${routerPathUser.Regis}/market` , ac : "market" },
+        { number: "-", name: "การประเมินศักยภาพผลงานเพื่อสู่เชิงพาณิชย์", path: `${routerPathUser.Regis}/assessment` , ac : "assessment" },
+        { number: "-", name: "ระดับความพร้อม", path: `${routerPathUser.Regis}/techlv` , ac : "techlv" },
+        { number: "-", name: "ผลงานทรัพย์สินทางปัญญา", path: `${routerPathUser.Regis}/worksip` , ac : "worksip" },
     ]
 
     const actionGetMenu = (path: string) => {

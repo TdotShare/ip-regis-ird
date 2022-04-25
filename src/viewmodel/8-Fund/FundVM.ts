@@ -27,9 +27,29 @@ export default function FundVM() {
     })
 
 
+    const submitForm = async (event: React.FormEvent<HTMLFormElement>) => {
+
+        event.preventDefault();
+        const formdata = new FormData(event.currentTarget);
+
+        let data = {
+            fund_project_id : id,
+            fund_title : formdata.get('fund_title'),
+            fund_detail : formdata.get('fund_detail'),
+            fund_file : formdata.get('fund_file'),
+        }
+
+        console.log(data)
+
+
+
+    } 
+
+
     return {
         ...values,
         id,
         ref_form,
+        submitForm
     }
 }

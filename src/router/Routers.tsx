@@ -31,6 +31,9 @@ import Bioreso from '../screen/11-Bioreso/Bioreso';
 import Results from '../screen/12-Results/Results';
 import Infer from '../screen/13-Infer/Infer';
 import Market from '../screen/16-Market/Market';
+import Assessment from '../screen/17-Assessment/Assessment';
+import Worksip from '../screen/18-Worksip/Worksip';
+import TechLv from '../screen/19-TechLv/TechLv';
 
 
 import AuthLogout from '../screen/1-Auth/AuthLogout';
@@ -40,6 +43,8 @@ import Account from '../screen/admin/0-Account/Account';
 import { RootState } from '../store/ConfigureStore';
 import { useSelector } from 'react-redux';
 import { routerPathUser } from '../utils/routerpath';
+
+
 
 
 
@@ -70,6 +75,9 @@ function Routers() {
                         <Route path={`${routerPathUser.Regis}/results/:id`} element={<Results />} />
                         <Route path={`${routerPathUser.Regis}/infer/:id`} element={<Infer />} />
                         <Route path={`${routerPathUser.Regis}/market/:id`} element={<Market />} />
+                        <Route path={`${routerPathUser.Regis}/assessment/:id`} element={<Assessment />} />
+                        <Route path={`${routerPathUser.Regis}/techlv/:id`} element={<TechLv />} />
+                        <Route path={`${routerPathUser.Regis}/worksip/:id`} element={<Worksip />} />
                         <Route path="/logout" element={<AuthLogout />} />
                         <Route path="/account" element={<RequireAuth><Account /></RequireAuth>} />
                     </Route>

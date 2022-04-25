@@ -30,6 +30,39 @@ export default function KeywordVM() {
         ]
     })
 
+
+    const submitForm = async (event: React.FormEvent<HTMLFormElement>) => {
+
+        event.preventDefault();
+        const formdata = new FormData(event.currentTarget);
+
+        if (!formdata.get('keyword_use') || !formdata.get('keyword_result')) {
+            exportedSwal.actionInfo('กรุณากรอก keyword ที่ใช้ในการสืบค้น และ ผลของการสืบค้นพบว่า !')
+            return
+        }
+
+        let data = {
+            keyword_use : formdata.get('keyword_use'),
+            keyword_result : formdata.get('keyword_result'),
+            keyword_web_th : formdata.get('keyword_web_th'),
+            keyword_web_epo : formdata.get('keyword_web_epo'),
+            keyword_web_us : formdata.get('keyword_web_us'),
+            keyword_web_jp : formdata.get('keyword_web_jp'),
+            keyword_web_other : formdata.get('keyword_web_other'),
+        }
+
+        console.log(data)
+
+
+
+    }
+
+    const submitForm_searchlist = async (event: React.FormEvent<HTMLFormElement>) => {
+        event.preventDefault();
+        const formdata = new FormData(event.currentTarget);
+
+    }
+
    
 
 
@@ -37,5 +70,7 @@ export default function KeywordVM() {
         ...values,
         id,
         ref_form,
+        submitForm,
+        submitForm_searchlist
     }
 }

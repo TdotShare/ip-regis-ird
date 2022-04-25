@@ -8,7 +8,7 @@ import { APIResponse_data } from "../../model/Response";
 
 
 const getPresent =async (id: number , token : String) => {
-    const res = await axios.get<APIPresent_data>(`${API}/admin/present/${id}` , {
+    const res = await axios.get<APIPresent_data>(`${API}/user/present/${id}` , {
         headers: {
             'Authorization': `Bearer ${token}`
         },
@@ -18,7 +18,7 @@ const getPresent =async (id: number , token : String) => {
 }
 
 const createPresent = async (data : any , token : String) => {
-    const res = await axios.post<APIResponse_data>(`${API}/admin/present/create`, data , {
+    const res = await axios.post<APIResponse_data>(`${API}/user/present/create`, data , {
         headers: {
             'Authorization': `Bearer ${token}`
         },
@@ -28,7 +28,7 @@ const createPresent = async (data : any , token : String) => {
 
 
 const deletePresent = async (id : number , token : String) => {
-    const res = await axios.delete<APIResponse_data>(`${API}/admin/present/delete/${id}` , {
+    const res = await axios.delete<APIResponse_data>(`${API}/user/present/delete/${id}` , {
         headers: {
             'Authorization': `Bearer ${token}`
         },
@@ -38,7 +38,7 @@ const deletePresent = async (id : number , token : String) => {
 }
 
 const getExpose =async (id: number , token : String) => {
-    const res = await axios.get<APIExpose_data>(`${API}/admin/expose/${id}` , {
+    const res = await axios.get<APIExpose_data>(`${API}/user/expose/${id}` , {
         headers: {
             'Authorization': `Bearer ${token}`
         },
@@ -49,7 +49,7 @@ const getExpose =async (id: number , token : String) => {
 
 
 const createExpose = async (data : any , token : String) => {
-    const res = await axios.post<APIResponse_data>(`${API}/admin/expose/create`, data , {
+    const res = await axios.post<APIResponse_data>(`${API}/user/expose/create`, data , {
         headers: {
             'Authorization': `Bearer ${token}`
         },
@@ -58,7 +58,7 @@ const createExpose = async (data : any , token : String) => {
 }
 
 const deleteExpose = async (id : number , token : String) => {
-    const res = await axios.delete<APIResponse_data>(`${API}/admin/expose/delete/${id}` , {
+    const res = await axios.delete<APIResponse_data>(`${API}/user/expose/delete/${id}` , {
         headers: {
             'Authorization': `Bearer ${token}`
         },
@@ -70,7 +70,7 @@ const deleteExpose = async (id : number , token : String) => {
 
 
 const getPublish =async (id: number , token : String) => {
-    const res = await axios.get<APIPublish_data>(`${API}/admin/publish/${id}` , {
+    const res = await axios.get<APIPublish_data>(`${API}/user/publish/${id}` , {
         headers: {
             'Authorization': `Bearer ${token}`
         },
@@ -81,7 +81,7 @@ const getPublish =async (id: number , token : String) => {
 
 
 const createPublish = async (data : any , token : String) => {
-    const res = await axios.post<APIResponse_data>(`${API}/admin/publish/create`, data , {
+    const res = await axios.post<APIResponse_data>(`${API}/user/publish/create`, data , {
         headers: {
             'Authorization': `Bearer ${token}`
         },
@@ -90,7 +90,7 @@ const createPublish = async (data : any , token : String) => {
 }
 
 const deletePublish = async (id : number , token : String) => {
-    const res = await axios.delete<APIResponse_data>(`${API}/admin/publish/delete/${id}` , {
+    const res = await axios.delete<APIResponse_data>(`${API}/user/publish/delete/${id}` , {
         headers: {
             'Authorization': `Bearer ${token}`
         },

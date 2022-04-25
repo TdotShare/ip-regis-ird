@@ -26,10 +26,31 @@ export default function MovantVM() {
         ]
     })
 
+    const submitForm = async (event: React.FormEvent<HTMLFormElement>) => {
+
+        event.preventDefault();
+        const formdata = new FormData(event.currentTarget);
+
+        let data = {
+            movant_project_id : id,
+            movant_number : formdata.get('movant_number'),
+            movant_date : formdata.get('movant_date'),
+            movant_country : formdata.get('movant_country'),
+        }
+
+        console.log(data)
+
+
+
+    } 
+
+
+
 
     return {
         ...values,
         id,
         ref_form,
+        submitForm
     }
 }

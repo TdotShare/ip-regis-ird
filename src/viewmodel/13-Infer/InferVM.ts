@@ -26,9 +26,28 @@ export default function InferVM() {
         ]
     })
 
+    const submitForm = async (event: React.FormEvent<HTMLFormElement>) => {
+
+        event.preventDefault();
+        const formdata = new FormData(event.currentTarget);
+
+        let data = {
+            infer_project_id : id,
+            infer_strength : formdata.get('infer_strength'),
+            infer_source : formdata.get('infer_source'),
+            infer_pros : formdata.get('infer_pros'),
+        }
+
+        console.log(data)
+
+
+
+    } 
+
     return {
         ...values,
         id,
         ref_form,
+        submitForm
     }
 }

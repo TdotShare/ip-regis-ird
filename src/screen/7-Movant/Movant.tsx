@@ -22,6 +22,40 @@ function Movant() {
 
                     <div style={{ paddingBottom: "1%" }}></div>
 
+                    <div className="card card-outline card-primary">
+                        <div className="card-header">
+                            <h3 className="card-title">การประดิษฐ์นี้เคยนำไปยื่นขอรับสิทธิบัตรหรืออนุสิทธิบัตรหรือไม่</h3>
+                        </div>
+                        <div className="card-body">
+
+                            <b>หากเคย (ขอให้ระบบุรายละเอียด) หากไม่เคยไม่ต้องกรอกข้อมูล</b>
+
+                            <div style={{ paddingBottom: "1%" }}></div>
+
+                            <form ref={viewModel.ref_form} onSubmit={viewModel.submitForm} >
+
+                                <div className="form-row">
+                                    <div className="form-group col-md">
+                                        <label >เลขที่คำขอ</label>
+                                        <input type="text" className="form-control" name="movant_number" />
+                                    </div>
+                                    <div className="form-group col-md">
+                                        <label >ยื่นคำขอเมื่อวันที่</label>
+                                        <input type="text" className="form-control" name="movant_date" />
+                                    </div>
+                                    <div className="form-group col-md">
+                                        <label >ประเทศที่ยื่น</label>
+                                        <input type="text" className="form-control" name="movant_country" />
+                                    </div>
+                                </div>
+
+                                <Button className='btn btn-block btn-primary'>บันทึกข้อมูล</Button>
+
+                            </form>
+
+                        </div>
+
+                    </div>
 
                 </div>
             </section>
