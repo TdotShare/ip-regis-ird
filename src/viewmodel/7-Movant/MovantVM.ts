@@ -2,19 +2,30 @@ import React , { useRef, useState } from 'react'
 import { useQuery, useQueryClient } from 'react-query'
 import { useSelector } from 'react-redux'
 import { useParams } from 'react-router-dom'
+import { APIMovant_data } from '../../model/7-Movant/Movant'
 //import { APIPeople_data } from '../../model/3-People/People'
 import { RootState } from '../../store/ConfigureStore'
+import exportedAPIMovant from '../../utils/api/Movant'
 import { routerPathUser } from '../../utils/routerpath'
 import exportedSwal from '../../utils/swal'
 
 export default function MovantVM() {
 
+    /** 
+     * test pass 26-04-2022
+     *  - get data
+     *  - create data ( movant )
+    */
 
     const { id }: any = useParams();
+
+    const queryClient = useQueryClient()
     
     const ref_form = useRef<HTMLFormElement>(null);
 
     const user = useSelector((state: RootState) => state.user.data)
+
+    const qe_movant_data = useQuery<APIMovant_data, Error>('getMovant', async () => exportedAPIMovant.getMovant(id, user.token))
 
     const [values] = useState({
         title: `ขอยื่นจดทะเบียน - ${id}`,
@@ -40,7 +51,15 @@ export default function MovantVM() {
 
         console.log(data)
 
+        const res = await exportedAPIMovant.createMovant(data, user.token)
 
+        if(res.bypass){
+            queryClient.invalidateQueries('getMovant')
+            exportedSwal.actionSuccess("บันทึกข้อมูลเรียบร้อย !")
+
+        }else{
+            exportedSwal.actionInfo(res.message)
+        }
 
     } 
 
@@ -51,6 +70,7 @@ export default function MovantVM() {
         ...values,
         id,
         ref_form,
-        submitForm
+        submitForm,
+        qe_movant_data
     }
 }

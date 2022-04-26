@@ -2,23 +2,35 @@ import React , { useRef, useState } from 'react'
 import { useQuery, useQueryClient } from 'react-query'
 import { useSelector } from 'react-redux'
 import { useParams } from 'react-router-dom'
-import { APIExpose_data } from '../../model/4-Publicize/Expose'
-import { APIPresent_data } from '../../model/4-Publicize/Present'
-import { APIPublish_data } from '../../model/4-Publicize/Publish'
-//import { APIPeople_data } from '../../model/3-People/People'
+import { APIKeyword_data } from '../../model/6-Keyword/Keyword'
+import { APISearchlist_data } from '../../model/6-Keyword/Searchlist'
 import { RootState } from '../../store/ConfigureStore'
-import exportedAPIPublicize from '../../utils/api/Publicize'
+import exportedAPIKeyword from '../../utils/api/Keyword'
+import exportedAPISearchlist from '../../utils/api/Searchlist'
 import { routerPathUser } from '../../utils/routerpath'
 import exportedSwal from '../../utils/swal'
 
 export default function KeywordVM() {
 
 
+    /** 
+     * test pass 26-04-2022
+     *  - get data
+     *  - create data ( keyword , searchlist )
+     *  - delete data
+    */
+
+
     const { id }: any = useParams();
+
+    const queryClient = useQueryClient()
     
     const ref_form = useRef<HTMLFormElement>(null);
 
     const user = useSelector((state: RootState) => state.user.data)
+
+    const qe_keyword_data = useQuery<APIKeyword_data, Error>('getKeyword', async () => exportedAPIKeyword.getKeyword(id, user.token))
+    const qe_searchlist_data = useQuery<APISearchlist_data, Error>('getSearchlist', async () => exportedAPISearchlist.getSearchlist(id, user.token))
 
     const [values] = useState({
         title: `ขอยื่นจดทะเบียน - ${id}`,
@@ -31,17 +43,18 @@ export default function KeywordVM() {
     })
 
 
-    const submitForm = async (event: React.FormEvent<HTMLFormElement>) => {
+    const submitForm_keyword = async (event: React.FormEvent<HTMLFormElement>) => {
 
         event.preventDefault();
         const formdata = new FormData(event.currentTarget);
 
         if (!formdata.get('keyword_use') || !formdata.get('keyword_result')) {
-            exportedSwal.actionInfo('กรุณากรอก keyword ที่ใช้ในการสืบค้น และ ผลของการสืบค้นพบว่า !')
+            exportedSwal.actionInfo('กรุณากรอก keyword ที่ใช้ในการสืบค้น และ ผลของการสืบค้นพบ !')
             return
         }
 
         let data = {
+            keyword_project_id : id,
             keyword_use : formdata.get('keyword_use'),
             keyword_result : formdata.get('keyword_result'),
             keyword_web_th : formdata.get('keyword_web_th'),
@@ -53,6 +66,16 @@ export default function KeywordVM() {
 
         console.log(data)
 
+        const res = await exportedAPIKeyword.createKeyword(data, user.token)
+
+        if(res.bypass){
+            queryClient.invalidateQueries('getKeyword')
+            exportedSwal.actionSuccess("บันทึกข้อมูลเรียบร้อย !")
+
+        }else{
+            exportedSwal.actionInfo(res.message)
+        }
+
 
 
     }
@@ -61,16 +84,57 @@ export default function KeywordVM() {
         event.preventDefault();
         const formdata = new FormData(event.currentTarget);
 
+        if (!formdata.get('searchlist_name') || !formdata.get('searchlist_number') || !formdata.get('searchlist_country')) {
+            exportedSwal.actionInfo('กรุณากรอกข้อมูลให้ครบ !')
+            return
+        }
+
+        let data = {
+            searchlist_project_id : id,
+            searchlist_name : formdata.get('searchlist_name'),
+            searchlist_number : formdata.get('searchlist_number'),
+            searchlist_country : formdata.get('searchlist_country'),
+        }
+
+        const res = await exportedAPISearchlist.createSearchlist(data, user.token)
+
+        if(res.bypass){
+            queryClient.invalidateQueries('getSearchlist')
+            exportedSwal.actionSuccess("บันทึกข้อมูลเรียบร้อย !")
+
+        }else{
+            exportedSwal.actionInfo(res.message)
+        }
     }
 
-   
+    const actionDelete =async (id: number) => {
+
+        let confirmDelete = await exportedSwal.confirmDelete("คุณต้องการลบข้อมูลใช่หรือไม่")
+
+        if (confirmDelete) {
+            const res = await exportedAPISearchlist.deleteSearchlist(id, user.token)
+
+            console.log(res)
+
+            if (res.bypass) {
+                exportedSwal.actionSuccess("ลบข้อมูลเรียบร้อย !")
+                queryClient.invalidateQueries('getSearchlist')
+            } else {
+                exportedSwal.actionInfo('ไม่สามารถลบข้อมูลได้ กรุณาติดต่อเจ้าหน้าที่ !')
+            }
+        }
+
+    }
 
 
     return {
         ...values,
         id,
         ref_form,
-        submitForm,
-        submitForm_searchlist
+        qe_keyword_data,
+        qe_searchlist_data,
+        submitForm_keyword,
+        submitForm_searchlist,
+        actionDelete
     }
 }

@@ -35,7 +35,7 @@ function Bioreso() {
                                     <div className="form-row">
                                         <div className="form-group col-md-12">
 
-                                            <select className="custom-select" name='bioreso_text' defaultValue={0} onChange={viewModel.actionShowOption} >
+                                            <select className="custom-select" name='bioreso_bio_id' defaultValue={0} onChange={viewModel.actionShowOption} >
                                                 <option value={0} >เลือกทรัพยากรชีวภาพ</option>
 
                                                 {
@@ -63,7 +63,7 @@ function Bioreso() {
                                         <div className="form-row">
                                             <div className="form-group col-md-12">
                                                 <label >กรณีเลือก อื่นๆ โปรดระบุ</label>
-                                                <input type="text" className="form-control" name="bioreso_other" />
+                                                <input type="text" className="form-control" name="bioreso_other_name" />
                                             </div>
                                         </div>
 
@@ -102,6 +102,49 @@ function Bioreso() {
 
                         </div>
                     </div>
+
+                    {
+                        viewModel.qe_bioreso_data.isLoading
+
+                            ?
+
+                            <LoadingData />
+
+                            :
+
+                            <div className='card'>
+                                <div className='card-body'>
+                                    <table className="table table-bordered">
+                                        <thead>
+                                            <tr>
+                                                <th scope="col">#</th>
+                                                <th scope="col">หัวเรื่อง</th>
+                                                <th scope="col">รายละเอียด</th>
+                                                <th scope="col">ไฟล์แนบ</th>
+                                                <th scope="col"></th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            {
+                                                viewModel.qe_bioreso_data.data?.data.map((el, index) => (
+                                                    <tr key={index} >
+                                                        <th scope="row">{index + 1}</th>
+                                                        <td>{el.bioreso_text}</td>
+                                                        <td>{el.bioreso_detail}</td>
+                                                        <td>{el.bioreso_file}</td>
+                                                        <td><button onClick={() => viewModel.actionDelete(el.bioreso_id)} className='btn btn-block btn-danger'>ลบข้อมูล</button></td>
+                                                    </tr>
+                                                ))
+                                            }
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+
+
+                    }
+
+
 
 
 

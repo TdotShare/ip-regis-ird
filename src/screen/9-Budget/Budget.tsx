@@ -31,35 +31,50 @@ function Budget() {
 
                             <div style={{ paddingBottom: `1%` }}></div>
 
-                            <form ref={viewModel.ref_form} onSubmit={viewModel.submitForm} >
+                            {
+                                viewModel.qe_budget_data.isLoading
 
-                                <div className="form-row">
-                                    <div className="form-group col-md">
-                                        <label >งบประมาณในการทำวิจัย/การประดิษฐ์ เป็นจำนวนเงิน ... (ข้อมูลเพื่อใช้ประกอบในการขายสิทธิบัตร/อนุสิทธิบัตรรวมทั้งหมด)</label>
-                                        <input type="text" className="form-control" name="fund_detail" />
-                                    </div>
-                                </div>
+                                    ?
 
-                                <hr />
+                                    <LoadingData />
 
-                                <b>ระยะเวลาในการทำวิจัย/การประดิษฐ์ ... ปี ... เดือน (ข้อมูลเพื่อใช้ประกอบในการขายสิทธิบัตร/อนุสิทธิบัตรรวมทั้งหมด) </b>
 
-                                <div style={{ paddingBottom: `1%` }}></div>
+                                    :
 
-                                <div className="form-row">
-                                    <div className="form-group col-md">
-                                        <label >ปี</label>
-                                        <input type="number" className="form-control" name="fund_file" />
-                                    </div>
-                                    <div className="form-group col-md">
-                                        <label >เดือน</label>
-                                        <input type="number" className="form-control" name="fund_file" />
-                                    </div>
-                                </div>
+                                    <form ref={viewModel.ref_form} onSubmit={viewModel.submitForm} >
 
-                                <Button className='btn btn-block btn-primary'>บันทึกข้อมูล</Button>
+                                        <div className="form-row">
+                                            <div className="form-group col-md">
+                                                <label >งบประมาณในการทำวิจัย/การประดิษฐ์ เป็นจำนวนเงิน ... (ข้อมูลเพื่อใช้ประกอบในการขายสิทธิบัตร/อนุสิทธิบัตรรวมทั้งหมด)</label>
+                                                <input type="number" className="form-control" name="budget_price" defaultValue={viewModel.qe_budget_data.data?.data?.budget_price !== null ? viewModel.qe_budget_data.data?.data?.budget_price : ''} />
+                                            </div>
+                                        </div>
 
-                            </form>
+                                        <hr />
+
+                                        <b>ระยะเวลาในการทำวิจัย/การประดิษฐ์ ... ปี ... เดือน (ข้อมูลเพื่อใช้ประกอบในการขายสิทธิบัตร/อนุสิทธิบัตรรวมทั้งหมด) </b>
+
+                                        <div style={{ paddingBottom: `1%` }}></div>
+
+                                        <div className="form-row">
+                                            <div className="form-group col-md">
+                                                <label >ปี</label>
+                                                <input type="number" className="form-control" name="budget_year" defaultValue={viewModel.qe_budget_data.data?.data?.budget_year !== null ? viewModel.qe_budget_data.data?.data?.budget_year : ''} />
+                                            </div>
+                                            <div className="form-group col-md">
+                                                <label >เดือน</label>
+                                                <input type="number" className="form-control" name="budget_month" defaultValue={viewModel.qe_budget_data.data?.data?.budget_month !== null ? viewModel.qe_budget_data.data?.data?.budget_month : ''} />
+                                            </div>
+                                        </div>
+
+                                        <Button className='btn btn-block btn-primary'>บันทึกข้อมูล</Button>
+
+                                    </form>
+
+
+                            }
+
+
                         </div>
 
                     </div>

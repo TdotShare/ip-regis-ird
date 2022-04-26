@@ -57,16 +57,58 @@ function Fund() {
                                 <div className="form-row">
                                     <div className="form-group col-md">
                                         <label >แนบไฟล์เอกสาร (pdf)</label>
-                                        <input type="file" className="form-control" name="fund_file" />
+                                        <input type="file" className="form-control" name="fund_file" accept="application/pdf" />
                                     </div>
                                 </div>
 
                                 <Button className='btn btn-block btn-success'>เพิ่มข้อมูล</Button>
 
                             </form>
-                        </div>
 
+                            <hr />
+
+
+                            {
+                                viewModel.qe_fund_data.isLoading
+
+                                    ?
+
+
+                                    <LoadingData />
+
+                                    :
+
+                                    <table className="table table-bordered">
+                                        <thead>
+                                            <tr>
+                                                <th scope="col">#</th>
+                                                <th scope="col">หัวเรื่อง</th>
+                                                <th scope="col">รายละเอียด</th>
+                                                <th scope="col">เอกสารแนบ</th>
+                                                <th scope="col"></th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            {
+                                                viewModel.qe_fund_data.data?.data.map((el, index) => (
+                                                    <tr key={index} >
+                                                        <th scope="row">{index + 1}</th>
+                                                        <td>{el.fund_title}</td>
+                                                        <td>{el.fund_detail}</td>
+                                                        <td>{el.fund_file}</td>
+                                                        <td><button onClick={() => viewModel.actionDelete(el.fund_id)} className='btn btn-block btn-danger'>ลบข้อมูล</button></td>
+                                                    </tr>
+                                                ))
+                                            }
+                                        </tbody>
+                                    </table>
+                            }
+
+                        </div>
                     </div>
+
+
+
 
 
                 </div>
