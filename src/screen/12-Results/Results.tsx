@@ -60,7 +60,6 @@ function Results() {
                                                 </select>
                                             </div>
                                         </div>
-
                                     )
                                 }
 
@@ -96,25 +95,52 @@ function Results() {
 
                     <hr />
 
-                    <div className='card'>
-                        <div className='card-body'>
-                        <table className="table table-bordered">
-                                <thead>
-                                    <tr>
-                                        <th scope="col">#</th>
-                                        <th scope="col">หัวเรื่อง</th>
-                                        <th scope="col">การดำเนินการ</th>
-                                        <th scope="col">รายละเอียด</th>
-                                        <th scope="col">ไฟล์</th>
-                                        <th scope="col"></th>
-                                    </tr>
-                                </thead>
-                                <tbody>
+                    {
+                        viewModel.qe_results_data.isLoading
 
-                                </tbody>
-                            </table>
-                        </div>
-                    </div>
+
+                            ?
+
+                            <LoadingData />
+
+                            :
+
+                            <div className='card'>
+                                <div className='card-body'>
+                                    <table className="table table-bordered">
+                                        <thead>
+                                            <tr>
+                                                <th scope="col">#</th>
+                                                <th scope="col">หัวเรื่อง</th>
+                                                <th scope="col">การดำเนินการ</th>
+                                                <th scope="col">รายละเอียด</th>
+                                                <th scope="col">ไฟล์</th>
+                                                <th scope="col"></th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            {
+                                                viewModel.qe_results_data.data?.data.map((el , index) => (
+                                                    <tr key={index} >
+                                                        <th scope="row">{index + 1}</th>
+                                                        <td>{el.results_head}</td>
+                                                        <td>{el.results_text}</td>
+                                                        <td>{el.results_detail}</td>
+                                                        <td>{el.results_file}</td>
+                                                        <td><button onClick={() => viewModel.actionDelete(el.results_id)} className='btn btn-block btn-danger'>ลบข้อมูล</button></td>
+                                                    </tr>
+                                                ))
+                                            }
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+
+
+
+                    }
+
+
                 </div >
             </section >
         </div >

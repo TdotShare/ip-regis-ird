@@ -57,26 +57,42 @@ function Market() {
                             </form>
 
                             <hr />
+                            {
+                                viewModel.qe_market_data.isLoading
 
-                            <table className="table table-bordered">
-                                <thead>
-                                    <tr>
-                                        <th scope="col">#</th>
-                                        <th scope="col">บริษัท</th>
-                                        <th scope="col">ผู้ประสานงาน</th>
-                                        <th scope="col">โทรศัพท์</th>
-                                        <th scope="col"></th>
-                                    </tr>
-                                </thead>
-                                <tbody>
+                                    ?
 
-                                </tbody>
-                            </table>
+                                    <LoadingData />
+
+                                    :
+
+                                    <table className="table table-bordered">
+                                        <thead>
+                                            <tr>
+                                                <th scope="col">#</th>
+                                                <th scope="col">บริษัท</th>
+                                                <th scope="col">ผู้ประสานงาน</th>
+                                                <th scope="col">โทรศัพท์</th>
+                                                <th scope="col"></th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            {
+                                                viewModel.qe_market_data.data?.data.map((el, index) => (
+                                                    <tr key={index} >
+                                                        <th scope="row">{index + 1}</th>
+                                                        <td>{el.market_company_name}</td>
+                                                        <td>{el.market_coordinator}</td>
+                                                        <td>{el.market_tel}</td>
+                                                        <td><button onClick={() => viewModel.actionDelete(el.market_id)} className='btn btn-block btn-danger'>ลบข้อมูล</button></td>
+                                                    </tr>
+                                                ))
+                                            }
+
+                                        </tbody>
+                                    </table>
+                            }
                         </div>
-
-
-
-
                     </div>
                 </div>
 

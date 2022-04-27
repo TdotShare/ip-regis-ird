@@ -2,12 +2,20 @@ import React , { useRef, useState } from 'react'
 import { useQuery, useQueryClient } from 'react-query'
 import { useSelector } from 'react-redux'
 import { useParams } from 'react-router-dom'
+import { APIInfer_data } from '../../model/13-Infer/Infer'
 //import { APIPeople_data } from '../../model/3-People/People'
 import { RootState } from '../../store/ConfigureStore'
+import exportedAPIInfer from '../../utils/api/Infer'
 import { routerPathUser } from '../../utils/routerpath'
 import exportedSwal from '../../utils/swal'
 
 export default function InferVM() {
+
+    /** 
+     * test pass 27-04-2022
+     *  - get data
+     *  - create data ( Infer )
+    */
 
 
     const { id }: any = useParams();
@@ -15,6 +23,10 @@ export default function InferVM() {
     const ref_form = useRef<HTMLFormElement>(null);
 
     const user = useSelector((state: RootState) => state.user.data)
+
+    const qe_infer_data = useQuery<APIInfer_data, Error>('getInfer', async () => exportedAPIInfer.getInfer(id, user.token))
+    
+    const queryClient = useQueryClient()
 
     const [values] = useState({
         title: `ขอยื่นจดทะเบียน - ${id}`,
@@ -38,9 +50,15 @@ export default function InferVM() {
             infer_pros : formdata.get('infer_pros'),
         }
 
-        console.log(data)
+        const res = await exportedAPIInfer.createInfer(data, user.token)
 
+        if(res.bypass){
+            queryClient.invalidateQueries('getInfer')
+            exportedSwal.actionSuccess("บันทึกข้อมูลเรียบร้อย !")
 
+        }else{
+            exportedSwal.actionInfo(res.message)
+        }
 
     } 
 
@@ -48,6 +66,7 @@ export default function InferVM() {
         ...values,
         id,
         ref_form,
-        submitForm
+        submitForm,
+        qe_infer_data
     }
 }
