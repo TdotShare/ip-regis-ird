@@ -68,7 +68,7 @@ export default function FurtherdevVM() {
     }
 
     const actionDelete = async (id: number) => {
-        let confirmDelete = await exportedSwal.confirmDelete("คุณต้องการลบข้อมูลใช่หรือไม่")
+        let confirmDelete = await exportedSwal.confirmDelete("ที่เลือก")
 
         if (confirmDelete) {
             const res = await exportedAPIFurtherdev.deleteFurtherdev(id, user.token)

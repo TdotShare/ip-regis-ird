@@ -70,7 +70,7 @@ export default function PublicizeVM() {
 
     const actionDelete_Present = async (id: number) => {
 
-        let confirmDelete = await exportedSwal.confirmDelete("คุณต้องการลบข้อมูลใช่หรือไม่")
+        let confirmDelete = await exportedSwal.confirmDelete("ที่เลือก")
 
         if (confirmDelete) {
             const res = await exportedAPIPublicize.deletePresent(id, user.token)
@@ -127,7 +127,7 @@ export default function PublicizeVM() {
 
     const actionDelete_Expose = async (id: number) => {
 
-        let confirmDelete = await exportedSwal.confirmDelete("คุณต้องการลบข้อมูลใช่หรือไม่")
+        let confirmDelete = await exportedSwal.confirmDelete("ที่เลือก")
 
         if (confirmDelete) {
             const res = await exportedAPIPublicize.deleteExpose(id, user.token)
@@ -178,7 +178,7 @@ export default function PublicizeVM() {
 
     const actionDelete_Publish = async (id: number) => {
 
-        let confirmDelete = await exportedSwal.confirmDelete("คุณต้องการลบข้อมูลใช่หรือไม่")
+        let confirmDelete = await exportedSwal.confirmDelete("ที่เลือก")
 
         if (confirmDelete) {
             const res = await exportedAPIPublicize.deletePublish(id, user.token)

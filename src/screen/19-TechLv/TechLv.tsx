@@ -29,28 +29,46 @@ function TechLv() {
                         </div>
                         <div className="card-body">
 
-                            <table className="table table-bordered" width={`100%`}>
-                                <thead>
-                                    <tr>
-                                        <th scope="col">#</th>
-                                        <th scope="col">หัวเรื่อง</th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    {
-                                        viewModel.data_trl.map((el) => (
-                                            <tr key={el.number}>
-                                                <th scope="row">
-                                                    <div className="form-check">
-                                                        <input className="form-check-input position-static" type="checkbox" value={'1'} />
-                                                    </div>
-                                                </th>
-                                                <td>{el.name}</td>
-                                            </tr>
-                                        ))
-                                    }
-                                </tbody>
-                            </table>
+                            {
+                                viewModel.qe_trl_data.isLoading ?
+
+                                    <LoadingData />
+
+                                    :
+
+                                    <form onSubmit={viewModel.submitForm_trl} >
+
+                                        <table className="table table-bordered" width={`100%`}>
+                                            <thead>
+                                                <tr>
+                                                    <th scope="col">#</th>
+                                                    <th scope="col">หัวเรื่อง</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                {
+                                                    viewModel.data_trl.map((el) => (
+                                                        <tr key={el.number}>
+                                                            <th scope="row">
+                                                                <div className="form-check">
+                                                                    <input className="form-check-input position-static" name={el.code} type="checkbox" value={'1'} />
+                                                                </div>
+                                                            </th>
+                                                            <td>{el.name}</td>
+                                                        </tr>
+                                                    ))
+                                                }
+                                            </tbody>
+                                        </table>
+
+                                        <div style={{ paddingBottom: "1%" }}></div>
+
+                                        <Button className='btn btn-block btn-primary'>บันทึกข้อมูล</Button>
+
+                                    </form>
+
+
+                            }
 
 
                         </div>
@@ -63,30 +81,50 @@ function TechLv() {
                         </div>
                         <div className="card-body">
 
-                            <table className="table table-bordered" width={`100%`}>
-                                <thead>
-                                    <tr>
-                                        <th scope="col">#</th>
-                                        <th scope="col">หัวเรื่อง</th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    {
-                                        viewModel.data_srl.map((el) => (
-                                            <tr key={el.number}>
-                                                <th scope="row">
-                                                    <div className="form-check">
-                                                        <input className="form-check-input position-static" type="checkbox" value={'1'} />
-                                                    </div>
-                                                </th>
-                                                <td>{el.name}</td>
-                                            </tr>
-                                        ))
-                                    }
-                                </tbody>
-                            </table>
+                            {
+                                viewModel.qe_trl_data.isLoading ?
+
+                                    <LoadingData />
+
+                                    :
+
+                                    <form onSubmit={viewModel.submitForm_srl} >
+
+                                        <table className="table table-bordered" width={`100%`}>
+                                            <thead>
+                                                <tr>
+                                                    <th scope="col">#</th>
+                                                    <th scope="col">หัวเรื่อง</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                {
+                                                    viewModel.data_srl.map((el) => (
+                                                        <tr key={el.number}>
+                                                            <th scope="row">
+                                                                <div className="form-check">
+                                                                    <input className="form-check-input position-static"
+                                                                     name={el.code} 
+                                                                     defaultChecked={viewModel.qe_srl_data.data?.data?.[el.code] === 1 ? true : false }
+                                                                     type="checkbox" value={'1'} />
+                                                                </div>
+                                                            </th>
+                                                            <td>{el.name}</td>
+                                                        </tr>
+                                                    ))
+                                                }
+                                            </tbody>
+                                        </table>
+
+                                        <div style={{ paddingBottom: "1%" }}></div>
+
+                                        <Button className='btn btn-block btn-primary'>บันทึกข้อมูล</Button>
+
+                                    </form>
 
 
+
+                            }
 
                         </div>
 

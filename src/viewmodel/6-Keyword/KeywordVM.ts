@@ -109,7 +109,7 @@ export default function KeywordVM() {
 
     const actionDelete =async (id: number) => {
 
-        let confirmDelete = await exportedSwal.confirmDelete("คุณต้องการลบข้อมูลใช่หรือไม่")
+        let confirmDelete = await exportedSwal.confirmDelete("ที่เลือก")
 
         if (confirmDelete) {
             const res = await exportedAPISearchlist.deleteSearchlist(id, user.token)

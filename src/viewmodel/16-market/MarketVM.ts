@@ -69,7 +69,7 @@ export default function MarketVM() {
     } 
 
     const actionDelete = async (id: number) => {
-        let confirmDelete = await exportedSwal.confirmDelete("คุณต้องการลบข้อมูลใช่หรือไม่")
+        let confirmDelete = await exportedSwal.confirmDelete("ที่เลือก")
 
         if (confirmDelete) {
             const res = await exportedAPIMarket.deleteMarket(id, user.token)
