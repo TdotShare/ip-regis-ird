@@ -51,7 +51,10 @@ function TechLv() {
                                                         <tr key={el.number}>
                                                             <th scope="row">
                                                                 <div className="form-check">
-                                                                    <input className="form-check-input position-static" name={el.code} type="checkbox" value={'1'} />
+                                                                    
+                                                                    <input className="form-check-input position-static" 
+                                                                    defaultChecked={viewModel.qe_trl_data.data?.data?.[el.code] === 1 ? true : false }
+                                                                    name={el.code} type="checkbox" value={'1'} />
                                                                 </div>
                                                             </th>
                                                             <td>{el.name}</td>

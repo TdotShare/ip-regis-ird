@@ -1,4 +1,8 @@
-export interface TrlTech {
+interface IObjectKeys {
+    [key : string ]: string | number | undefined | null;
+  }
+
+export interface TrlTech extends IObjectKeys {
     tech_trl_id: number;
     tech_trl_project_id: number;
     tech_trl1: number;

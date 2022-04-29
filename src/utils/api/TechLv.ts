@@ -1,7 +1,7 @@
 import axios from "axios";
 import { API } from "../../config/api";
-import { APISrlTech_data } from "../../model/18-TechLv/Techsrl";
-import { APITrlTech_data } from "../../model/18-TechLv/Techtrl";
+import { APISrlTech_data } from "../../model/19-TechLv/Techsrl";
+import { APITrlTech_data } from "../../model/19-TechLv/Techtrl";
 import { APIResponse_data } from "../../model/Response";
 
 
