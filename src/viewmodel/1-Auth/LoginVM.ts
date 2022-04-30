@@ -11,15 +11,11 @@ import exportedSwal from '../../utils/swal';
 
 export default function LoginVM() {
 
-
-
-
     const dispatch = useDispatch()
 
     const navigate = useNavigate();
 
     const actionLogin = async () => {
-
 
         const res = await axios.post<APIAuth_data>(`${API}/auth/login`, { username: "jirayu.co", password: "" });
         
@@ -59,6 +55,6 @@ export default function LoginVM() {
 
 
     return {
-        actionLogin
+        actionLogin,
     }
 }

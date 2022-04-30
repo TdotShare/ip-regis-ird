@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import { titleConfig } from '../../config/title';
 import LoginVM from '../../viewmodel/1-Auth/LoginVM';
 
@@ -6,7 +6,7 @@ import LoginVM from '../../viewmodel/1-Auth/LoginVM';
 function AuthLogin() {
 
     const viewModel = LoginVM()
-
+    
     return (
         <div className="hold-transition login-page">
             <div className="login-box">
