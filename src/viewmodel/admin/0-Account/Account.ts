@@ -5,6 +5,9 @@ import { APIAccount_data } from '../../../model/Account';
 import exportedAPIAccount from '../../../utils/api/Account';
 import { useQuery, useQueryClient } from 'react-query';
 import { RootState } from '../../../store/ConfigureStore';
+import React, { useState } from 'react';
+import { debounce } from "lodash"
+
 
 export default function AccountVM() {
 
@@ -15,11 +18,36 @@ export default function AccountVM() {
 
     //const queryClient = useQueryClient()
 
-    const qe_account_data = useQuery<APIAccount_data, Error>('getAccount', async () => exportedAPIAccount.getAccount(user.token))
+
+    // React.useEffect(() => {
+    //     return () => {
+    //       debouncedSearch.cancel();
+    //     };
+    //   }, [debouncedSearch]);
+
+    const [textSearch , setTextSearch] = useState("")
+
+    const debouncedInputSearch = React.useRef(
+        debounce(async (text) => {
+            setTextSearch(text)
+        }, 300)
+    ).current;
+
+    const inputSearch = (event: React.ChangeEvent<HTMLInputElement>) => {
+        debouncedInputSearch(event.target.value);
+    };
+
+    const [page, setPage] = React.useState(0)
+
+    const qe_account_data = useQuery<APIAccount_data, Error>(['getAccount', page , textSearch],
+        async () => exportedAPIAccount.getAccount(user.token, page , textSearch), { keepPreviousData: true })
 
 
 
     return {
         qe_account_data,
+        debouncedInputSearch,
+        inputSearch,
+        setPage
     }
 }
