@@ -39,10 +39,13 @@ import TechLv from '../screen/19-TechLv/TechLv';
 import AuthLogout from '../screen/1-Auth/AuthLogout';
 
 import Account from '../screen/admin/0-Account/Account';
+import Project from '../screen/admin/1-Project/Project';
 
 import { RootState } from '../store/ConfigureStore';
 import { useSelector } from 'react-redux';
 import { routerPathUser } from '../utils/routerpath';
+import Publicip from '../screen/20-Publicip/Publicip';
+
 
 
 
@@ -77,9 +80,11 @@ function Routers() {
                         <Route path={`${routerPathUser.Regis}/market/:id`} element={<Market />} />
                         <Route path={`${routerPathUser.Regis}/assessment/:id`} element={<Assessment />} />
                         <Route path={`${routerPathUser.Regis}/techlv/:id`} element={<TechLv />} />
+                        <Route path={`${routerPathUser.Regis}/publicip/:id`} element={<Publicip />} />
                         <Route path={`${routerPathUser.Regis}/worksip/:id`} element={<Worksip />} />
                         <Route path="/logout" element={<AuthLogout />} />
                         <Route path="/account" element={<RequireAuth><Account /></RequireAuth>} />
+                        <Route path="/project" element={<RequireAuth><Project /></RequireAuth>} />
                     </Route>
                 </Route>
 

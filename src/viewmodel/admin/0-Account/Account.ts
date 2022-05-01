@@ -26,9 +26,11 @@ export default function AccountVM() {
     //   }, [debouncedSearch]);
 
     const [textSearch , setTextSearch] = useState("")
+    const [page, setPage] = React.useState(0)
 
     const debouncedInputSearch = React.useRef(
         debounce(async (text) => {
+            setPage(0)
             setTextSearch(text)
         }, 300)
     ).current;
@@ -37,7 +39,7 @@ export default function AccountVM() {
         debouncedInputSearch(event.target.value);
     };
 
-    const [page, setPage] = React.useState(0)
+
 
     const qe_account_data = useQuery<APIAccount_data, Error>(['getAccount', page , textSearch],
         async () => exportedAPIAccount.getAccount(user.token, page , textSearch), { keepPreviousData: true })

@@ -1,3 +1,4 @@
+import React from 'react'
 import { useState } from 'react'
 import { useQuery, useQueryClient } from 'react-query'
 import { useSelector } from 'react-redux'
@@ -21,6 +22,8 @@ export default function RegisVM() {
 
     const user = useSelector((state: RootState) => state.user.data)
 
+    const [page, setPage] = React.useState(0)
+
     const [values] = useState({
         title: "ขอยื่นจดทะเบียน",
         breadcrumb: [
@@ -29,7 +32,7 @@ export default function RegisVM() {
         ]
     })
 
-    const qe_project_data = useQuery<APIProject_data, Error>('getProjectAll', async () => exportedAPIProject.getProjectAll(user.token))
+    const qe_project_data = useQuery<APIProject_data, Error>([ 'getProjectAll' , page ], async () => exportedAPIProject.getProjectAll(page , user.token))
 
 
     const actionDelete = async (id: number) => {
@@ -51,6 +54,7 @@ export default function RegisVM() {
     return {
         ...values,
         qe_project_data,
-        actionDelete
+        actionDelete,
+        setPage
     }
 }

@@ -1,6 +1,7 @@
 import React from 'react'
 import ContentHeader from '../../../components/content-header/ContentHeader'
 import LoadingData from '../../../components/LoadingData'
+import Pagination from '../../../components/Pagination'
 import AccountVM from '../../../viewmodel/admin/0-Account/Account'
 
 function Account() {
@@ -93,41 +94,15 @@ function Account() {
 
                                                 <div style={{ marginBottom: `1%` }}></div>
 
-                                                <nav>
-                                                    <ul className="pagination justify-content-end">
-                                                        <li className={`page-item ${viewModel.qe_account_data.data?.data.current_page === 1 && "disabled"}`}>
-                                                            <span style={{ cursor: "pointer" }} onClick={() => viewModel.setPage(viewModel.qe_account_data.data?.data.current_page! - 1)}
-                                                                className="page-link">
-                                                                Previous
-                                                            </span>
-                                                        </li>
-                                                        {
-                                                            viewModel.qe_account_data.data?.data.data.length !== 0 && (
-                                                                Array(viewModel.qe_account_data.data?.data.last_page).fill(0).map((el, index) => {
-                                                                    return (
+                                                <Pagination
+                                                current_page={viewModel.qe_account_data.data?.data.current_page!}
+                                                last_page={viewModel.qe_account_data.data?.data.last_page!}
+                                                total={viewModel.qe_account_data.data?.data.data.length!}
+                                                nextClick={() => viewModel.setPage(viewModel.qe_account_data.data?.data.current_page! + 1)}
+                                                previousClick={() => viewModel.setPage(viewModel.qe_account_data.data?.data.current_page! - 1)}
+                                                numberClick={(num : number) => viewModel.setPage(num)}
 
-                                                                        viewModel.qe_account_data.data?.data.current_page === index + 1 ?
-
-                                                                            <li key={index} className="page-item active" aria-current="page">
-                                                                                <span className="page-link">{index + 1}</span>
-                                                                            </li>
-
-                                                                            :
-
-                                                                            <li key={index} className="page-item"><span className="page-link" style={{ cursor: "pointer" }} onClick={() => viewModel.setPage(index + 1)
-                                                                            }>{index + 1}</span></li>
-                                                                    )
-                                                                })
-                                                            )
-                                                        }
-                                                        <li className={`page-item ${viewModel.qe_account_data.data?.data.current_page === viewModel.qe_account_data.data?.data.last_page && "disabled"}`}>
-                                                            <span style={{ cursor: "pointer" }} onClick={() => viewModel.setPage(viewModel.qe_account_data.data?.data.current_page! + 1)}
-                                                                className="page-link" >
-                                                                Next
-                                                            </span>
-                                                        </li>
-                                                    </ul>
-                                                </nav>
+                                                />
 
                                             </>
 

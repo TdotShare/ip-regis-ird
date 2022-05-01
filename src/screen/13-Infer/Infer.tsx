@@ -47,7 +47,7 @@ function Infer() {
                                         <div style={{ paddingBottom: `1%` }}></div>
 
                                         <div className="form-group">
-                                            <textarea className="form-control" name='infer_strength' rows={5} defaultValue={viewModel.qe_infer_data.data?.data.infer_strength ? viewModel.qe_infer_data.data?.data.infer_strength : ""} />
+                                            <textarea className="form-control" name='infer_strength' rows={5} defaultValue={viewModel.qe_infer_data.data?.data?.infer_strength ? viewModel.qe_infer_data.data?.data.infer_strength : ""} />
                                         </div>
                                     </div>
                                 </div>
@@ -59,7 +59,7 @@ function Infer() {
                                     </div>
                                     <div className="card-body">
                                         <div className="form-group">
-                                            <textarea className="form-control" rows={5} name={`infer_source`} defaultValue={viewModel.qe_infer_data.data?.data.infer_source ? viewModel.qe_infer_data.data?.data.infer_source : ""} />
+                                            <textarea className="form-control" rows={5} name={`infer_source`} defaultValue={viewModel.qe_infer_data.data?.data?.infer_source ? viewModel.qe_infer_data.data?.data.infer_source : ""} />
                                         </div>
                                     </div>
                                 </div>
@@ -70,7 +70,7 @@ function Infer() {
                                     </div>
                                     <div className="card-body">
                                         <div className="form-group">
-                                            <textarea className="form-control" rows={5} name={`infer_pros`} defaultValue={viewModel.qe_infer_data.data?.data.infer_pros ? viewModel.qe_infer_data.data?.data.infer_pros : ""} />
+                                            <textarea className="form-control" rows={5} name={`infer_pros`} defaultValue={viewModel.qe_infer_data.data?.data?.infer_pros ? viewModel.qe_infer_data.data?.data.infer_pros : ""} />
                                         </div>
                                     </div>
                                 </div>
