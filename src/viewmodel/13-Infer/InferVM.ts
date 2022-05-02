@@ -1,4 +1,4 @@
-import React , { useRef, useState } from 'react'
+import React, { useRef, useState } from 'react'
 import { useQuery, useQueryClient } from 'react-query'
 import { useSelector } from 'react-redux'
 import { useParams } from 'react-router-dom'
@@ -15,17 +15,19 @@ export default function InferVM() {
      * test pass 27-04-2022
      *  - get data
      *  - create data ( Infer )
+     * test pass 02-05-2022
+     *  - input data
     */
 
 
     const { id }: any = useParams();
-    
+
     const ref_form = useRef<HTMLFormElement>(null);
 
     const user = useSelector((state: RootState) => state.user.data)
 
     const qe_infer_data = useQuery<APIInfer_data, Error>('getInfer', async () => exportedAPIInfer.getInfer(id, user.token))
-    
+
     const queryClient = useQueryClient()
 
     const [values] = useState({
@@ -43,24 +45,30 @@ export default function InferVM() {
         event.preventDefault();
         const formdata = new FormData(event.currentTarget);
 
+        if (!formdata.get('infer_strength') || !formdata.get('infer_source') || !formdata.get('infer_pros')) {
+            exportedSwal.actionInfo("กรอกข้อมูลให้ครบ !")
+            return
+        }
+
         let data = {
-            infer_project_id : id,
-            infer_strength : formdata.get('infer_strength'),
-            infer_source : formdata.get('infer_source'),
-            infer_pros : formdata.get('infer_pros'),
+            infer_project_id: id,
+            infer_strength: formdata.get('infer_strength'),
+            infer_source: formdata.get('infer_source'),
+            infer_pros: formdata.get('infer_pros'),
         }
 
         const res = await exportedAPIInfer.createInfer(data, user.token)
 
-        if(res.bypass){
+        if (res.bypass) {
             queryClient.invalidateQueries('getInfer')
             exportedSwal.actionSuccess("บันทึกข้อมูลเรียบร้อย !")
 
-        }else{
-            exportedSwal.actionInfo(res.message)
+        } else {
+            //exportedSwal.actionInfo(res.message)
+            exportedSwal.actionInfo("ไม่สามารถบันทึกข้อมูลได้ กรุณาติดต่อเจ้าหน้าที่ !")
         }
 
-    } 
+    }
 
     return {
         ...values,

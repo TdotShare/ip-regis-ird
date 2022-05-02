@@ -16,6 +16,8 @@ export default function FundVM() {
      *  - get data
      *  - create data ( fund )
      *  - delete data
+     * test pass 02-05-2022
+     *  - input data
     */
 
     const { id }: any = useParams();
@@ -74,6 +76,9 @@ export default function FundVM() {
         }else{
             exportedSwal.actionInfo(res.message)
         }
+
+
+        ref_form.current?.reset()
     } 
 
     const actionDelete = async (id : number) => {

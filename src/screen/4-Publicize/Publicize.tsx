@@ -1,10 +1,9 @@
 import React from 'react'
 import Button from '../../components/Button'
-//import { Link } from 'react-router-dom'
 import ContentHeader from '../../components/content-header/ContentHeader'
 import LoadingData from '../../components/LoadingData'
-//import LoadingData from '../../components/LoadingData'
 import MenuTab from '../../components/MenuTab'
+import { Public_path } from '../../config/public_path'
 import PublicizeVM from '../../viewmodel/4-Publicize/PublicizeVM'
 
 function Publicize() {
@@ -107,7 +106,7 @@ function Publicize() {
                                         <div className="form-row">
                                             <div className="form-group col-md-6">
                                                 <label >เมื่อวันที่</label>
-                                                <input type="text" className="form-control" name="expose_date" />
+                                                <input type="text" className="form-control" name="expose_date" placeholder='31-12-2539' />
                                             </div>
                                             <div className="form-group col-md-6">
                                                 <label >จัดโดยหน่วยงาน</label>
@@ -171,7 +170,7 @@ function Publicize() {
                                                                 <td>{el.expose_agency}</td>
                                                                 <td>{el.expose_location}</td>
                                                                 <td>{el.expose_country}</td>
-                                                                <td>{el.expose_file}</td>
+                                                                <td><a target={`_blank`} href={`${Public_path}/${viewModel.id}/expose/${el.expose_file}`} >{el.expose_file}</a></td>
                                                                 <td><button onClick={() => viewModel.actionDelete_Expose(el.expose_id)} className='btn btn-block btn-danger'>ลบข้อมูล</button></td>
                                                             </tr>
                                                         ))
@@ -259,7 +258,7 @@ function Publicize() {
                                                                 <th scope="row">{index + 1}</th>
                                                                 <td>{el.publish_head}</td>
                                                                 <td>{el.publish_text}</td>
-                                                                <td>{el.publish_file}</td>
+                                                                <td><a target={`_blank`} href={`${Public_path}/${viewModel.id}/publish/${el.publish_file}`} >{el.publish_file}</a></td>
                                                                 <td><button onClick={() => viewModel.actionDelete_Publish(el.publish_id)} className='btn btn-block btn-danger'>ลบข้อมูล</button></td>
                                                             </tr>
                                                         ))

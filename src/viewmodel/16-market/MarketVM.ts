@@ -15,6 +15,8 @@ export default function MarketVM() {
      * test pass 27-04-2022
      *  - get data
      *  - create data ( Market )
+     * test pass 02-05-2022
+     *  - test data
     */
 
 

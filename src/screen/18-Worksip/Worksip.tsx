@@ -3,6 +3,7 @@ import Button from '../../components/Button'
 import ContentHeader from '../../components/content-header/ContentHeader'
 import LoadingData from '../../components/LoadingData'
 import MenuTab from '../../components/MenuTab'
+import { Public_path } from '../../config/public_path'
 import WorksipVM from '../../viewmodel/18-Worksip/WorksipVM'
 
 function Worksip() {
@@ -70,7 +71,7 @@ function Worksip() {
                                                     <tr key={index} >
                                                         <th scope="row">{index + 1}</th>
                                                         <td>{el.gallery_detail}</td>
-                                                        <td>{el.gallery_file}</td>
+                                                        <td><a target={`_blank`} href={`${Public_path}/${viewModel.id}/gallery/${el.gallery_file}`} >{el.gallery_file}</a></td>
                                                         <td><button onClick={() => viewModel.actionDeleteGalleryip(el.gallery_id)} className='btn btn-block btn-danger'>ลบข้อมูล</button></td>
                                                     </tr>
                                                 ))
@@ -131,7 +132,7 @@ function Worksip() {
                                                     <tr key={index} >
                                                         <th scope="row">{index + 1}</th>
                                                         <td>{el.fileip_detail}</td>
-                                                        <td>{el.fileip_file}</td>
+                                                        <td><a target={`_blank`} href={`${Public_path}/${viewModel.id}/fileip/${el.fileip_file}`} >{el.fileip_file}</a></td>
                                                         <td><button onClick={() => viewModel.actionDeleteFileip(el.fileip_id)} className='btn btn-block btn-danger'>ลบข้อมูล</button></td>
                                                     </tr>
                                                 ))

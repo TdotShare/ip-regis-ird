@@ -9,6 +9,7 @@ function Movant() {
 
     const viewModel = MovantVM()
 
+
     return (
         <div className="content-wrapper">
             <ContentHeader
@@ -51,7 +52,7 @@ function Movant() {
                                     </div>
                                     <div className="form-group col-md">
                                         <label >ยื่นคำขอเมื่อวันที่</label>
-                                        <input type="text" className="form-control" name="movant_date" defaultValue={viewModel.qe_movant_data.data?.data?.movant_date !== null ? viewModel.qe_movant_data.data?.data?.movant_date :  ''} />
+                                        <input type="text" placeholder='31-12-2539' className="form-control" name="movant_date" defaultValue={viewModel.qe_movant_data.data?.data?.movant_date !== null ? viewModel.qe_movant_data.data?.data?.movant_date :  ''} />
                                     </div>
                                     <div className="form-group col-md">
                                         <label >ประเทศที่ยื่น</label>

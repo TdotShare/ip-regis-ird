@@ -1,4 +1,4 @@
-import React , { useRef, useState } from 'react'
+import React, { useRef, useState } from 'react'
 import { useQuery, useQueryClient } from 'react-query'
 import { useSelector } from 'react-redux'
 import { useParams } from 'react-router-dom'
@@ -12,9 +12,14 @@ import exportedSwal from '../../utils/swal'
 
 export default function BioresoVM() {
 
+    /* 
+        test pass 02-05-2022
+        - input data
+    */
+
 
     const { id }: any = useParams();
-    
+
     const ref_form = useRef<HTMLFormElement>(null);
 
     const queryClient = useQueryClient()
@@ -22,7 +27,7 @@ export default function BioresoVM() {
     const user = useSelector((state: RootState) => state.user.data)
 
     const qe_biological_data = useQuery<APIBiological_data, Error>('getBiological', async () => exportedAPIBioreso.getBiological(user.token))
-    const qe_bioreso_data = useQuery<APIBioreso_data, Error>('getBioreso', async () => exportedAPIBioreso.getBioreso(id , user.token))
+    const qe_bioreso_data = useQuery<APIBioreso_data, Error>('getBioreso', async () => exportedAPIBioreso.getBioreso(id, user.token))
 
     const [values] = useState({
         title: `ขอยื่นจดทะเบียน - ${id}`,
@@ -34,10 +39,10 @@ export default function BioresoVM() {
         ]
     })
 
-    const [showOptionText , setOptionText ] = useState(0)
+    const [showOptionText, setOptionText] = useState(0)
 
     const actionShowOption = (e: React.ChangeEvent<HTMLSelectElement>) => {
-        if(Number(e.target.value) === 0){
+        if (Number(e.target.value) === 0) {
             setOptionText(0)
             return
         }
@@ -52,15 +57,31 @@ export default function BioresoVM() {
 
 
 
-        if(Number(formdata.get('bioreso_bio_id')) === 0){
+        if (Number(formdata.get('bioreso_bio_id')) === 0) {
             exportedSwal.actionInfo(`กรุณาเลือกทรัพยากรชีวภาพ !`)
             return
         }
 
-        if(formdata.get('bioreso_detail') === ""){
+        if (Number(formdata.get('bioreso_bio_id')) === 7) {
+            if (!formdata.get('bioreso_other_name')) {
+                exportedSwal.actionInfo(`กรุณาระบบชื่อ !`)
+                return
+            }
+        }
+
+        if (formdata.get('bioreso_detail') === "") {
             exportedSwal.actionInfo(`โปรดระบุแหล่งที่มา !`)
             return
         }
+
+        let file = formdata.get('bioreso_file') as File
+
+        if (file.name === '') {
+            exportedSwal.actionInfo(`กรุณาแนบไฟล์ !`)
+            return
+        }
+
+
 
         var postData = new FormData();
 
@@ -68,24 +89,24 @@ export default function BioresoVM() {
         postData.append("bioreso_bio_id", `${formdata.get('bioreso_bio_id')}`)
         postData.append("bioreso_other_name", `${formdata.get('bioreso_other_name')}`)
         postData.append("bioreso_detail", `${formdata.get('bioreso_detail')}`)
-        postData.append("bioreso_file", formdata.get('bioreso_file') as File )
+        postData.append("bioreso_file", formdata.get('bioreso_file') as File)
 
 
         const res = await exportedAPIBioreso.createBioreso(postData, user.token)
 
-        if(res.bypass){
+        if (res.bypass) {
             queryClient.invalidateQueries('getBioreso')
             exportedSwal.actionSuccess("บันทึกข้อมูลเรียบร้อย !")
 
-        }else{
+        } else {
             exportedSwal.actionInfo(res.message)
         }
 
         ref_form.current?.reset()
 
-    } 
+    }
 
-    const actionDelete = async (id : number) => {
+    const actionDelete = async (id: number) => {
 
         let confirmDelete = await exportedSwal.confirmDelete("ที่เลือก")
 

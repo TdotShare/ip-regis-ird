@@ -3,7 +3,6 @@ import { useQuery, useQueryClient } from 'react-query'
 import { useSelector } from 'react-redux'
 import { useParams } from 'react-router-dom'
 import { APIMovant_data } from '../../model/7-Movant/Movant'
-//import { APIPeople_data } from '../../model/3-People/People'
 import { RootState } from '../../store/ConfigureStore'
 import exportedAPIMovant from '../../utils/api/Movant'
 import { routerPathUser } from '../../utils/routerpath'
@@ -15,6 +14,8 @@ export default function MovantVM() {
      * test pass 26-04-2022
      *  - get data
      *  - create data ( movant )
+     * test pass 02-05-2022
+     *  - input data
     */
 
     const { id }: any = useParams();

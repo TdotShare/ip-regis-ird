@@ -3,7 +3,6 @@ import React, { useRef, useState } from 'react'
 import { useQuery, useQueryClient } from 'react-query'
 import { useSelector } from 'react-redux'
 import { useParams } from 'react-router-dom'
-import { API } from '../../config/api'
 import { APIFurtherdev_data } from '../../model/5-Furtherdev/Furtherdev'
 import { RootState } from '../../store/ConfigureStore'
 import exportedAPIFurtherdev from '../../utils/api/Furtherdev'
@@ -17,6 +16,8 @@ export default function FurtherdevVM() {
      *  - get data
      *  - create data ( Furtherdev )
      *  - delete data
+     * test pass 02-05-2022
+     *  - input data
     */
 
     const { id }: any = useParams();
@@ -91,6 +92,7 @@ export default function FurtherdevVM() {
         ref_form,
         submitForm,
         actionDelete,
-        qe_furtherdev_data
+        qe_furtherdev_data,
+        exportedSwal
     }
 }

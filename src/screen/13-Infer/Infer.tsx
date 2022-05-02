@@ -33,7 +33,7 @@ function Infer() {
 
                             :
 
-                            <form onSubmit={viewModel.submitForm} >
+                            <form  onSubmit={viewModel.submitForm} >
 
 
                                 <div className="card card-outline card-primary">

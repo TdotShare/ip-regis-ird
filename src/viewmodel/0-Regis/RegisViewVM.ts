@@ -1,9 +1,7 @@
 import { useState } from 'react'
 import { useQuery, useQueryClient } from 'react-query'
 import { useSelector } from 'react-redux'
-import { useParams } from 'react-router-dom'
-//import { useNavigate } from 'react-router'
-import { APIProject_data } from '../../model/2-Project/Project'
+import { useNavigate, useParams } from 'react-router-dom'
 import { APIStatusIP_data } from '../../model/2-Project/Status'
 import { APIRegisProject_data } from '../../model/RegisProject'
 import { RootState } from '../../store/ConfigureStore'
@@ -21,7 +19,8 @@ export default function RegisViewVM() {
     const user = useSelector((state: RootState) => state.user.data)
 
     const queryClient = useQueryClient()
-    
+
+    const navigate = useNavigate();
 
     const [values] = useState({
         title: `ขอยื่นจดทะเบียน - ${id}`,
@@ -57,6 +56,7 @@ export default function RegisViewVM() {
 
         if(res.bypass){
             exportedSwal.actionSuccess("ส่งคำขอให้เจ้าหน้าที่เรียบร้อย !")
+            navigate(routerPathUser.Regis)
             
         }else{
             exportedSwal.actionInfo(res.message)
@@ -126,6 +126,7 @@ export default function RegisViewVM() {
         submitFormSendProject,
         query_statusip_data,
         query_project_data,
-        queryClient
+        queryClient,
+        exportedSwal
     }
 }

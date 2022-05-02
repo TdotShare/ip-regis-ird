@@ -3,6 +3,7 @@ import Button from '../../components/Button'
 import ContentHeader from '../../components/content-header/ContentHeader'
 import LoadingData from '../../components/LoadingData'
 import MenuTab from '../../components/MenuTab'
+import { Public_path } from '../../config/public_path'
 import BioresoVM from '../../viewmodel/11-Bioreso/BioresoVM'
 
 function Bioreso() {
@@ -129,9 +130,9 @@ function Bioreso() {
                                                 viewModel.qe_bioreso_data.data?.data.map((el, index) => (
                                                     <tr key={index} >
                                                         <th scope="row">{index + 1}</th>
-                                                        <td>{el.bioreso_text}</td>
+                                                        <td>{el.bioreso_text} {el.bioreso_bio_id === 7 ? `(${el.bioreso_other_name})` : ""}</td>
                                                         <td>{el.bioreso_detail}</td>
-                                                        <td>{el.bioreso_file}</td>
+                                                        <td><a target={`_blank`} href={`${Public_path}/${viewModel.id}/fund/${el.bioreso_file}`} >{el.bioreso_file}</a></td>
                                                         <td><button onClick={() => viewModel.actionDelete(el.bioreso_id)} className='btn btn-block btn-danger'>ลบข้อมูล</button></td>
                                                     </tr>
                                                 ))

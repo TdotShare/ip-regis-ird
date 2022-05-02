@@ -1,10 +1,8 @@
 import React from 'react'
-import { Link } from 'react-router-dom'
 import Button from '../../components/Button'
 import ContentHeader from '../../components/content-header/ContentHeader'
 import LoadingData from '../../components/LoadingData'
 import MenuTab from '../../components/MenuTab'
-import { routerPathUser } from '../../utils/routerpath'
 import RegisViewVM from '../../viewmodel/0-Regis/RegisViewVM'
 
 function RegisView() {
@@ -16,7 +14,6 @@ function RegisView() {
             viewModel.queryClient.removeQueries('getProject')
         }
     }, [])
-
 
     return (
         <div className="content-wrapper">

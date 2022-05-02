@@ -1,9 +1,9 @@
 import React from 'react'
-//import { Link } from 'react-router-dom'
 import ContentHeader from '../../components/content-header/ContentHeader'
 import LoadingData from '../../components/LoadingData'
 import MenuTab from '../../components/MenuTab'
-//import { routerPathUser } from '../../utils/routerpath'
+import { Public_path } from '../../config/public_path'
+
 import PeopleVM from '../../viewmodel/3-People/PeopleVM'
 
 function People() {
@@ -32,15 +32,15 @@ function People() {
                                     <h3 className="card-title">เพิ่มข้อมูลรายชื่อผู้ประดิษฐ์ / ผู้สร้างสรรค์ </h3>
                                 </div>
                                 <div className="card-body">
-                                    <form onSubmit={viewModel.submitForm} >
+                                    <form ref={viewModel.ref_form} onSubmit={viewModel.submitForm} >
 
                                         <div className="form-row">
                                             <div className="form-group col-md-6">
-                                                <label >ภาษาไทย</label>
+                                                <label >ชื่อจริง</label>
                                                 <input type="text" className="form-control" name="people_firstname" />
                                             </div>
                                             <div className="form-group col-md-6">
-                                                <label >ภาษาอังกฤษ</label>
+                                                <label >นามสกุล</label>
                                                 <input type="text" className="form-control" name="people_lastname" />
                                             </div>
                                         </div>
@@ -68,14 +68,14 @@ function People() {
                                         <div className="form-row">
                                             <div className="form-group col-md">
                                                 <label >รูปภาพประจำตัว</label>
-                                                <input type="file" className="form-control" accept='image/jpeg,image/png' onChange={viewModel.InputUploadFile_not_head} />
+                                                <input type="file" className="form-control" accept='image/jpeg,image/png' name='people_image_file' />
                                             </div>
                                         </div>
 
                                         <div className="form-row">
                                             <div className="form-group col-md">
                                                 <label >สถานะ</label>
-                                                <select className="custom-select" defaultValue={""} onChange={viewModel.actionSelectChange}>
+                                                <select className="custom-select" defaultValue={""} name="people_type">
                                                     <option value={""}>กรุณาเลือกสถานะ ผู้ประดิษฐ์ / ผู้สร้างสรรค์</option>
                                                     <option value={"บุคลากร มทร.อีสาน"}>บุคลากร มทร.อีสาน</option>
                                                     <option value={"นักศึกษา มทร.อีสาน "}>นักศึกษา มทร.อีสาน </option>
@@ -88,7 +88,7 @@ function People() {
                                         <div className="form-row">
                                             <div className="form-group col-md">
                                                 <label >ชื่อผู้ประดิษฐ์ลำดับแรก</label>
-                                                <select className="custom-select" defaultValue={""} onChange={viewModel.actionHeadChange}>
+                                                <select className="custom-select" defaultValue={""} name="people_head">
                                                     <option value={""}>ตั้งให้เป็นชื่อผู้ประดิษฐ์ลำดับแรกหรือไม่ ?</option>
                                                     <option value={"1"}>เป็น</option>
                                                     <option value={"0"}>ไม่เป็น </option>
@@ -135,6 +135,7 @@ function People() {
                                                         <th scope="col">อีเมลล์</th>
                                                         <th scope="col">สัดส่วนการประดิษฐ์/สร้างสรรค์</th>
                                                         <th scope="col">สถานะ</th>
+                                                        <th scope="col">ไฟล์รูปภาพ</th>
                                                         <th scope="col"></th>
                                                     </tr>
                                                 </thead>
@@ -149,6 +150,7 @@ function People() {
                                                                 <td>{el.people_email}</td>
                                                                 <td>{el.people_process}</td>
                                                                 <td>{el.people_type}</td>
+                                                                <td><a target={`_blank`} href={`${Public_path}/${viewModel.id}/people/${el.people_image}`} >{el.people_image}</a></td>
                                                                 <td><button onClick={() => viewModel.actionDelete(el.people_id)} className='btn btn-block btn-danger'>ลบข้อมูล</button></td>
                                                             </tr>
                                                         ))

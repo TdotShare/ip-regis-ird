@@ -3,6 +3,7 @@ import Button from '../../components/Button'
 import ContentHeader from '../../components/content-header/ContentHeader'
 import LoadingData from '../../components/LoadingData'
 import MenuTab from '../../components/MenuTab'
+import { Public_path } from '../../config/public_path'
 import ResultsVM from '../../viewmodel/12-Results/ResultsVM'
 
 function Results() {
@@ -126,7 +127,7 @@ function Results() {
                                                         <td>{el.results_head}</td>
                                                         <td>{el.results_text}</td>
                                                         <td>{el.results_detail}</td>
-                                                        <td>{el.results_file}</td>
+                                                        <td><a target={`_blank`} href={`${Public_path}/${viewModel.id}/results/${el.results_file}`} >{el.results_file}</a></td>
                                                         <td><button onClick={() => viewModel.actionDelete(el.results_id)} className='btn btn-block btn-danger'>ลบข้อมูล</button></td>
                                                     </tr>
                                                 ))

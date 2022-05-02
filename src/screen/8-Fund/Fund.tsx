@@ -3,6 +3,7 @@ import Button from '../../components/Button'
 import ContentHeader from '../../components/content-header/ContentHeader'
 import LoadingData from '../../components/LoadingData'
 import MenuTab from '../../components/MenuTab'
+import { Public_path } from '../../config/public_path'
 import FundVM from '../../viewmodel/8-Fund/FundVM'
 
 function Fund() {
@@ -95,7 +96,7 @@ function Fund() {
                                                         <th scope="row">{index + 1}</th>
                                                         <td>{el.fund_title}</td>
                                                         <td>{el.fund_detail}</td>
-                                                        <td>{el.fund_file}</td>
+                                                        <td><a target={`_blank`} href={`${Public_path}/${viewModel.id}/fund/${el.fund_file}`} >{el.fund_file}</a></td>
                                                         <td><button onClick={() => viewModel.actionDelete(el.fund_id)} className='btn btn-block btn-danger'>ลบข้อมูล</button></td>
                                                     </tr>
                                                 ))

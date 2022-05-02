@@ -23,6 +23,8 @@ export default function AssessmentVM() {
      *  - create data ( Assessment )
      *  - delete data
      *  - update data
+     * test pass 02-05-2022
+     *  - input data
     */
 
 

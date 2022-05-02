@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react'
+import React from 'react'
 import { titleConfig } from '../../config/title';
 import LoginVM from '../../viewmodel/1-Auth/LoginVM';
 

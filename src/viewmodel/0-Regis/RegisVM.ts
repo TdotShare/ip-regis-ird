@@ -2,7 +2,6 @@ import React from 'react'
 import { useState } from 'react'
 import { useQuery, useQueryClient } from 'react-query'
 import { useSelector } from 'react-redux'
-//import { useNavigate } from 'react-router'
 import { APIProject_data } from '../../model/2-Project/Project'
 import { RootState } from '../../store/ConfigureStore'
 import exportedAPIProject from '../../utils/api/Project'
@@ -46,7 +45,7 @@ export default function RegisVM() {
                 exportedSwal.actionSuccess("ลบข้อมูลเรียบร้อย !")
                 queryClient.invalidateQueries('getProjectAll')
             } else {
-                exportedSwal.actionInfo('ไม่สามารถลบข้อมูลได้ กรุณาติดต่อเจ้าหน้าที่ !')
+                exportedSwal.actionInfo(res.message)
             }
         }
     }

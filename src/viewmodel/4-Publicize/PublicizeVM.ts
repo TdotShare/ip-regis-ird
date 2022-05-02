@@ -5,7 +5,6 @@ import { useParams } from 'react-router-dom'
 import { APIExpose_data } from '../../model/4-Publicize/Expose'
 import { APIPresent_data } from '../../model/4-Publicize/Present'
 import { APIPublish_data } from '../../model/4-Publicize/Publish'
-//import { APIPeople_data } from '../../model/3-People/People'
 import { RootState } from '../../store/ConfigureStore'
 import exportedAPIPublicize from '../../utils/api/Publicize'
 import { routerPathUser } from '../../utils/routerpath'
@@ -18,6 +17,8 @@ export default function PublicizeVM() {
      *  - get data
      *  - create data ( Publicize )
      *  - save file , delete file
+     * test pass 02-05-2022
+     *  - input data
     */
 
     const queryClient = useQueryClient()
@@ -27,6 +28,7 @@ export default function PublicizeVM() {
     const ref_form = useRef<HTMLFormElement>(null);
 
     const user = useSelector((state: RootState) => state.user.data)
+    
 
     const qe_present_data = useQuery<APIPresent_data, Error>('getPresent', async () => exportedAPIPublicize.getPresent(id, user.token))
     const qe_expose_data = useQuery<APIExpose_data, Error>('getExpose', async () => exportedAPIPublicize.getExpose(id, user.token))
@@ -148,9 +150,16 @@ export default function PublicizeVM() {
         event.preventDefault();
         const formdata = new FormData(event.currentTarget);
 
-        if(!formdata.get('publish_head') || !formdata.get('publish_text') || !formdata.get('publish_file')   ){
+        if(!formdata.get('publish_head') || !formdata.get('publish_text')   ){
 
             exportedSwal.actionInfo("กรุณากรอกข้อมูลให้ครบ !")
+            return
+        }
+
+        let file_data = formdata.get('publish_file') as File
+
+        if (!file_data.name) {
+            exportedSwal.actionInfo("กรุณาแนบไฟล์ !")
             return
         }
         
@@ -202,6 +211,7 @@ export default function PublicizeVM() {
         qe_present_data,
         qe_expose_data,
         qe_publish_data,
+        exportedSwal,
         submitForm_Present,
         submitForm_Expose,
         submitForm_Publish,
