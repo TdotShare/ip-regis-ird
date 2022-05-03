@@ -49,6 +49,8 @@ function Project() {
                               <th scope="col">ชื่อผู้ที่ยื่นคำขอ</th>
                               <th scope="col">สร้างเมื่อ</th>
                               <th scope="col"></th>
+                              <th scope="col"></th>
+                              <th scope="col"></th>
                             </tr>
                           </thead>
                           <tbody>
@@ -63,6 +65,8 @@ function Project() {
                                   <td>{el.project_create_by}</td>
                                   <td>{el.project_create_at}</td>
                                   <td><Link to={`${routerPathUser.Regis}/view/${el.project_id}`} ><button className='btn btn-block btn-primary'>ดูรายละเอียด</button></Link></td>
+                                  <td><Link to={`${routerPathUser.Regis}/view/${el.project_id}`} ><button className='btn btn-block btn-primary'>ออกเอกสาร วจ-IP-01</button></Link></td>
+                                  <td><Link to={`${routerPathUser.Regis}/view/${el.project_id}`} ><button className='btn btn-block btn-primary'> ออกเอกสาร วจ-IP-02</button></Link></td>
                                 </tr>
                               ))
                             }

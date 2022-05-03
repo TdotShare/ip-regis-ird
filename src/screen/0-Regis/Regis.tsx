@@ -57,6 +57,8 @@ function Regis() {
                                                                 <th scope="col">สร้างเมื่อ</th>
                                                                 <th scope="col"></th>
                                                                 <th scope="col"></th>
+                                                                <th scope="col"></th>
+                                                                <th scope="col"></th>
                                                             </tr>
                                                         </thead>
                                                         <tbody>
@@ -70,6 +72,8 @@ function Regis() {
                                                                         <td>{el.status_name}</td>
                                                                         <td>{el.project_create_at}</td>
                                                                         <td><Link to={`${routerPathUser.Regis}/view/${el.project_id}`} ><button className='btn btn-block btn-primary'>เพิ่มรายละเอียด</button></Link></td>
+                                                                        <td><Link to={`${routerPathUser.Regis}/view/${el.project_id}`} ><button className='btn btn-block btn-primary'>ออกเอกสาร วจ-IP-01</button></Link></td>
+                                                                        <td><Link to={`${routerPathUser.Regis}/view/${el.project_id}`} ><button className='btn btn-block btn-primary'> ออกเอกสาร วจ-IP-02</button></Link></td>
                                                                         <td><button onClick={() => viewModel.actionDelete(el.project_id)} className='btn btn-block btn-danger'>ลบข้อมูล</button></td>
 
                                                                     </tr>
