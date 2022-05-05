@@ -46,6 +46,7 @@ import { useSelector } from 'react-redux';
 import { routerPathUser } from '../utils/routerpath';
 import Publicip from '../screen/20-Publicip/Publicip';
 import ProdAuthen from '../components/ProdAuthen';
+import UserAuthen from '../components/UserAuthen';
 
 
 
@@ -59,10 +60,10 @@ function Routers() {
     const data = useSelector((state: RootState) => state.user)
 
     return (
-        <BrowserRouter>
+        <BrowserRouter  basename="/regisip" >
             <Routes>
                 <Route path="/login" element={<AuthLogin />} />
-                <Route path="/" element={<PrivateRoute authentication={data.auth} />}>
+                <Route path="/" element={<UserAuthen><PrivateRoute authentication={data.auth} /></UserAuthen> }>
                     <Route path="/" element={<Main />}>
                         <Route path="/" element={<Navigate to={routerPathUser.Regis} />} />
                         <Route path={routerPathUser.Regis} element={<Regis />} />

@@ -11,6 +11,7 @@ interface Account {
     campus : string;
     email : string;
     token : string;
+    role : string;
 }
 
 export type APIAuthentication_data = {

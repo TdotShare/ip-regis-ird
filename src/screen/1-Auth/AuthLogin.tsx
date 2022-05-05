@@ -6,6 +6,11 @@ import LoginVM from '../../viewmodel/1-Auth/LoginVM';
 function AuthLogin() {
 
     const viewModel = LoginVM()
+
+    React.useEffect(() => {
+        viewModel.actionGetMe()
+    }, [])
+    
     
     return (
         <div className="hold-transition login-page">
@@ -17,7 +22,7 @@ function AuthLogin() {
                     <div className="card-body">
                         <p className="login-box-msg">Sign in to start your session</p>
 
-                        <div className="input-group mb-3">
+                        {/* <div className="input-group mb-3">
                             <input type="email" className="form-control" placeholder="Email" />
                             <div className="input-group-append">
                                 <div className="input-group-text">
@@ -32,11 +37,11 @@ function AuthLogin() {
                                     <span className="fas fa-lock" />
                                 </div>
                             </div>
-                        </div>
+                        </div> */}
                         <div className="row">
                             {/* /.col */}
                             <div className="col-12">
-                                <button onClick={() => viewModel.actionLogin()} className="btn btn-primary btn-block">Sign In</button>
+                                <button onClick={() => viewModel.actionLoginRmuti()} className="btn btn-primary btn-block">Sign In With RMUTI</button>
                             </div>
                             {/* /.col */}
                         </div>

@@ -6,7 +6,10 @@ type AppProps = {
 }
 
 const PrivateRoute = ({authentication} : AppProps) => {
+
   return authentication ? <Outlet /> : <Navigate to="/login" /> ;
+
+
 };
 
 export default PrivateRoute;

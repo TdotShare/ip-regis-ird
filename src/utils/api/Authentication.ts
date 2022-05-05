@@ -14,12 +14,18 @@ const getMe = async (token: String) => {
     return res.data
 }
 
-const login = async (username : string , password : string) => {
-    const res = await axios.post<APIAuthentication_data>(`${API}/auth/login` , { "username" : username , "password" : password });
+const getUserRmuti = async () => {
+    const res = await axios.get<APIAuthentication_data>(`${API}/auth/login_get_rmuti`);
+    return res.data
+}
+
+const login = async () => {
+    const res = await axios.get<APIAuthentication_data>(`${API}/auth/login_get_rmuti`);
     return res.data
 }
 
 const exportedAPIAuthentication = {
+    getUserRmuti,
     getMe,
     login
 };

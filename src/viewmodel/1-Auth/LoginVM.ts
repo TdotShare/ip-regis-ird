@@ -12,14 +12,20 @@ export default function LoginVM() {
 
     const navigate = useNavigate();
 
-    const actionLogin = async () => {
 
-        const res = await exportedAPIAuthentication.login("jirayu.co" , "")
+    const actionGetMe = async () => {
+        const res = await exportedAPIAuthentication.getUserRmuti()
+        console.log(res)
+    }
 
-        if(res.bypass){
+    const actionLoginRmuti = async () => {
+
+        const res = await exportedAPIAuthentication.getUserRmuti()
+    
+        if(res.bypass) {
 
             let user = res.data
-
+    
             dispatch(addUser({
                 id: user.id,
                 uid: user.uid,
@@ -28,21 +34,29 @@ export default function LoginVM() {
                 lastname_th: user.lastname_th,
                 email: user.email,
                 token : user.token,
-                role: "admin"
+                role: user.role
             }))
 
-            dispatch(setLoginSuccess())
-
-            navigate(routerPathUser.Regis)
-
+          dispatch(setLoginSuccess())
+    
+          navigate(routerPathUser.Regis)
+    
         }else{
+    
+          if(res.status === 'login'){
+            window.location.href = 'https://mis-ird.rmuti.ac.th/sso/auth/login?url=https://ip.ird.rmuti.ac.th/regisip/login'
+          }
+    
+          if(res.message !== ""){
             exportedSwal.actionInfo(res.message)
+          }
         }
-
-    };
+    
+    }
 
 
     return {
-        actionLogin,
+        actionGetMe,
+        actionLoginRmuti,
     }
 }
