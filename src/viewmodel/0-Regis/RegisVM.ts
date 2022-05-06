@@ -54,6 +54,7 @@ export default function RegisVM() {
         ...values,
         qe_project_data,
         actionDelete,
-        setPage
+        setPage,
+        user,
     }
 }

@@ -19,8 +19,9 @@ const getUserRmuti = async () => {
     return res.data
 }
 
-const login = async () => {
-    const res = await axios.get<APIAuthentication_data>(`${API}/auth/login_get_rmuti`);
+
+const login = async (data : any) => {
+    const res = await axios.post<APIAuthentication_data>(`${API}/auth/login` , data);
     return res.data
 }
 

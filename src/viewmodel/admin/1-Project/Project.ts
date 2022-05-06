@@ -28,6 +28,7 @@ export default function ProjectAdminVM() {
     return {
         ...values,
         qe_project_data,
-        setPage
+        setPage,
+        user
     }
 }

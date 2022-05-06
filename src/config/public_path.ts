@@ -1,1 +1,1 @@
-export const Public_path  =  "http://127.0.0.1:8000/upload"
+export const Public_path  =  "https://mis-ird.rmuti.ac.th/service/regisip/public/upload"
