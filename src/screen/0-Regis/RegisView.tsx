@@ -13,6 +13,7 @@ function RegisView() {
         return () => {
             viewModel.queryClient.removeQueries('getProject')
         }
+        // eslint-disable-next-line
     }, [])
 
     return (

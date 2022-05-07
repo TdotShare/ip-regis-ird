@@ -26,6 +26,8 @@ function ProdAuthen({ children }: AppProps) {
         return () => {
             queryClient.removeQueries('getProject')
         }
+
+        // eslint-disable-next-line
     }, [])
 
 

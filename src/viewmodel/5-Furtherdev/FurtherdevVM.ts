@@ -1,4 +1,3 @@
-import axios from 'axios'
 import React, { useRef, useState } from 'react'
 import { useQuery, useQueryClient } from 'react-query'
 import { useSelector } from 'react-redux'
