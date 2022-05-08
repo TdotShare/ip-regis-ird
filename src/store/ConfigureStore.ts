@@ -1,6 +1,7 @@
 import { configureStore } from '@reduxjs/toolkit'
 import { combineReducers } from 'redux'
 import userReducer  from "./reducer/User" 
+import userReducerTest from './reducer/User_test'
 
 import {
   persistReducer,
@@ -13,6 +14,7 @@ import {
 } from 'redux-persist'
 import storage from 'redux-persist/lib/storage'
 
+
 const persistConfig = {
   key: 'root',
   version: 1,
@@ -22,6 +24,10 @@ const persistConfig = {
 
 const rootReducer = combineReducers({
   user: userReducer,
+})
+
+const rootReducer_test = combineReducers({
+  user : userReducerTest,
 })
 
 const counter_persistedReducer = persistReducer(persistConfig, rootReducer)
@@ -37,7 +43,7 @@ export const store = configureStore({
 })
 
 export const store_test = configureStore({
-  reducer: rootReducer ,
+  reducer: rootReducer_test ,
 })
 
 // Infer the `RootState` and `AppDispatch` types from the store itself

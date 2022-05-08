@@ -47,7 +47,7 @@ function Infer() {
                                         <div style={{ paddingBottom: `1%` }}></div>
 
                                         <div className="form-group">
-                                            <textarea className="form-control" name='infer_strength' rows={5} defaultValue={viewModel.qe_infer_data.data?.data?.infer_strength ? viewModel.qe_infer_data.data?.data.infer_strength : ""} />
+                                            <textarea data-testid="infer_strength" className="form-control" name='infer_strength' rows={5} defaultValue={viewModel.qe_infer_data.data?.data?.infer_strength ? viewModel.qe_infer_data.data?.data.infer_strength : ""} />
                                         </div>
                                     </div>
                                 </div>
