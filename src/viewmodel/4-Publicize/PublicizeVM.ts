@@ -25,7 +25,9 @@ export default function PublicizeVM() {
 
     const { id }: any = useParams();
     
-    const ref_form = useRef<HTMLFormElement>(null);
+    const ref_form_present = useRef<HTMLFormElement>(null);
+    const ref_form_expose = useRef<HTMLFormElement>(null);
+    const ref_form_publish = useRef<HTMLFormElement>(null);
 
     const user = useSelector((state: RootState) => state.user.data)
     
@@ -67,6 +69,8 @@ export default function PublicizeVM() {
         } else {
             exportedSwal.actionInfo(resData.message)
         }
+
+        ref_form_present.current?.reset()
     }
 
 
@@ -111,7 +115,7 @@ export default function PublicizeVM() {
         
         let resData = await exportedAPIPublicize.createExpose(postData, user.token)
 
-        console.log(resData.data)
+        //console.log(resData.data)
 
         if(resData.bypass){
             queryClient.invalidateQueries('getExpose')
@@ -122,7 +126,7 @@ export default function PublicizeVM() {
             exportedSwal.actionInfo(resData.message)
         }
 
-        ref_form.current?.reset()
+        ref_form_expose.current?.reset()
 
 
     }
@@ -181,7 +185,7 @@ export default function PublicizeVM() {
             exportedSwal.actionInfo(resData.message)
         }
 
-        ref_form.current?.reset()
+        ref_form_publish.current?.reset()
 
     }
 
@@ -207,7 +211,9 @@ export default function PublicizeVM() {
     return {
         ...values,
         id,
-        ref_form,
+        ref_form_present,
+        ref_form_expose,
+        ref_form_publish,
         qe_present_data,
         qe_expose_data,
         qe_publish_data,

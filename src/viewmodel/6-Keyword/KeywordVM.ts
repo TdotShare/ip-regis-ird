@@ -66,7 +66,7 @@ export default function KeywordVM() {
             keyword_web_other : formdata.get('keyword_web_other'),
         }
 
-        console.log(data)
+        //console.log(data)
 
         const res = await exportedAPIKeyword.createKeyword(data, user.token)
 
@@ -107,6 +107,8 @@ export default function KeywordVM() {
         }else{
             exportedSwal.actionInfo(res.message)
         }
+
+        ref_form.current?.reset()
     }
 
     const actionDelete =async (id: number) => {

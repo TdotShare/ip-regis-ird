@@ -33,7 +33,7 @@ function Publicize() {
                                 <div className="card-body">
 
 
-                                    <form onSubmit={viewModel.submitForm_Present}>
+                                    <form ref={viewModel.ref_form_present} onSubmit={viewModel.submitForm_Present}>
 
                                         <div className="form-row">
                                             <div className="form-group col-md">
@@ -101,7 +101,7 @@ function Publicize() {
                                 </div>
                                 <div className="card-body">
 
-                                    <form ref={viewModel.ref_form} onSubmit={viewModel.submitForm_Expose}>
+                                    <form ref={viewModel.ref_form_expose} onSubmit={viewModel.submitForm_Expose}>
 
                                         <div className="form-row">
                                             <div className="form-group col-md-6">
@@ -132,7 +132,7 @@ function Publicize() {
                                             </div>
                                         </div>
 
-                                        <Button className='btn btn-block btn-success'>บันทึกข้อมูล</Button>
+                                        <Button className='btn btn-block btn-success'>เพิ่มข้อมูล</Button>
 
                                     </form>
 
@@ -196,7 +196,7 @@ function Publicize() {
                                 <div className="card-body">
 
 
-                                    <form ref={viewModel.ref_form} onSubmit={viewModel.submitForm_Publish}>
+                                    <form ref={viewModel.ref_form_publish} onSubmit={viewModel.submitForm_Publish}>
 
                                         <div className="form-row">
                                             <div className="form-group col-md">
@@ -224,7 +224,7 @@ function Publicize() {
                                             </div>
                                         </div>
 
-                                        <Button className='btn btn-block btn-success'>บันทึกข้อมูล</Button>
+                                        <Button className='btn btn-block btn-success'>เพิ่มข้อมูล</Button>
                                     </form>
 
 

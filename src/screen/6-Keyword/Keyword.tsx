@@ -24,7 +24,7 @@ function Keyword() {
 
                     <div className="card card-outline card-primary">
                         <div className="card-header">
-                            <h3 className="card-title">การสืบค้นข้อมูลสิทธิบัตร - อนุสิทธิบัตร </h3>
+                            <h3 className="card-title">การสืบค้นข้อมูลสิทธิบัตร - อนุสิทธิบัตร</h3>
                         </div>
                         <div className="card-body">
 
@@ -43,7 +43,7 @@ function Keyword() {
                                     <div className="form-row">
                                         <div className="form-group col-md-12">
                                             <label >keyword ที่ใช้ในการสืบค้น</label>
-                                            <input type="text" className="form-control" defaultValue={viewModel.qe_keyword_data.data?.data?.keyword_use !== null ? viewModel.qe_keyword_data.data?.data?.keyword_use : ''} name="keyword_use" />
+                                            <input name="keyword_use" type="text" className="form-control" defaultValue={viewModel.qe_keyword_data.data?.data?.keyword_use !== null ? viewModel.qe_keyword_data.data?.data?.keyword_use : ''} />
                                         </div>
                                     </div>
 
@@ -129,7 +129,7 @@ function Keyword() {
                         </div>
                         <div className="card-body">
 
-                            <form onSubmit={viewModel.submitForm_searchlist}>
+                            <form  ref={viewModel.ref_form}  onSubmit={viewModel.submitForm_searchlist}>
                                 <div className="form-row">
                                     <div className="form-group col-md-12">
                                         <label >ชื่อที่แสดงถึงการประดิษฐ์</label>

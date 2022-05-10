@@ -65,6 +65,8 @@ export default function FurtherdevVM() {
             exportedSwal.actionInfo(res.message)
         }
 
+        ref_form.current?.reset()
+
     }
 
     const actionDelete = async (id: number) => {

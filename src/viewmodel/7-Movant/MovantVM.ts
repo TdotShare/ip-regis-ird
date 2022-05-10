@@ -50,7 +50,7 @@ export default function MovantVM() {
             movant_country : formdata.get('movant_country'),
         }
 
-        console.log(data)
+        //console.log(data)
 
         const res = await exportedAPIMovant.createMovant(data, user.token)
 
