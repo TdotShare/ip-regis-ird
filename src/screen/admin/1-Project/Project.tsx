@@ -39,42 +39,44 @@ function Project() {
 
                     <div className='row'>
                       <div className='col'>
-                        <table className="table table-bordered">
-                          <thead>
-                            <tr>
-                              <th scope="col">#</th>
-                              <th scope="col">เลขที่คำขอ</th>
-                              <th scope="col">ชื่อผลงาน (ไทย)</th>
-                              <th scope="col">ชื่อผลงาน (ENG)</th>
-                              <th scope="col">ประเภท</th>
-                              <th scope="col">สถานะ</th>
-                              <th scope="col">ชื่อผู้ที่ยื่นคำขอ</th>
-                              <th scope="col">สร้างเมื่อ</th>
-                              <th scope="col"></th>
-                              <th scope="col"></th>
-                              <th scope="col"></th>
-                            </tr>
-                          </thead>
-                          <tbody>
-                            {
-                              viewModel.qe_project_data.data?.data.data.map((el, index) => (
-                                <tr key={index} >
-                                  <th scope="row">{index + 1}</th>
-                                  <td>{el.project_regis_num}</td>
-                                  <td>{el.project_name_th}</td>
-                                  <td>{el.project_name_en}</td>
-                                  <td>{el.category_ip_name} {el.project_category_ip_sub ? `(${el.project_category_ip_sub})` : ``}</td>
-                                  <td>{el.status_name}</td>
-                                  <td>{el.project_create_by}</td>
-                                  <td>{el.project_create_at}</td>
-                                  <td><Link to={`${routerPathUser.Regis}/view/${el.project_id}`} ><button className='btn btn-block btn-primary'>ดูรายละเอียด</button></Link></td>
-                                  <td><a href={`${API}/user/issuedocument/ip1/${el.project_id}?token=${viewModel.user.token}`} target={`_blank`} ><button className='btn btn-block btn-primary'>ออกเอกสาร วจ-IP-01</button></a></td>
-                                  <td><a href={`${API}/user/issuedocument/ip2/${el.project_id}?token=${viewModel.user.token}`} target={`_blank`} ><button className='btn btn-block btn-primary'> ออกเอกสาร วจ-IP-02</button></a></td>
-                                </tr>
-                              ))
-                            }
-                          </tbody>
-                        </table>
+                        <div className="table-responsive">
+                          <table className="table table-bordered">
+                            <thead>
+                              <tr>
+                                <th scope="col">#</th>
+                                <th scope="col">เลขที่คำขอ</th>
+                                <th scope="col">ชื่อผลงาน (ไทย)</th>
+                                <th scope="col">ชื่อผลงาน (ENG)</th>
+                                <th scope="col">ประเภท</th>
+                                <th scope="col">สถานะ</th>
+                                <th scope="col">ชื่อผู้ที่ยื่นคำขอ</th>
+                                <th scope="col">สร้างเมื่อ</th>
+                                <th scope="col"></th>
+                                <th scope="col"></th>
+                                <th scope="col"></th>
+                              </tr>
+                            </thead>
+                            <tbody>
+                              {
+                                viewModel.qe_project_data.data?.data.data.map((el, index) => (
+                                  <tr key={index} >
+                                    <th scope="row">{index + 1}</th>
+                                    <td>{el.project_regis_num}</td>
+                                    <td>{el.project_name_th}</td>
+                                    <td>{el.project_name_en}</td>
+                                    <td>{el.category_ip_name} {el.project_category_ip_sub ? `(${el.project_category_ip_sub})` : ``}</td>
+                                    <td>{el.status_name}</td>
+                                    <td>{el.project_create_by}</td>
+                                    <td>{el.project_create_at}</td>
+                                    <td><Link to={`${routerPathUser.Regis}/view/${el.project_id}`} ><button className='btn btn-block btn-primary'>ดูรายละเอียด</button></Link></td>
+                                    <td><a href={`${API}/user/issuedocument/ip1/${el.project_id}?token=${viewModel.user.token}`} target={`_blank`} ><button className='btn btn-block btn-primary'>ออกเอกสาร วจ-IP-01</button></a></td>
+                                    <td><a href={`${API}/user/issuedocument/ip2/${el.project_id}?token=${viewModel.user.token}`} target={`_blank`} ><button className='btn btn-block btn-primary'> ออกเอกสาร วจ-IP-02</button></a></td>
+                                  </tr>
+                                ))
+                              }
+                            </tbody>
+                          </table>
+                        </div>
 
                       </div>
                     </div>

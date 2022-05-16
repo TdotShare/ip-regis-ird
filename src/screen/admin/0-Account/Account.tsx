@@ -19,10 +19,10 @@ function Account() {
     return (
         <div className="content-wrapper">
             <ContentHeader
-                title={`Account Page`}
+                title={`ผู้ใช้งาน`}
                 breadcrumb={[
-                    { name: "Home", url: "", active: true },
-                    { name: "Account Page", url: "", active: false },
+                    { name: "หน้าหลัก", url: "", active: true },
+                    { name: "ผู้ใช้งาน", url: "", active: false },
                 ]}
             />
             <section className="content">

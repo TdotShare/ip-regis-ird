@@ -32,6 +32,7 @@ export default function RegisCreateVM() {
         ],
         ip_name_th: "",
         ip_name_en: "",
+        ip_sd_instead: "",
         ip_category_id: 0,
         ip_category_sub: "",
         ip_category_option: 0,
@@ -56,7 +57,7 @@ export default function RegisCreateVM() {
             return
         }
 
-        console.log(`ip_category_id = ${values.ip_category_id}`)
+        //console.log(`ip_category_id = ${values.ip_category_id}`)
         if (values.ip_category_id === 0) {
             exportedSwal.actionInfo("โปรดเลือก ประเภทของทรัพย์สินทางปัญญา !")
             return
@@ -75,6 +76,7 @@ export default function RegisCreateVM() {
             project_name_en: values.ip_name_en,
             project_category_ip_id: values.ip_category_id,
             project_category_ip_sub: values.ip_category_sub,
+            project_sd_instead : values.ip_sd_instead
         }
 
 
@@ -93,6 +95,7 @@ export default function RegisCreateVM() {
 
     return {
         ...values,
+        user,
         query_categoryip_data,
         actionCreate,
         onChange,

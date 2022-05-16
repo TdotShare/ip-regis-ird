@@ -79,30 +79,32 @@ function Fund() {
 
                                     :
 
-                                    <table className="table table-bordered">
-                                        <thead>
-                                            <tr>
-                                                <th scope="col">#</th>
-                                                <th scope="col">หัวเรื่อง</th>
-                                                <th scope="col">รายละเอียด</th>
-                                                <th scope="col">เอกสารแนบ</th>
-                                                <th scope="col"></th>
-                                            </tr>
-                                        </thead>
-                                        <tbody>
-                                            {
-                                                viewModel.qe_fund_data.data?.data.map((el, index) => (
-                                                    <tr key={index} >
-                                                        <th scope="row">{index + 1}</th>
-                                                        <td>{el.fund_title}</td>
-                                                        <td>{el.fund_detail}</td>
-                                                        <td><a target={`_blank`} href={`${Public_path}/${viewModel.id}/fund/${el.fund_file}`} >{el.fund_file}</a></td>
-                                                        <td><button onClick={() => viewModel.actionDelete(el.fund_id)} className='btn btn-block btn-danger'>ลบข้อมูล</button></td>
-                                                    </tr>
-                                                ))
-                                            }
-                                        </tbody>
-                                    </table>
+                                    <div className="table-responsive">
+                                        <table className="table table-bordered">
+                                            <thead>
+                                                <tr>
+                                                    <th scope="col">#</th>
+                                                    <th scope="col">หัวเรื่อง</th>
+                                                    <th scope="col">รายละเอียด</th>
+                                                    <th scope="col">เอกสารแนบ</th>
+                                                    <th scope="col"></th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                {
+                                                    viewModel.qe_fund_data.data?.data.map((el, index) => (
+                                                        <tr key={index} >
+                                                            <th scope="row">{index + 1}</th>
+                                                            <td>{el.fund_title}</td>
+                                                            <td>{el.fund_detail}</td>
+                                                            <td><a target={`_blank`} href={`${Public_path}/${viewModel.id}/fund/${el.fund_file}`} >{el.fund_file}</a></td>
+                                                            <td><button onClick={() => viewModel.actionDelete(el.fund_id)} className='btn btn-block btn-danger'>ลบข้อมูล</button></td>
+                                                        </tr>
+                                                    ))
+                                                }
+                                            </tbody>
+                                        </table>
+                                    </div>
                             }
 
                         </div>

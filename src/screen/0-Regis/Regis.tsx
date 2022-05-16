@@ -22,11 +22,16 @@ function Regis() {
                 <div className="container-fluid">
 
 
-                    <div className='row'>
-                        <div className='col'>
-                            <Link to={`${routerPathUser.Regis}/create`}><Button className='btn btn-primary'><i className="fas fa-plus"></i> ยื่นขอจดทะเบียน</Button></Link>
+                    <div className='row' >
+                        <div className='col-md-2 col-sm-12' style={{marginTop : `3px`}}>
+                            <Link to={`${routerPathUser.Regis}/create`}><Button className='btn btn-primary btn-block'><i className="fas fa-plus"></i> ยื่นขอจดทะเบียน</Button></Link>
+                        </div>
+                        <div className='col-md-2 col-sm-12' style={{marginTop : `3px`}}>
+                            <a target={`_blank`} href='https://forms.gle/Px9iTG62hUorjn9i7'><Button className='btn btn-primary btn-block'><i className="fas fa-vote-yea"></i> แบบประเมินระบบ</Button></a>
                         </div>
                     </div>
+
+
 
                     <div style={{ paddingBottom: '1%' }}></div>
 

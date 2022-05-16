@@ -66,29 +66,30 @@ function Furtherdev() {
 
                                             :
 
-
-                                            <table className="table table-bordered">
-                                                <thead>
-                                                    <tr>
-                                                        <th scope="col">#</th>
-                                                        <th scope="col">หัวข้อ</th>
-                                                        <th scope="col">รายละเอียด</th>
-                                                        <th scope="col"></th>
-                                                    </tr>
-                                                </thead>
-                                                <tbody>
-                                                    {
-                                                        viewModel.qe_furtherdev_data.data?.data.map((el, index) => (
-                                                            <tr key={index} >
-                                                                <th scope="row">{index + 1}</th>
-                                                                <td>{el.furtherdev_title}</td>
-                                                                <td>{el.furtherdev_text}</td>
-                                                                <td><button onClick={() => viewModel.actionDelete(el.furtherdev_id)} className='btn btn-block btn-danger'>ลบข้อมูล</button></td>
-                                                            </tr>
-                                                        ))
-                                                    }
-                                                </tbody>
-                                            </table>
+                                            <div className="table-responsive">
+                                                <table className="table table-bordered">
+                                                    <thead>
+                                                        <tr>
+                                                            <th scope="col">#</th>
+                                                            <th scope="col">หัวข้อ</th>
+                                                            <th scope="col">รายละเอียด</th>
+                                                            <th scope="col"></th>
+                                                        </tr>
+                                                    </thead>
+                                                    <tbody>
+                                                        {
+                                                            viewModel.qe_furtherdev_data.data?.data.map((el, index) => (
+                                                                <tr key={index} >
+                                                                    <th scope="row">{index + 1}</th>
+                                                                    <td>{el.furtherdev_title}</td>
+                                                                    <td>{el.furtherdev_text}</td>
+                                                                    <td><button onClick={() => viewModel.actionDelete(el.furtherdev_id)} className='btn btn-block btn-danger'>ลบข้อมูล</button></td>
+                                                                </tr>
+                                                            ))
+                                                        }
+                                                    </tbody>
+                                                </table>
+                                            </div>
                                     }
 
 

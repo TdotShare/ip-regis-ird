@@ -78,29 +78,30 @@ function Assessment() {
                                     <LoadingData />
 
                                     :
-
-                                    <table className="table table-bordered">
-                                        <thead>
-                                            <tr>
-                                                <th scope="col">#</th>
-                                                <th scope="col">หัวเรื่อง</th>
-                                                <th scope="col">สาเหตุ / รายละเอียด</th>
-                                                <th scope="col"></th>
-                                            </tr>
-                                        </thead>
-                                        <tbody>
-                                            {
-                                                viewModel.qe_expand_data.data?.data.map((el, index) => (
-                                                    <tr key={index} >
-                                                        <th scope="row">{index + 1}</th>
-                                                        <td>{el.expand_name}</td>
-                                                        <td>{el.expand_note}</td>
-                                                        <td><button onClick={() => viewModel.actionDelete_expand(el.expand_id)} className='btn btn-block btn-danger'>ลบข้อมูล</button></td>
-                                                    </tr>
-                                                ))
-                                            }
-                                        </tbody>
-                                    </table>
+                                    <div className="table-responsive">
+                                        <table className="table table-bordered">
+                                            <thead>
+                                                <tr>
+                                                    <th scope="col">#</th>
+                                                    <th scope="col">หัวเรื่อง</th>
+                                                    <th scope="col">สาเหตุ / รายละเอียด</th>
+                                                    <th scope="col"></th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                {
+                                                    viewModel.qe_expand_data.data?.data.map((el, index) => (
+                                                        <tr key={index} >
+                                                            <th scope="row">{index + 1}</th>
+                                                            <td>{el.expand_name}</td>
+                                                            <td>{el.expand_note}</td>
+                                                            <td><button onClick={() => viewModel.actionDelete_expand(el.expand_id)} className='btn btn-block btn-danger'>ลบข้อมูล</button></td>
+                                                        </tr>
+                                                    ))
+                                                }
+                                            </tbody>
+                                        </table>
+                                    </div>
                             }
 
 

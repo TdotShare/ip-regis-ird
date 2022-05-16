@@ -37,6 +37,18 @@ function RegisCreate() {
                                             <label >ภาษาอังกฤษ</label>
                                             <input type="text" className="form-control" name="ip_name_en" onChange={viewModel.onChange} defaultValue={viewModel.ip_name_en} />
                                         </div>
+                                        {
+                                            viewModel.user.role === 'admin' ?
+
+                                                <div className="form-group col-md-12">
+                                                    <label >สร้างคำขอแทน (กรอกบัญชีอินเตอร์ rmuti)</label>
+                                                    <input type="text" className="form-control" name="ip_sd_instead" onChange={viewModel.onChange} defaultValue={viewModel.ip_sd_instead} />
+                                                </div>
+
+                                                :
+
+                                                <></>
+                                        }
                                     </div>
                                 </div>
                             </div>
@@ -81,16 +93,16 @@ function RegisCreate() {
 
                                     {
                                         viewModel.ip_category_option === 1 ?
-                                        <div className="form-row">
-                                            <div className="form-group col-md-12">
-                                                <label >โปรดระบุเพิ่มเติม (ลิขสิทธิ์ประเภท ... , อื่น ระบบ ...)</label>
-                                                <input type="text" className="form-control" name="ip_category_sub" onChange={viewModel.onChange} defaultValue={viewModel.ip_category_sub} />
+                                            <div className="form-row">
+                                                <div className="form-group col-md-12">
+                                                    <label >โปรดระบุเพิ่มเติม (ลิขสิทธิ์ประเภท ... , อื่น ระบบ ...)</label>
+                                                    <input type="text" className="form-control" name="ip_category_sub" onChange={viewModel.onChange} defaultValue={viewModel.ip_category_sub} />
+                                                </div>
                                             </div>
-                                        </div>
 
-                                        :
+                                            :
 
-                                        <></>
+                                            <></>
                                     }
                                 </div>
                             </div>

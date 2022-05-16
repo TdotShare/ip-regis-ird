@@ -36,7 +36,7 @@ export default function RegisVM() {
 
     const actionDelete = async (id: number) => {
 
-        let confirmDelete = await exportedSwal.confirmDelete("คุณต้องการลบข้อมูลใช่หรือไม่")
+        let confirmDelete = await exportedSwal.confirmDelete("โครงการที่เลือก")
 
         if (confirmDelete) {
             const res = await exportedAPIProject.deleteProject(id, user.token)

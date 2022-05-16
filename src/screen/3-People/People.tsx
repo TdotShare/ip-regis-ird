@@ -125,38 +125,40 @@ function People() {
 
                                             :
 
-                                            <table className="table table-bordered">
-                                                <thead>
-                                                    <tr>
-                                                        <th scope="col">#</th>
-                                                        <th scope="col">ชื่อจริง - นามสกุล</th>
-                                                        <th scope="col">ที่อยู่</th>
-                                                        <th scope="col">เบอร์</th>
-                                                        <th scope="col">อีเมลล์</th>
-                                                        <th scope="col">สัดส่วนการประดิษฐ์/สร้างสรรค์</th>
-                                                        <th scope="col">สถานะ</th>
-                                                        <th scope="col">ไฟล์รูปภาพ</th>
-                                                        <th scope="col"></th>
-                                                    </tr>
-                                                </thead>
-                                                <tbody>
-                                                    {
-                                                        viewModel.qe_people_data.data?.data.map((el, index) => (
-                                                            <tr key={index} >
-                                                                <th scope="row">{index + 1}</th>
-                                                                <td>{el.people_firstname} {el.people_lastname} {el.people_head === 1 ? "(ผู้ประดิษฐ์ลำดับแรก)": "" }</td>
-                                                                <td>{el.people_address}</td>
-                                                                <td>{el.people_tel}</td>
-                                                                <td>{el.people_email}</td>
-                                                                <td>{el.people_process}</td>
-                                                                <td>{el.people_type}</td>
-                                                                <td><a target={`_blank`} href={`${Public_path}/${viewModel.id}/people/${el.people_image}`} >{el.people_image}</a></td>
-                                                                <td><button onClick={() => viewModel.actionDelete(el.people_id)} className='btn btn-block btn-danger'>ลบข้อมูล</button></td>
-                                                            </tr>
-                                                        ))
-                                                    }
-                                                </tbody>
-                                            </table>
+                                            <div className="table-responsive">
+                                                <table className="table table-bordered">
+                                                    <thead>
+                                                        <tr>
+                                                            <th scope="col">#</th>
+                                                            <th scope="col">ชื่อจริง - นามสกุล</th>
+                                                            <th scope="col">ที่อยู่</th>
+                                                            <th scope="col">เบอร์</th>
+                                                            <th scope="col">อีเมลล์</th>
+                                                            <th scope="col">สัดส่วนการประดิษฐ์/สร้างสรรค์</th>
+                                                            <th scope="col">สถานะ</th>
+                                                            <th scope="col">ไฟล์รูปภาพ</th>
+                                                            <th scope="col"></th>
+                                                        </tr>
+                                                    </thead>
+                                                    <tbody>
+                                                        {
+                                                            viewModel.qe_people_data.data?.data.map((el, index) => (
+                                                                <tr key={index} >
+                                                                    <th scope="row">{index + 1}</th>
+                                                                    <td>{el.people_firstname} {el.people_lastname} {el.people_head === 1 ? "(ผู้ประดิษฐ์ลำดับแรก)" : ""}</td>
+                                                                    <td>{el.people_address}</td>
+                                                                    <td>{el.people_tel}</td>
+                                                                    <td>{el.people_email}</td>
+                                                                    <td>{el.people_process}</td>
+                                                                    <td>{el.people_type}</td>
+                                                                    <td><a target={`_blank`} href={`${Public_path}/${viewModel.id}/people/${el.people_image}`} >{el.people_image}</a></td>
+                                                                    <td><button onClick={() => viewModel.actionDelete(el.people_id)} className='btn btn-block btn-danger'>ลบข้อมูล</button></td>
+                                                                </tr>
+                                                            ))
+                                                        }
+                                                    </tbody>
+                                                </table>
+                                            </div>
                                     }
 
                                 </div>

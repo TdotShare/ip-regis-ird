@@ -129,7 +129,7 @@ function Keyword() {
                         </div>
                         <div className="card-body">
 
-                            <form  ref={viewModel.ref_form}  onSubmit={viewModel.submitForm_searchlist}>
+                            <form ref={viewModel.ref_form} onSubmit={viewModel.submitForm_searchlist}>
                                 <div className="form-row">
                                     <div className="form-group col-md-12">
                                         <label >ชื่อที่แสดงถึงการประดิษฐ์</label>
@@ -165,30 +165,32 @@ function Keyword() {
 
                             <div className='card'>
                                 <div className='card-body'>
-                                    <table className="table table-bordered">
-                                        <thead>
-                                            <tr>
-                                                <th scope="col">#</th>
-                                                <th scope="col">ชื่อที่แสดงถึงการประดิษฐ์</th>
-                                                <th scope="col">เลขที่สิทธิบัตร / อนุสิทธิบัตร</th>
-                                                <th scope="col">ประเทศ</th>
-                                                <th scope="col"></th>
-                                            </tr>
-                                        </thead>
-                                        <tbody>
-                                            {
-                                                viewModel.qe_searchlist_data.data?.data.map((el, index) => (
-                                                    <tr key={index} >
-                                                        <th scope="row">{index + 1}</th>
-                                                        <td>{el.searchlist_name}</td>
-                                                        <td>{el.searchlist_number}</td>
-                                                        <td>{el.searchlist_country}</td>
-                                                        <td><button onClick={() => viewModel.actionDelete(el.searchlist_id)} className='btn btn-block btn-danger'>ลบข้อมูล</button></td>
-                                                    </tr>
-                                                ))
-                                            }
-                                        </tbody>
-                                    </table>
+                                    <div className="table-responsive">
+                                        <table className="table table-bordered">
+                                            <thead>
+                                                <tr>
+                                                    <th scope="col">#</th>
+                                                    <th scope="col">ชื่อที่แสดงถึงการประดิษฐ์</th>
+                                                    <th scope="col">เลขที่สิทธิบัตร / อนุสิทธิบัตร</th>
+                                                    <th scope="col">ประเทศ</th>
+                                                    <th scope="col"></th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                {
+                                                    viewModel.qe_searchlist_data.data?.data.map((el, index) => (
+                                                        <tr key={index} >
+                                                            <th scope="row">{index + 1}</th>
+                                                            <td>{el.searchlist_name}</td>
+                                                            <td>{el.searchlist_number}</td>
+                                                            <td>{el.searchlist_country}</td>
+                                                            <td><button onClick={() => viewModel.actionDelete(el.searchlist_id)} className='btn btn-block btn-danger'>ลบข้อมูล</button></td>
+                                                        </tr>
+                                                    ))
+                                                }
+                                            </tbody>
+                                        </table>
+                                    </div>
                                 </div>
                             </div>
                     }

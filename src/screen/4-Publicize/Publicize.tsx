@@ -148,35 +148,36 @@ function Publicize() {
                                             <LoadingData />
 
                                             :
-
-                                            <table className="table table-bordered">
-                                                <thead>
-                                                    <tr>
-                                                        <th scope="col">#</th>
-                                                        <th scope="col">วันที่</th>
-                                                        <th scope="col">จัดโดยหน่วยงาน</th>
-                                                        <th scope="col">สถานที่</th>
-                                                        <th scope="col">ประเทศ</th>
-                                                        <th scope="col">เอกสารแนบ</th>
-                                                        <th scope="col"></th>
-                                                    </tr>
-                                                </thead>
-                                                <tbody>
-                                                    {
-                                                        viewModel.qe_expose_data.data?.data.map((el, index) => (
-                                                            <tr key={index} >
-                                                                <th scope="row">{index + 1}</th>
-                                                                <td>{el.expose_date}</td>
-                                                                <td>{el.expose_agency}</td>
-                                                                <td>{el.expose_location}</td>
-                                                                <td>{el.expose_country}</td>
-                                                                <td><a target={`_blank`} href={`${Public_path}/${viewModel.id}/expose/${el.expose_file}`} >{el.expose_file}</a></td>
-                                                                <td><button onClick={() => viewModel.actionDelete_Expose(el.expose_id)} className='btn btn-block btn-danger'>ลบข้อมูล</button></td>
-                                                            </tr>
-                                                        ))
-                                                    }
-                                                </tbody>
-                                            </table>
+                                            <div className="table-responsive">
+                                                <table className="table table-bordered">
+                                                    <thead>
+                                                        <tr>
+                                                            <th scope="col">#</th>
+                                                            <th scope="col">วันที่</th>
+                                                            <th scope="col">จัดโดยหน่วยงาน</th>
+                                                            <th scope="col">สถานที่</th>
+                                                            <th scope="col">ประเทศ</th>
+                                                            <th scope="col">เอกสารแนบ</th>
+                                                            <th scope="col"></th>
+                                                        </tr>
+                                                    </thead>
+                                                    <tbody>
+                                                        {
+                                                            viewModel.qe_expose_data.data?.data.map((el, index) => (
+                                                                <tr key={index} >
+                                                                    <th scope="row">{index + 1}</th>
+                                                                    <td>{el.expose_date}</td>
+                                                                    <td>{el.expose_agency}</td>
+                                                                    <td>{el.expose_location}</td>
+                                                                    <td>{el.expose_country}</td>
+                                                                    <td><a target={`_blank`} href={`${Public_path}/${viewModel.id}/expose/${el.expose_file}`} >{el.expose_file}</a></td>
+                                                                    <td><button onClick={() => viewModel.actionDelete_Expose(el.expose_id)} className='btn btn-block btn-danger'>ลบข้อมูล</button></td>
+                                                                </tr>
+                                                            ))
+                                                        }
+                                                    </tbody>
+                                                </table>
+                                            </div>
                                     }
 
                                 </div>
@@ -241,30 +242,32 @@ function Publicize() {
 
                                             :
 
-                                            <table className="table table-bordered">
-                                                <thead>
-                                                    <tr>
-                                                        <th scope="col">#</th>
-                                                        <th scope="col">หัวเรื่อง</th>
-                                                        <th scope="col">รายละเอียด</th>
-                                                        <th scope="col">เอกสารแนบ</th>
-                                                        <th scope="col"></th>
-                                                    </tr>
-                                                </thead>
-                                                <tbody>
-                                                    {
-                                                        viewModel.qe_publish_data.data?.data.map((el, index) => (
-                                                            <tr key={index} >
-                                                                <th scope="row">{index + 1}</th>
-                                                                <td>{el.publish_head}</td>
-                                                                <td>{el.publish_text}</td>
-                                                                <td><a target={`_blank`} href={`${Public_path}/${viewModel.id}/publish/${el.publish_file}`} >{el.publish_file}</a></td>
-                                                                <td><button onClick={() => viewModel.actionDelete_Publish(el.publish_id)} className='btn btn-block btn-danger'>ลบข้อมูล</button></td>
-                                                            </tr>
-                                                        ))
-                                                    }
-                                                </tbody>
-                                            </table>
+                                            <div className="table-responsive">
+                                                <table className="table table-bordered">
+                                                    <thead>
+                                                        <tr>
+                                                            <th scope="col">#</th>
+                                                            <th scope="col">หัวเรื่อง</th>
+                                                            <th scope="col">รายละเอียด</th>
+                                                            <th scope="col">เอกสารแนบ</th>
+                                                            <th scope="col"></th>
+                                                        </tr>
+                                                    </thead>
+                                                    <tbody>
+                                                        {
+                                                            viewModel.qe_publish_data.data?.data.map((el, index) => (
+                                                                <tr key={index} >
+                                                                    <th scope="row">{index + 1}</th>
+                                                                    <td>{el.publish_head}</td>
+                                                                    <td>{el.publish_text}</td>
+                                                                    <td><a target={`_blank`} href={`${Public_path}/${viewModel.id}/publish/${el.publish_file}`} >{el.publish_file}</a></td>
+                                                                    <td><button onClick={() => viewModel.actionDelete_Publish(el.publish_id)} className='btn btn-block btn-danger'>ลบข้อมูล</button></td>
+                                                                </tr>
+                                                            ))
+                                                        }
+                                                    </tbody>
+                                                </table>
+                                            </div>
                                     }
                                 </div>
                             </div>
