@@ -1,0 +1,1 @@
+export const HOST  =  process.env.NODE_ENV === 'production' ? "https://ip.ird.rmuti.ac.th/regisip/login" : "http://localhost:3000/regisip/login`"

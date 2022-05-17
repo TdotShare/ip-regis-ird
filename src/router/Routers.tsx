@@ -63,6 +63,7 @@ function Routers() {
         <BrowserRouter  basename="/regisip" >
             <Routes>
                 <Route path="/login" element={<AuthLogin />} />
+                <Route path="/login/callback_oauth" element={<AuthLogin />} />
                 <Route path="/" element={<UserAuthen><PrivateRoute authentication={data.auth} /></UserAuthen> }>
                     <Route path="/" element={<Main />}>
                         <Route path="/" element={<Navigate to={routerPathUser.Regis} />} />

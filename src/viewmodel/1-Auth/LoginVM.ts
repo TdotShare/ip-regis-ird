@@ -1,18 +1,26 @@
 
 import { useDispatch } from 'react-redux';
-import { useNavigate } from 'react-router-dom';
+import { useLocation, useNavigate, useSearchParams } from 'react-router-dom';
 import { addUser, setLoginSuccess } from '../../store/reducer/User';
 import { routerPathUser } from '../../utils/routerpath';
 import exportedSwal from '../../utils/swal';
 import exportedAPIAuthentication from '../../utils/api/Authentication';
 import React from 'react';
-import { API } from '../../config/api';
+import { HOST } from '../../config/host';
 
 export default function LoginVM() {
+
+  const location = useLocation();
+
+  const { pathname } = location;
+  const splitLocation = pathname.split("/");
+
 
   const dispatch = useDispatch()
 
   const navigate = useNavigate();
+
+  const [searchParams] = useSearchParams();
 
   const [username, setUsername] = React.useState('')
   const [password, setPassowrd] = React.useState('')
@@ -25,14 +33,69 @@ export default function LoginVM() {
     setPassowrd(e.target.value)
   }
 
+  React.useEffect(() => {
+
+    if (splitLocation.includes(`callback_oauth`)) {
+      dataLoginRmuti()
+    }
+
+    // eslint-disable-next-line
+  }, [])
+
   const actionGoToRmutiLogin = () => {
-    window.location.href = `https://mis-ird.rmuti.ac.th/sso/auth/login?url=${API}/auth/create_user_rmuti`
+    //window.location.href = `https://mis-ird.rmuti.ac.th/sso/auth/login?url=${API}/auth/create_user_rmuti`
+    window.location.href = `https://api.rmuti.ac.th/sso/oauth?sv=test&redirect_uri=${HOST}`
   }
+
+
+  const dataLoginRmuti = async () => {
+
+    let code = searchParams.get('code');
+    let token_rmuti = await exportedAPIAuthentication.getTokenRmuti(code!)
+    if(token_rmuti.ok !== false){
+
+        let user_data = await  exportedAPIAuthentication.getUserRmuti(token_rmuti.access_token)
+
+        if(user_data.type !== 'staff'){
+          exportedSwal.actionInfo('กรุณาเลือก เข้าถึงสิทธิ์เป็น `เจ้าหน้าที่` !')
+          return
+        }
+
+        const res = await exportedAPIAuthentication.loginRmuti(user_data)
+
+        if (res.bypass) {
+
+          let user = res.data
+    
+          dispatch(addUser({
+            id: user.id,
+            uid: user.uid,
+            card_id: user.card_id,
+            firstname_th: user.firstname_th,
+            lastname_th: user.lastname_th,
+            email: user.email,
+            token: user.token,
+            role: user.role
+          }))
+    
+          dispatch(setLoginSuccess())
+    
+          navigate(routerPathUser.Regis)
+    
+        } else {
+          exportedSwal.actionInfo(res.message)
+        }
+
+    }
+
+  }
+
+
 
   const actionLoginRmuti = async () => {
 
-    
-    if(username === '' || password === ''){
+
+    if (username === '' || password === '') {
       exportedSwal.actionInfo("กรุณากรอก username และ password ในการเข้าสู่ระบบ !")
       return
     }
@@ -40,8 +103,8 @@ export default function LoginVM() {
 
 
     let data = {
-      uid : username,
-      card_id : password
+      uid: username,
+      card_id: password
     }
 
     const res = await exportedAPIAuthentication.login(data)
@@ -75,9 +138,14 @@ export default function LoginVM() {
   return {
     username,
     password,
+    dataLoginRmuti,
     actionGoToRmutiLogin,
     onChangeSetUsername,
     onChangeSetPassowrd,
     actionLoginRmuti,
   }
+}
+
+function useCurrentPath() {
+  throw new Error('Function not implemented.');
 }

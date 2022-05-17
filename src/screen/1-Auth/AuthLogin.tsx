@@ -19,7 +19,7 @@ function AuthLogin() {
                     <div className="card-body">
                         <p className="login-box-msg">Sign in to start your session</p>
 
-                        <div className="input-group mb-3">
+                        {/* <div className="input-group mb-3">
                             <input type="text" onChange={viewModel.onChangeSetUsername} defaultValue={viewModel.username} className="form-control" placeholder="อินเตอร์ rmuti ไม่ต้องเติม @rmuti.ac.th" />
                             <div className="input-group-append">
                                 <div className="input-group-text">
@@ -34,19 +34,19 @@ function AuthLogin() {
                                     <span className="fas fa-lock" />
                                 </div>
                             </div>
-                        </div>
-                        <div className="row">
-                            {/* /.col */}
+                        </div> */}
+
+                        {/* <div className="row">
                             <div className="col-12">
                                 <button onClick={() => viewModel.actionLoginRmuti()} className="btn btn-primary btn-block">เข้าสู่ระบบ</button>
                             </div>
-                        </div>
+                        </div> */}
 
                         <div style={{ marginBottom: `1%` }}></div>
 
                         <div className="row">
                             <div className="col-12">
-                                <button onClick={() => viewModel.actionGoToRmutiLogin()} className="btn btn-primary btn-block">ลงทะเบียนเข้าใช้งานระบบ</button>
+                                <button onClick={() => viewModel.actionGoToRmutiLogin()} className="btn btn-primary btn-block">เข้าสู่ระบบ</button>
                             </div>
                         </div>
 
