@@ -1,6 +1,7 @@
 export interface People {
     people_id  : number;
     people_project_id : number;
+    people_title : string;
     people_firstname : string;
     people_lastname : string;
     people_address : string;

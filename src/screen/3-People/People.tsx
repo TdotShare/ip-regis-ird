@@ -35,11 +35,20 @@ function People() {
                                     <form ref={viewModel.ref_form} onSubmit={viewModel.submitForm} >
 
                                         <div className="form-row">
-                                            <div className="form-group col-md-6">
+                                            <div className="form-group col-md">
+                                                <label >คำนำหน้า</label>
+                                                <select className="custom-select" defaultValue={""} name="people_title">
+                                                    <option value={""}>เลือกคำนำหน้า</option>
+                                                    <option value={"นาย"}>นาย</option>
+                                                    <option value={"นาง"}>นาง</option>
+                                                    <option value={"นางสาว"}>นางสาว</option>
+                                                </select>
+                                            </div>
+                                            <div className="form-group col-md">
                                                 <label >ชื่อจริง</label>
                                                 <input type="text" className="form-control" name="people_firstname" />
                                             </div>
-                                            <div className="form-group col-md-6">
+                                            <div className="form-group col-md">
                                                 <label >นามสกุล</label>
                                                 <input type="text" className="form-control" name="people_lastname" />
                                             </div>
@@ -93,11 +102,10 @@ function People() {
                                                     <option value={"1"}>เป็น</option>
                                                     <option value={"0"}>ไม่เป็น </option>
                                                 </select>
-
                                             </div>
                                         </div>
 
-                                        <button type="submit" className="btn btn-block btn-success">เพื่มข้อมูล</button>
+                                        <button type="submit" className="btn btn-block btn-success">เพิ่มข้อมูล</button>
 
                                     </form>
 
@@ -145,7 +153,7 @@ function People() {
                                                             viewModel.qe_people_data.data?.data.map((el, index) => (
                                                                 <tr key={index} >
                                                                     <th scope="row">{index + 1}</th>
-                                                                    <td>{el.people_firstname} {el.people_lastname} {el.people_head === 1 ? "(ผู้ประดิษฐ์ลำดับแรก)" : ""}</td>
+                                                                    <td>{el.people_title}{el.people_firstname} {el.people_lastname} {el.people_head === 1 ? "(ผู้ประดิษฐ์ลำดับแรก)" : ""}</td>
                                                                     <td>{el.people_address}</td>
                                                                     <td>{el.people_tel}</td>
                                                                     <td>{el.people_email}</td>

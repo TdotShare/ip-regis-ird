@@ -47,6 +47,7 @@ import { routerPathUser } from '../utils/routerpath';
 import Publicip from '../screen/20-Publicip/Publicip';
 import ProdAuthen from '../components/ProdAuthen';
 import UserAuthen from '../components/UserAuthen';
+import Error404 from '../screen/error/Error';
 
 
 
@@ -88,6 +89,7 @@ function Routers() {
                         <Route path="/logout" element={<AuthLogout />} />
                         <Route path="/account" element={<RequireAuth><Account /></RequireAuth>} />
                         <Route path="/project" element={<RequireAuth><Project /></RequireAuth>} />
+                        <Route path="*" element={<UserAuthen children={<Error404 />} />} />
                     </Route>
                 </Route>
 

@@ -1,7 +1,7 @@
 
 import { useDispatch } from 'react-redux';
 import { useLocation, useNavigate, useSearchParams } from 'react-router-dom';
-import { addUser, setLoginSuccess } from '../../store/reducer/User';
+import { addUser, deleteUser, setLoginfail, setLoginSuccess } from '../../store/reducer/User';
 import { routerPathUser } from '../../utils/routerpath';
 import exportedSwal from '../../utils/swal';
 import exportedAPIAuthentication from '../../utils/api/Authentication';
@@ -36,7 +36,11 @@ export default function LoginVM() {
   React.useEffect(() => {
 
     if (splitLocation.includes(`callback_oauth`)) {
+      exportedSwal.actionSuccess(`กรุณารอสักครู่ระบบกำลังตรวจสอบการ login !`)
       dataLoginRmuti()
+    }else{
+      dispatch(deleteUser())
+      dispatch(setLoginfail())
     }
 
     // eslint-disable-next-line

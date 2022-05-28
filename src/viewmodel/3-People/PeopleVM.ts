@@ -54,7 +54,7 @@ export default function PeopleVM() {
         var postData = new FormData();
 
 
-        if (!formdata.get('people_type') || !formdata.get('people_head') || !formdata.get('people_firstname') || !formdata.get('people_lastname') || !formdata.get('people_address') ||
+        if (!formdata.get('people_type') || !formdata.get('people_head') || !formdata.get('people_title') || !formdata.get('people_firstname') || !formdata.get('people_lastname') || !formdata.get('people_address') ||
             !formdata.get('people_tel') || !formdata.get('people_email') || !formdata.get('people_process')) {
             exportedSwal.actionInfo("กรอกข้อมูลให้ครบ !")
             return
@@ -68,6 +68,7 @@ export default function PeopleVM() {
         }
 
         postData.append("people_project_id", `${id}`)
+        postData.append("people_title", `${formdata.get('people_title')}`)
         postData.append("people_firstname", `${formdata.get('people_firstname')}`)
         postData.append("people_lastname", `${formdata.get('people_lastname')}`)
         postData.append("people_address", `${formdata.get('people_address')}`)

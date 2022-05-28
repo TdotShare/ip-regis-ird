@@ -198,7 +198,7 @@ function Assessment() {
                                                 <select name='estimate_price'
                                                     defaultValue={viewModel.qe_estimate_data.data?.data?.estimate_price !== null ? viewModel.qe_estimate_data.data?.data?.estimate_price : ""}
                                                     className="custom-select" >
-                                                    <option value={""}>เลือกประเภทการได้รับทุน</option>
+                                                    <option value={""}>เลือกต้นทุนในการวิจัย</option>
                                                     <option value={1}>ต่ำกว่า 50,000</option>
                                                     <option value={2}>50,000 - 100,000 </option>
                                                     <option value={3}>100,001 - 500,000</option>
@@ -211,7 +211,7 @@ function Assessment() {
                                                 <select name='estimate_timeline'
                                                     defaultValue={viewModel.qe_estimate_data.data?.data?.estimate_timeline !== null ? viewModel.qe_estimate_data.data?.data?.estimate_timeline : ""}
                                                     className="custom-select"  >
-                                                    <option value={""}>เลือกประเภทการได้รับทุน</option>
+                                                    <option value={""}>เลือกระยะเวลาในการวิจัย</option>
                                                     <option value={1}>ต่ำกว่า 1 ปี </option>
                                                     <option value={2}>1 - 5 ปี </option>
                                                     <option value={3}>5 - 10 ปี</option>
