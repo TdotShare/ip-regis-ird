@@ -48,6 +48,12 @@ import Publicip from '../screen/20-Publicip/Publicip';
 import ProdAuthen from '../components/ProdAuthen';
 import UserAuthen from '../components/UserAuthen';
 import Error404 from '../screen/error/Error';
+import FormPeoples from '../screen/FormPeoples/FormPeoples';
+import FormPublishing from '../screen/FormPublishing/FormPublishing';
+import FormProjects from '../screen/FormProjects/FormProjects';
+import FormDetails from '../screen/FormDetails/FormDetails';
+import FormPotential from '../screen/FormPotential/FormPotential';
+import FormAttachment from '../screen/FormAttachment/FormAttachment';
 
 
 
@@ -71,21 +77,13 @@ function Routers() {
                         <Route path={routerPathUser.Regis} element={<Regis />} />
                         <Route path={`${routerPathUser.Regis}/create`} element={<RegisCreate />} />
                         <Route path={`${routerPathUser.Regis}/view/:id`} element={<ProdAuthen><RegisView /></ProdAuthen> } />
-                        <Route path={`${routerPathUser.Regis}/people/:id`} element={<ProdAuthen><People /></ProdAuthen>} />
-                        <Route path={`${routerPathUser.Regis}/publicize/:id`} element={<ProdAuthen><Publicize /></ProdAuthen>} />
-                        <Route path={`${routerPathUser.Regis}/furtherdev/:id`} element={<ProdAuthen><Furtherdev /></ProdAuthen>} />
-                        <Route path={`${routerPathUser.Regis}/keyword/:id`} element={<ProdAuthen><Keyword /></ProdAuthen>} />
-                        <Route path={`${routerPathUser.Regis}/movant/:id`} element={<ProdAuthen><Movant /></ProdAuthen>} />
-                        <Route path={`${routerPathUser.Regis}/fund/:id`} element={<ProdAuthen><Fund /></ProdAuthen>} />
-                        <Route path={`${routerPathUser.Regis}/budget/:id`} element={<ProdAuthen><Budget /></ProdAuthen>} />
-                        <Route path={`${routerPathUser.Regis}/bioreso/:id`} element={<ProdAuthen><Bioreso /></ProdAuthen>} />
-                        <Route path={`${routerPathUser.Regis}/results/:id`} element={<ProdAuthen><Results /></ProdAuthen>} />
-                        <Route path={`${routerPathUser.Regis}/infer/:id`} element={<ProdAuthen><Infer /></ProdAuthen>} />
-                        <Route path={`${routerPathUser.Regis}/market/:id`} element={<ProdAuthen><Market /></ProdAuthen>} />
-                        <Route path={`${routerPathUser.Regis}/assessment/:id`} element={<ProdAuthen><Assessment /></ProdAuthen>} />
-                        <Route path={`${routerPathUser.Regis}/techlv/:id`} element={<ProdAuthen><TechLv /></ProdAuthen>} />
-                        <Route path={`${routerPathUser.Regis}/publicip/:id`} element={<ProdAuthen><Publicip /></ProdAuthen>} />
-                        <Route path={`${routerPathUser.Regis}/worksip/:id`} element={<ProdAuthen><Worksip /></ProdAuthen>} />
+                        <Route path={`${routerPathUser.Regis}/peoples/:id`} element={<ProdAuthen><FormPeoples /></ProdAuthen> } />
+                        <Route path={`${routerPathUser.Regis}/publishing/:id`} element={<ProdAuthen><FormPublishing /></ProdAuthen> } />
+                        <Route path={`${routerPathUser.Regis}/projects/:id`} element={<ProdAuthen><FormProjects /></ProdAuthen> } />
+                        <Route path={`${routerPathUser.Regis}/details/:id`} element={<ProdAuthen><FormDetails /></ProdAuthen> } />
+                        <Route path={`${routerPathUser.Regis}/potentials/:id`} element={<ProdAuthen><FormPotential /></ProdAuthen> } />
+                        <Route path={`${routerPathUser.Regis}/attachments/:id`} element={<ProdAuthen><FormAttachment /></ProdAuthen> } />
+
                         <Route path="/logout" element={<AuthLogout />} />
                         <Route path="/account" element={<RequireAuth><Account /></RequireAuth>} />
                         <Route path="/project" element={<RequireAuth><Project /></RequireAuth>} />
