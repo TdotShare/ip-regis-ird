@@ -21,7 +21,6 @@ function Regis() {
             <section className="content">
                 <div className="container-fluid">
 
-
                     <div className='row' >
                         <div className='col-md-2 col-sm-12' style={{marginTop : `3px`}}>
                             <Link to={`${routerPathUser.Regis}/create`}><Button className='btn btn-primary btn-block'><i className="fas fa-plus"></i> ยื่นขอจดทะเบียน</Button></Link>
