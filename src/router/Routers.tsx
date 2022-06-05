@@ -20,22 +20,6 @@ import RegisCreate from '../screen/0-Regis/RegisCreate';
 import RegisView from '../screen/0-Regis/RegisView';
 
 
-import People from '../screen/3-People/People';
-import Publicize from '../screen/4-Publicize/Publicize';
-import Furtherdev from '../screen/5-Furtherdev/Furtherdev';
-import Keyword from '../screen/6-Keyword/Keyword';
-import Movant from '../screen/7-Movant/Movant';
-import Fund from '../screen/8-Fund/Fund';
-import Budget from '../screen/9-Budget/Budget';
-import Bioreso from '../screen/11-Bioreso/Bioreso';
-import Results from '../screen/12-Results/Results';
-import Infer from '../screen/13-Infer/Infer';
-import Market from '../screen/16-Market/Market';
-import Assessment from '../screen/17-Assessment/Assessment';
-import Worksip from '../screen/18-Worksip/Worksip';
-import TechLv from '../screen/19-TechLv/TechLv';
-
-
 import AuthLogout from '../screen/1-Auth/AuthLogout';
 
 import Account from '../screen/admin/0-Account/Account';
@@ -44,7 +28,7 @@ import Project from '../screen/admin/1-Project/Project';
 import { RootState } from '../store/ConfigureStore';
 import { useSelector } from 'react-redux';
 import { routerPathUser } from '../utils/routerpath';
-import Publicip from '../screen/20-Publicip/Publicip';
+
 import ProdAuthen from '../components/ProdAuthen';
 import UserAuthen from '../components/UserAuthen';
 import Error404 from '../screen/error/Error';
