@@ -62,6 +62,12 @@ function HeadMenu({ project_id }: AppProps) {
                                     </Link>
                                     <StatusCores status={0} fontSizeIcon={fontSizeIcon} />
                                 </th>
+                                <th scope="col">
+                                    <Link to={`${routerPathUser.Regis}/confirm/${project_id}`}>
+                                        <button className={splitLocation.includes('confirm') ? `btn btn-block btn-success` : `btn btn-block btn-primary`} style={{ fontSize: fontSizeBtn }} disabled >ส่งคำขอให้เจ้าหน้าที่</button>
+                                    </Link>
+                                    <StatusCores status={0} fontSizeIcon={fontSizeIcon} />
+                                </th>
                             </tr>
                         </thead>
                     </table>

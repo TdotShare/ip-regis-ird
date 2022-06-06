@@ -1,37 +1,37 @@
 import React from 'react'
 import Button from '../../Button'
-import ContentHeader from '../../content-header/ContentHeader'
 import LoadingData from '../../LoadingData'
-import MenuTab from '../../MenuTab'
 import { Public_path } from '../../../config/public_path'
 import FundVM from '../../../viewmodel/8-Fund/FundVM'
 
-function Fund() {
+
+
+type AppProps = {
+    chkbox_fund: JSX.Element,
+    core_fund: number,
+};
+
+function Fund({ chkbox_fund, core_fund }: AppProps) {
 
     const viewModel = FundVM()
 
     return (
-        <div className="content-wrapper">
-            <ContentHeader
-                title={viewModel.title}
-                breadcrumb={viewModel.breadcrumb}
-            />
-            <section className="content">
-                <div className="container-fluid">
+        <>
+            <div className="card card-outline card-primary">
+                <div className="card-header">
+                    <h3 className="card-title">รายการของสิทธิบัตรหรืออนุสิทธิบัตรที่เกี่ยวข้องที่ได้จากการสืบค้น</h3>
+                </div>
+                <div className="card-body">
 
-                    <MenuTab project_id={viewModel.id} collapsed={true} />
+                    {chkbox_fund}
 
-                    <div style={{ paddingBottom: "1%" }}></div>
 
-                    <div className="card card-outline card-primary">
-                        <div className="card-header">
-                            <h3 className="card-title">รายการของสิทธิบัตรหรืออนุสิทธิบัตรที่เกี่ยวข้องที่ได้จากการสืบค้น</h3>
-                        </div>
-                        <div className="card-body">
+                    {core_fund === 0 ?
+                        <></>
 
-                            <b>ได้รับทุนอุดหนุน (ขอให้ระบุแหล่งทุนที่ได้รับ พร้อมแนบสำเนาสัญญารับทุน/ ข้อตกลง/ TOR) หากไม่ได้รับไม่ต้องกรอกข้อมูล</b>
+                        :
 
-                            <div style={{ paddingBottom: `1%` }}></div>
+                        <>
 
                             <form ref={viewModel.ref_form} onSubmit={viewModel.submitForm} >
 
@@ -107,16 +107,14 @@ function Fund() {
                                     </div>
                             }
 
-                        </div>
-                    </div>
-
-
+                        </>
+                    }
 
 
 
                 </div>
-            </section>
-        </div>
+            </div>
+        </>
     )
 }
 

@@ -1,81 +1,73 @@
 import React from 'react'
 import Button from '../../Button'
-import ContentHeader from '../../content-header/ContentHeader'
 import LoadingData from '../../LoadingData'
-import MenuTab from '../../MenuTab'
 import MovantVM from '../../../viewmodel/7-Movant/MovantVM'
 
-function Movant() {
+
+type AppProps = {
+    chkbox_movant: JSX.Element,
+    core_movant: number,
+};
+
+function Movant({ chkbox_movant, core_movant }: AppProps) {
 
     const viewModel = MovantVM()
 
 
     return (
-        <div className="content-wrapper">
-            <ContentHeader
-                title={viewModel.title}
-                breadcrumb={viewModel.breadcrumb}
-            />
-            <section className="content">
-                <div className="container-fluid">
+        <div className="card card-outline card-primary">
+            <div className="card-header">
+                <h3 className="card-title">การประดิษฐ์นี้เคยนำไปยื่นขอรับสิทธิบัตรหรืออนุสิทธิบัตรหรือไม่</h3>
+            </div>
+            <div className="card-body">
 
-                    <MenuTab project_id={viewModel.id} collapsed={true} />
+                {chkbox_movant}
 
-                    <div style={{ paddingBottom: "1%" }}></div>
+                {core_movant === 0 ?
 
-                    <div className="card card-outline card-primary">
-                        <div className="card-header">
-                            <h3 className="card-title">การประดิษฐ์นี้เคยนำไปยื่นขอรับสิทธิบัตรหรืออนุสิทธิบัตรหรือไม่</h3>
-                        </div>
-                        <div className="card-body">
+                    <></>
 
-                            <b>หากเคย (ขอให้ระบบุรายละเอียด) หากไม่เคยไม่ต้องกรอกข้อมูล</b>
+                    :
 
-                            <div style={{ paddingBottom: "1%" }}></div>
+                    <>
 
-                            {
-                                viewModel.qe_movant_data.isLoading
+                        {viewModel.qe_movant_data.isLoading
 
-                                ?
+                            ?
 
 
-                                <LoadingData />
+                            <LoadingData />
 
-                                :
+                            :
 
-                                <form ref={viewModel.ref_form} onSubmit={viewModel.submitForm} >
+                            <form ref={viewModel.ref_form} onSubmit={viewModel.submitForm} >
 
                                 <div className="form-row">
                                     <div className="form-group col-md">
                                         <label >เลขที่คำขอ</label>
-                                        <input type="text" className="form-control" name="movant_number" defaultValue={viewModel.qe_movant_data.data?.data?.movant_number !== null ? viewModel.qe_movant_data.data?.data?.movant_number :  ''} />
+                                        <input type="text" className="form-control" name="movant_number" defaultValue={viewModel.qe_movant_data.data?.data?.movant_number !== null ? viewModel.qe_movant_data.data?.data?.movant_number : ''} />
                                     </div>
                                     <div className="form-group col-md">
                                         <label >ยื่นคำขอเมื่อวันที่</label>
-                                        <input type="text" placeholder='31-12-2539' className="form-control" name="movant_date" defaultValue={viewModel.qe_movant_data.data?.data?.movant_date !== null ? viewModel.qe_movant_data.data?.data?.movant_date :  ''} />
+                                        <input type="text" placeholder='31-12-2539' className="form-control" name="movant_date" defaultValue={viewModel.qe_movant_data.data?.data?.movant_date !== null ? viewModel.qe_movant_data.data?.data?.movant_date : ''} />
                                     </div>
                                     <div className="form-group col-md">
                                         <label >ประเทศที่ยื่น</label>
-                                        <input type="text" className="form-control" name="movant_country" defaultValue={viewModel.qe_movant_data.data?.data?.movant_country !== null ? viewModel.qe_movant_data.data?.data?.movant_country :  ''} />
+                                        <input type="text" className="form-control" name="movant_country" defaultValue={viewModel.qe_movant_data.data?.data?.movant_country !== null ? viewModel.qe_movant_data.data?.data?.movant_country : ''} />
                                     </div>
                                 </div>
 
                                 <Button className='btn btn-block btn-primary'>บันทึกข้อมูล</Button>
 
                             </form>
+                        }
+                    </>
+
+                }
 
 
+            </div>
 
-                            }
-
-
-
-                        </div>
-
-                    </div>
-
-                </div>
-            </section>
         </div>
     )
 }

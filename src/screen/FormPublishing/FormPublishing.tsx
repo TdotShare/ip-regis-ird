@@ -3,6 +3,8 @@ import ChkboxCore from '../../components/ChkboxCore'
 import ContentHeader from '../../components/content-header/ContentHeader'
 import Publicize from '../../components/core/4-Publicize/Publicize'
 import Furtherdev from '../../components/core/5-Furtherdev/Furtherdev'
+import Keyword from '../../components/core/6-Keyword/Keyword'
+import Movant from '../../components/core/7-Movant/Movant'
 import HeadMenu from '../../components/HeadMenu'
 import FormPublishingVM from '../../viewmodel/FormPublishing/FormPublishingVM'
 
@@ -42,7 +44,32 @@ function FormPublishing() {
                         }
                         core_present={0}
                     />
-                    <Furtherdev />
+                    
+                    <Furtherdev
+                        chkbox_furtherdev={
+                            <ChkboxCore
+                                chk_name={`chk_furtherdev`}
+                                tilte_yes={`มี (ขอให้ระบุแหล่งที่มา)`}
+                                tilte_no={`ไม่มี`}
+                                chk_getData={(el) => console.log(`chk_furtherdev => ${el}`)}
+                            />
+                        }
+                        core_furtherdev={0}
+                    />
+
+                    <Keyword />
+
+                    <Movant
+                        chkbox_movant={
+                            <ChkboxCore
+                                chk_name={`chk_movant`}
+                                tilte_yes={`เคย (ขอให้ระบุรายละเอียด)`}
+                                tilte_no={`ไม่เคย`}
+                                chk_getData={(el) => console.log(`chk_movant => ${el}`)}
+                            />
+                        }
+                        core_movant={0}
+                    />
 
                 </div>
             </section>

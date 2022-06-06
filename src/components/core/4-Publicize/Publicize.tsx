@@ -1,8 +1,6 @@
 import React from 'react'
 import Button from '../../Button'
-import ContentHeader from '../../content-header/ContentHeader'
 import LoadingData from '../../LoadingData'
-import MenuTab from '../../MenuTab'
 import { Public_path } from '../../../config/public_path'
 import PublicizeVM from '../../../viewmodel/4-Publicize/PublicizeVM'
 

@@ -1,5 +1,6 @@
 import React from 'react'
 import ContentHeader from '../../components/content-header/ContentHeader'
+import Infer from '../../components/core/13-Infer/Infer'
 import HeadMenu from '../../components/HeadMenu'
 import FormDetailsVM from '../../viewmodel/FormDetails/FormDetailsVM'
 
@@ -19,7 +20,7 @@ function FormDetails() {
 
                     <HeadMenu project_id={viewModel.id} />
 
-                    รายละเอียดงาน
+                    <Infer />
                     
                 </div>
             </section>

@@ -1,5 +1,6 @@
 import React from 'react'
 import ContentHeader from '../../components/content-header/ContentHeader'
+import Worksip from '../../components/core/18-Worksip/Worksip'
 import HeadMenu from '../../components/HeadMenu'
 import FormAttachmentVM from '../../viewmodel/FormAttachment/FormAttachmentVM'
 
@@ -19,7 +20,7 @@ export default function FormAttachment() {
 
                     <HeadMenu project_id={viewModel.id} />
 
-                    เอกสารแนบ
+                    <Worksip />
                     
                 </div>
             </section>
