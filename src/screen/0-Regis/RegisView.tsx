@@ -27,7 +27,7 @@ function RegisView() {
             <section className="content">
                 <div className="container-fluid">
 
-                    <HeadMenu project_id={viewModel.id}/>
+                    <HeadMenu project_id={viewModel.id} token={viewModel.user.token}/>
 
 
                 </div>

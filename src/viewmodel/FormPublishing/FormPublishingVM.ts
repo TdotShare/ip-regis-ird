@@ -3,6 +3,7 @@ import { useQuery, useQueryClient } from 'react-query'
 import { useSelector } from 'react-redux'
 import { useParams } from 'react-router-dom'
 import { APICoreIp_data } from '../../model/CoreIp'
+import { APIProcessMenu_data } from '../../model/ProcessMenu'
 import { RootState } from '../../store/ConfigureStore'
 import exportedAPIFormCoreip from '../../utils/api/FormCoreip'
 import { routerPathUser } from '../../utils/routerpath'
@@ -16,6 +17,7 @@ export default function FormPublishingVM() {
     const queryClient = useQueryClient()
     
     const user = useSelector((state: RootState) => state.user.data)
+    const qe_processmenu_data = useQuery<APIProcessMenu_data, Error>('getProcessmenu', async () => exportedAPIFormCoreip.getProcessMenu(id, user.token))
     const qe_coreip_data = useQuery<APICoreIp_data, Error>('getCoreip', async () => exportedAPIFormCoreip.getCoreIp(id, user.token))
 
     const [values] = useState({
@@ -51,7 +53,9 @@ export default function FormPublishingVM() {
         ...values,
         id,
         user,
+        queryClient,
         updateCoreIp,
-        qe_coreip_data
+        qe_coreip_data,
+        qe_processmenu_data
     }
 }

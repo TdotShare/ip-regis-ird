@@ -22,8 +22,13 @@ function FormPublishing() {
             />
             <section className="content">
                 <div className="container-fluid">
+                
 
-                    <HeadMenu project_id={viewModel.id} />
+                    
+                    <HeadMenu 
+                    token={viewModel.user.token}
+                    project_id={viewModel.id}
+                     />
 
 
                     {
@@ -51,6 +56,7 @@ function FormPublishing() {
                                             tilte_yes={`เคย (โปรดระบุรายละเอียด วันเดือนปี หน่วยงานที่จัด และแนบหลักฐานการเผยแพร่ผลงาน)`}
                                             tilte_no={`ไม่เคยนำผลงานออกเผยแพร่มาก่อน`}
                                             chk_getData={(el) => viewModel.updateCoreIp(`core_present`, el)}
+                                            chk_value={viewModel.qe_coreip_data.data?.data.core_present}
                                         />
                                     }
                                     core_present={viewModel.qe_coreip_data.data?.data.core_present === null ? 0 : viewModel.qe_coreip_data.data?.data.core_present!}
@@ -63,6 +69,7 @@ function FormPublishing() {
                                             tilte_yes={`มี (ขอให้ระบุแหล่งที่มา)`}
                                             tilte_no={`ไม่มี`}
                                             chk_getData={(el) => viewModel.updateCoreIp(`core_furtherdev`, el)}
+                                            chk_value={viewModel.qe_coreip_data.data?.data.core_furtherdev}
                                         />
                                     }
                                     core_furtherdev={viewModel.qe_coreip_data.data?.data.core_furtherdev === null ? 0 : viewModel.qe_coreip_data.data?.data.core_furtherdev!}
@@ -77,6 +84,7 @@ function FormPublishing() {
                                             tilte_yes={`เคย (ขอให้ระบุรายละเอียด)`}
                                             tilte_no={`ไม่เคย`}
                                             chk_getData={(el) => viewModel.updateCoreIp(`core_movant`, el)}
+                                            chk_value={viewModel.qe_coreip_data.data?.data.core_movant}
                                         />
                                     }
                                     core_movant={viewModel.qe_coreip_data.data?.data.core_movant === null ? 0 : viewModel.qe_coreip_data.data?.data.core_movant!}

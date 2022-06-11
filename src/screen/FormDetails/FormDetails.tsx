@@ -18,10 +18,12 @@ function FormDetails() {
             <section className="content">
                 <div className="container-fluid">
 
-                    <HeadMenu project_id={viewModel.id} />
+                    <HeadMenu
+                        token={viewModel.user.token}
+                        project_id={viewModel.id} />
 
                     <Infer />
-                    
+
                 </div>
             </section>
         </div>

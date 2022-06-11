@@ -10,6 +10,8 @@ import exportedAPIPublicize from '../../utils/api/Publicize'
 import { routerPathUser } from '../../utils/routerpath'
 import exportedSwal from '../../utils/swal'
 
+
+
 export default function PublicizeVM() {
 
     /** 
@@ -223,6 +225,6 @@ export default function PublicizeVM() {
         submitForm_Publish,
         actionDelete_Present,
         actionDelete_Expose,
-        actionDelete_Publish
+        actionDelete_Publish,
     }
 }

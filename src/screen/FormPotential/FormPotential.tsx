@@ -21,7 +21,10 @@ export default function FormPotential() {
             <section className="content">
                 <div className="container-fluid">
 
-                    <HeadMenu project_id={viewModel.id} />
+                    <HeadMenu
+                        token={viewModel.user.token}
+                        project_id={viewModel.id} 
+                        />
 
                     <Market
                         chkbox_market={

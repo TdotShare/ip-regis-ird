@@ -21,7 +21,7 @@ function Publicize({
 }: AppProps) {
 
     const viewModel = PublicizeVM()
-
+    
     return (
         <>
 
