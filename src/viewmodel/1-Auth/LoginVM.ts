@@ -37,7 +37,8 @@ export default function LoginVM() {
 
     if (splitLocation.includes(`callback_oauth`)) {
       exportedSwal.actionSuccess(`กรุณารอสักครู่ระบบกำลังตรวจสอบการ login !`)
-      dataLoginRmuti()
+      //dataLoginRmuti()
+      dataLoginTest()
     }else{
       dispatch(deleteUser())
       dispatch(setLoginfail())
@@ -49,6 +50,35 @@ export default function LoginVM() {
   const actionGoToRmutiLogin = () => {
     //window.location.href = `https://mis-ird.rmuti.ac.th/sso/auth/login?url=${API}/auth/create_user_rmuti`
     window.location.href = `https://api.rmuti.ac.th/sso/oauth?sv=test&redirect_uri=${HOST}`
+  }
+
+  const dataLoginTest = async () => {
+
+    const res = await exportedAPIAuthentication.getLoginTest()
+
+    if (res.bypass) {
+
+      let user = res.data
+
+      dispatch(addUser({
+        id: user.id,
+        uid: user.uid,
+        card_id: user.card_id,
+        firstname_th: user.firstname_th,
+        lastname_th: user.lastname_th,
+        email: user.email,
+        token: user.token,
+        role: user.role
+      }))
+
+      dispatch(setLoginSuccess())
+
+      navigate(routerPathUser.Regis)
+
+    } else {
+      exportedSwal.actionInfo(res.message)
+    }
+
   }
 
 
@@ -142,14 +172,11 @@ export default function LoginVM() {
   return {
     username,
     password,
+    dataLoginTest,
     dataLoginRmuti,
     actionGoToRmutiLogin,
     onChangeSetUsername,
     onChangeSetPassowrd,
     actionLoginRmuti,
   }
-}
-
-function useCurrentPath() {
-  throw new Error('Function not implemented.');
 }

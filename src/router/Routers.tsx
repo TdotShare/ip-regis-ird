@@ -67,7 +67,6 @@ function Routers() {
                         <Route path={`${routerPathUser.Regis}/details/:id`} element={<ProdAuthen><FormDetails /></ProdAuthen> } />
                         <Route path={`${routerPathUser.Regis}/potentials/:id`} element={<ProdAuthen><FormPotential /></ProdAuthen> } />
                         <Route path={`${routerPathUser.Regis}/attachments/:id`} element={<ProdAuthen><FormAttachment /></ProdAuthen> } />
-
                         <Route path="/logout" element={<AuthLogout />} />
                         <Route path="/account" element={<RequireAuth><Account /></RequireAuth>} />
                         <Route path="/project" element={<RequireAuth><Project /></RequireAuth>} />

@@ -14,7 +14,7 @@ const userMenuList: MenuItem[] = [
     { name: "ออกจากระบบ", icon: "fas fa-sign-out-alt", url: "/logout", path: "/logout" }
 ]
 const adminMenuList: MenuItem[] = [
-    { name: "ผุ้ใช้งาน", icon: "fas fa-user", url: "/account", path: "/account" },
+    { name: "ผู้ใช้งาน", icon: "fas fa-user", url: "/account", path: "/account" },
     { name: "รายการผู้ยื่นจดทะเบียน", icon: "fas fa-tasks", url: "/project", path: "/project" }
 ]
 

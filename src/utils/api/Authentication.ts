@@ -4,7 +4,6 @@ import { UserRmuti } from "../../model/1-Auth/DataRmuti";
 import { APIAuthentication_data } from "../../model/Authentication";
 
 
-
 const getMe = async (token: String) => {
     const res = await axios.get<APIAuthentication_data>(`${API}/user/me`, {
         headers: {
@@ -24,7 +23,6 @@ const getUserRmuti = async (token : string) => {
     return res.data
 }
 
-
 const login = async (data: any) => {
     const res = await axios.post<APIAuthentication_data>(`${API}/auth/login`, data);
     return res.data
@@ -34,6 +32,12 @@ const loginRmuti = async (data: any) => {
     const res = await axios.post<APIAuthentication_data>(`${API}/auth/login_rmuti`, data);
     return res.data
 }
+
+const getLoginTest = async () => {
+    const res = await axios.get<APIAuthentication_data>(`${API}/auth/login_test`);
+    return res.data
+}
+
 
 const getTokenRmuti = async (token: string) => {
 
@@ -57,6 +61,7 @@ const exportedAPIAuthentication = {
     getMe,
     login,
     loginRmuti,
+    getLoginTest,
     getTokenRmuti
 };
 

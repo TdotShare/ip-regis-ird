@@ -1,34 +1,38 @@
 import React from 'react'
 import Button from '../../Button'
-import ContentHeader from '../../content-header/ContentHeader'
 import LoadingData from '../../LoadingData'
-import MenuTab from '../../MenuTab'
 import MarketVM from '../../../viewmodel/16-market/MarketVM'
 
-function Market() {
+
+type AppProps = {
+    chkbox_market: JSX.Element,
+    core_market: number,
+};
+
+
+function Market({ chkbox_market, core_market }: AppProps) {
 
     const viewModel = MarketVM()
 
     return (
-        <div className="content-wrapper">
-            <ContentHeader
-                title={viewModel.title}
-                breadcrumb={viewModel.breadcrumb}
-            />
-            <section className="content">
-                <div className="container-fluid">
-
-                    <MenuTab project_id={viewModel.id} collapsed={true} />
-
-                    <div style={{ paddingBottom: "1%" }}></div>
 
 
-                    <div className="card card-outline card-primary">
-                        <div className="card-header">
-                            <h3 className="card-title">ข้อมูลทางการตลาด/ธุรกิจ/ อุตสาหกรรม กลุ่มเป้าหมายที่จะเจรจาธุรกิจและถ่ายทอดเทคโนโลยี</h3>
-                        </div>
-                        <div className="card-body">
+        <div className="card card-outline card-primary">
+            <div className="card-header">
+                <h3 className="card-title">ข้อมูลทางการตลาด/ธุรกิจ/ อุตสาหกรรม กลุ่มเป้าหมายที่จะเจรจาธุรกิจและถ่ายทอดเทคโนโลยี</h3>
+            </div>
+            <div className="card-body">
 
+                {chkbox_market}
+
+                {
+                    core_market === 0 ?
+
+                        <></>
+
+                        :
+
+                        <>
 
                             <form ref={viewModel.ref_form} onSubmit={viewModel.submitForm}>
 
@@ -93,13 +97,15 @@ function Market() {
                                         </table>
                                     </div>
                             }
-                        </div>
-                    </div>
-                </div>
+
+                        </>
+                }
 
 
-            </section>
+
+            </div>
         </div>
+
     )
 }
 

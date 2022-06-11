@@ -19,25 +19,17 @@ function UserAuthen({ children }: AppProps) {
 
     const user = useSelector((state: RootState) => state.user.data)
 
-    //const queryClient = useQueryClient()
 
     const query_project_data = useQuery<APIAuthentication_data, Error>('getAuthenMe', async () => exportedAPIAuthentication.getMe(user.token))
-
-    // React.useEffect(() => {
-    //     return () => {
-    //         queryClient.removeQueries('getAuthenMe')
-    //     }
-    // }, [])
-
 
     if (query_project_data.isLoading) {
         <></>
     }
 
     if (query_project_data.data?.bypass === false) {
+        exportedSwal.actionInfo("ระยะเวลาการใช้งานในระบบ หมดแล้วกรุณาเข้าสู่ระบบใหม่อีกครั้ง !")
         dispatch(deleteUser())
         dispatch(setLoginfail())
-        exportedSwal.actionInfo("ระยะเวลาการใช้งานในระบบ หมดแล้วกรุณาเข้าสู่ระบบใหม่อีกครั้ง !")
         return <Navigate to={routerPathUser.Regis} />
     }
 

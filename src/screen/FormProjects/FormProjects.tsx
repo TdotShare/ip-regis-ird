@@ -1,10 +1,10 @@
 import React from 'react'
 import ChkboxCore from '../../components/ChkboxCore'
 import ContentHeader from '../../components/content-header/ContentHeader'
-import Bioreso from '../../components/core/11-Bioreso/Bioreso'
-import Results from '../../components/core/12-Results/Results'
 import Fund from '../../components/core/8-Fund/Fund'
 import Budget from '../../components/core/9-Budget/Budget'
+import Bioreso from '../../components/core/11-Bioreso/Bioreso'
+import Results from '../../components/core/12-Results/Results'
 import HeadMenu from '../../components/HeadMenu'
 import FormProjectsVM from '../../viewmodel/FormProjects/FormProjectsVM'
 
