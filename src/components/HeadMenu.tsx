@@ -1,8 +1,8 @@
-import React, { useEffect } from 'react'
-import { useQuery, useQueryClient } from 'react-query';
+import { useQuery } from 'react-query';
 import { Link, useLocation } from 'react-router-dom'
 import { APIProcessMenu_data } from '../model/ProcessMenu';
 import exportedAPIFormCoreip from '../utils/api/FormCoreip';
+import { keyQueryPath } from '../utils/keyquery';
 import { routerPathUser } from '../utils/routerpath'
 import StatusCores from './StatusCores';
 
@@ -12,7 +12,6 @@ type AppProps = {
     token: string,
 };
 
-
 function HeadMenu({ project_id, token }: AppProps) {
 
     const location = useLocation();
@@ -20,11 +19,10 @@ function HeadMenu({ project_id, token }: AppProps) {
     const { pathname } = location;
     const splitLocation = pathname.split("/");
 
-    const qe_processmenu_data = useQuery<APIProcessMenu_data, Error>('getProcessmenu', async () => exportedAPIFormCoreip.getProcessMenu(project_id, token))
+    const qe_processmenu_data = useQuery<APIProcessMenu_data, Error>(keyQueryPath.getProcessmenu, async () => exportedAPIFormCoreip.getProcessMenu(project_id, token))
 
     const fontSizeBtn = 13
     const fontSizeIcon = 13
-
 
 
     return (

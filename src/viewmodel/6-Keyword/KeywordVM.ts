@@ -1,12 +1,11 @@
 import React , { useRef, useState } from 'react'
-import { useQuery, useQueryClient } from 'react-query'
+import { useQueryClient } from 'react-query'
 import { useSelector } from 'react-redux'
 import { useParams } from 'react-router-dom'
-import { APIKeyword_data } from '../../model/6-Keyword/Keyword'
-import { APISearchlist_data } from '../../model/6-Keyword/Searchlist'
 import { RootState } from '../../store/ConfigureStore'
 import exportedAPIKeyword from '../../utils/api/Keyword'
 import exportedAPISearchlist from '../../utils/api/Searchlist'
+import { keyQueryPath } from '../../utils/keyquery'
 import { routerPathUser } from '../../utils/routerpath'
 import exportedSwal from '../../utils/swal'
 
@@ -30,9 +29,6 @@ export default function KeywordVM() {
     const ref_form = useRef<HTMLFormElement>(null);
 
     const user = useSelector((state: RootState) => state.user.data)
-
-    const qe_keyword_data = useQuery<APIKeyword_data, Error>('getKeyword', async () => exportedAPIKeyword.getKeyword(id, user.token))
-    const qe_searchlist_data = useQuery<APISearchlist_data, Error>('getSearchlist', async () => exportedAPISearchlist.getSearchlist(id, user.token))
 
     const [values] = useState({
         title: `ขอยื่นจดทะเบียน - ${id}`,
@@ -71,7 +67,8 @@ export default function KeywordVM() {
         const res = await exportedAPIKeyword.createKeyword(data, user.token)
 
         if(res.bypass){
-            queryClient.invalidateQueries('getKeyword')
+            queryClient.invalidateQueries(keyQueryPath.getFormPublishing)
+            queryClient.invalidateQueries(keyQueryPath.getCoreip)
             exportedSwal.actionSuccess("บันทึกข้อมูลเรียบร้อย !")
 
         }else{
@@ -101,7 +98,8 @@ export default function KeywordVM() {
         const res = await exportedAPISearchlist.createSearchlist(data, user.token)
 
         if(res.bypass){
-            queryClient.invalidateQueries('getSearchlist')
+            queryClient.invalidateQueries(keyQueryPath.getFormPublishing)
+            queryClient.invalidateQueries(keyQueryPath.getCoreip)
             exportedSwal.actionSuccess("บันทึกข้อมูลเรียบร้อย !")
 
         }else{
@@ -122,7 +120,8 @@ export default function KeywordVM() {
 
             if (res.bypass) {
                 exportedSwal.actionSuccess("ลบข้อมูลเรียบร้อย !")
-                queryClient.invalidateQueries('getSearchlist')
+                queryClient.invalidateQueries(keyQueryPath.getFormPublishing)
+                queryClient.invalidateQueries(keyQueryPath.getCoreip)
             } else {
                 exportedSwal.actionInfo('ไม่สามารถลบข้อมูลได้ กรุณาติดต่อเจ้าหน้าที่ !')
             }
@@ -135,8 +134,6 @@ export default function KeywordVM() {
         ...values,
         id,
         ref_form,
-        qe_keyword_data,
-        qe_searchlist_data,
         submitForm_keyword,
         submitForm_searchlist,
         actionDelete

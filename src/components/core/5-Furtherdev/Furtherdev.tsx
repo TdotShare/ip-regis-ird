@@ -1,16 +1,17 @@
 import React from 'react'
 import Button from '../../Button'
-import LoadingData from '../../LoadingData'
 import FurtherdevVM from '../../../viewmodel/5-Furtherdev/FurtherdevVM'
+import { Furtherdev as FurtherdevModel } from '../../../model/5-Furtherdev/Furtherdev'
 
 
 type AppProps = {
     chkbox_furtherdev: JSX.Element,
     core_furtherdev: number,
+    data_furtherdev: FurtherdevModel[]
 };
 
 
-function Furtherdev({ chkbox_furtherdev, core_furtherdev }: AppProps) {
+function Furtherdev({ chkbox_furtherdev, core_furtherdev, data_furtherdev }: AppProps) {
 
     const viewModel = FurtherdevVM()
 
@@ -62,39 +63,31 @@ function Furtherdev({ chkbox_furtherdev, core_furtherdev }: AppProps) {
 
                                     <hr />
 
-                                    {
-                                        viewModel.qe_furtherdev_data.isLoading ?
-
-                                            <LoadingData />
-
-
-                                            :
-
-                                            <div className="table-responsive">
-                                                <table className="table table-bordered">
-                                                    <thead>
-                                                        <tr>
-                                                            <th scope="col">#</th>
-                                                            <th scope="col">หัวข้อ</th>
-                                                            <th scope="col">รายละเอียด</th>
-                                                            <th scope="col"></th>
+                                    <div className="table-responsive">
+                                        <table className="table table-bordered">
+                                            <thead>
+                                                <tr>
+                                                    <th scope="col">#</th>
+                                                    <th scope="col">หัวข้อ</th>
+                                                    <th scope="col">รายละเอียด</th>
+                                                    <th scope="col"></th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                {
+                                                    data_furtherdev.map((el, index) => (
+                                                        <tr key={index} >
+                                                            <th scope="row">{index + 1}</th>
+                                                            <td>{el.furtherdev_title}</td>
+                                                            <td>{el.furtherdev_text}</td>
+                                                            <td><button onClick={() => viewModel.actionDelete(el.furtherdev_id)} className='btn btn-block btn-danger'>ลบข้อมูล</button></td>
                                                         </tr>
-                                                    </thead>
-                                                    <tbody>
-                                                        {
-                                                            viewModel.qe_furtherdev_data.data?.data.map((el, index) => (
-                                                                <tr key={index} >
-                                                                    <th scope="row">{index + 1}</th>
-                                                                    <td>{el.furtherdev_title}</td>
-                                                                    <td>{el.furtherdev_text}</td>
-                                                                    <td><button onClick={() => viewModel.actionDelete(el.furtherdev_id)} className='btn btn-block btn-danger'>ลบข้อมูล</button></td>
-                                                                </tr>
-                                                            ))
-                                                        }
-                                                    </tbody>
-                                                </table>
-                                            </div>
-                                    }
+                                                    ))
+                                                }
+                                            </tbody>
+                                        </table>
+                                    </div>
+
 
                                 </>
 

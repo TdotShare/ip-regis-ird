@@ -1,12 +1,10 @@
 import React , { useRef, useState } from 'react'
-import { useQuery, useQueryClient } from 'react-query'
+import { useQueryClient } from 'react-query'
 import { useSelector } from 'react-redux'
 import { useParams } from 'react-router-dom'
-import { APIExpose_data } from '../../model/4-Publicize/Expose'
-import { APIPresent_data } from '../../model/4-Publicize/Present'
-import { APIPublish_data } from '../../model/4-Publicize/Publish'
 import { RootState } from '../../store/ConfigureStore'
 import exportedAPIPublicize from '../../utils/api/Publicize'
+import { keyQueryPath } from '../../utils/keyquery'
 import { routerPathUser } from '../../utils/routerpath'
 import exportedSwal from '../../utils/swal'
 
@@ -33,11 +31,6 @@ export default function PublicizeVM() {
 
     const user = useSelector((state: RootState) => state.user.data)
     
-
-    const qe_present_data = useQuery<APIPresent_data, Error>('getPresent', async () => exportedAPIPublicize.getPresent(id, user.token))
-    const qe_expose_data = useQuery<APIExpose_data, Error>('getExpose', async () => exportedAPIPublicize.getExpose(id, user.token))
-    const qe_publish_data = useQuery<APIPublish_data, Error>('getPublish', async () => exportedAPIPublicize.getPublish(id, user.token))
-
     const [values] = useState({
         title: `ขอยื่นจดทะเบียน - ${id}`,
         breadcrumb: [
@@ -67,7 +60,8 @@ export default function PublicizeVM() {
 
         if (resData.bypass) {
             exportedSwal.actionSuccess("เพิ่มข้อมูลเรียบร้อย !")
-            queryClient.invalidateQueries('getPresent')
+            queryClient.invalidateQueries(keyQueryPath.getFormPublishing)
+            queryClient.invalidateQueries(keyQueryPath.getProcessmenu)
         } else {
             exportedSwal.actionInfo(resData.message)
         }
@@ -85,7 +79,8 @@ export default function PublicizeVM() {
 
             if (res.bypass) {
                 exportedSwal.actionSuccess("ลบข้อมูลเรียบร้อย !")
-                queryClient.invalidateQueries('getPresent')
+                queryClient.invalidateQueries(keyQueryPath.getFormPublishing)
+                queryClient.invalidateQueries(keyQueryPath.getProcessmenu)
             } else {
                 exportedSwal.actionInfo('ไม่สามารถลบข้อมูลได้ กรุณาติดต่อเจ้าหน้าที่ !')
             }
@@ -120,10 +115,9 @@ export default function PublicizeVM() {
         //console.log(resData.data)
 
         if(resData.bypass){
-            queryClient.invalidateQueries('getExpose')
             exportedSwal.actionSuccess("เพิ่มข้อมูลเรียบร้อย !")
-           
-
+            queryClient.invalidateQueries(keyQueryPath.getFormPublishing)
+            queryClient.invalidateQueries(keyQueryPath.getProcessmenu)
         }else{
             exportedSwal.actionInfo(resData.message)
         }
@@ -144,7 +138,8 @@ export default function PublicizeVM() {
 
             if (res.bypass) {
                 exportedSwal.actionSuccess("ลบข้อมูลเรียบร้อย !")
-                queryClient.invalidateQueries('getExpose')
+                queryClient.invalidateQueries(keyQueryPath.getFormPublishing)
+                queryClient.invalidateQueries(keyQueryPath.getProcessmenu)
             } else {
                 exportedSwal.actionInfo('ไม่สามารถลบข้อมูลได้ กรุณาติดต่อเจ้าหน้าที่ !')
             }
@@ -181,8 +176,9 @@ export default function PublicizeVM() {
         console.log(resData.data)
 
         if(resData.bypass){
-            queryClient.invalidateQueries('getPublish')
             exportedSwal.actionSuccess("เพิ่มข้อมูลเรียบร้อย !")
+            queryClient.invalidateQueries(keyQueryPath.getFormPublishing)
+            queryClient.invalidateQueries(keyQueryPath.getProcessmenu)
         }else{
             exportedSwal.actionInfo(resData.message)
         }
@@ -202,7 +198,8 @@ export default function PublicizeVM() {
 
             if (res.bypass) {
                 exportedSwal.actionSuccess("ลบข้อมูลเรียบร้อย !")
-                queryClient.invalidateQueries('getPublish')
+                queryClient.invalidateQueries(keyQueryPath.getFormPublishing)
+                queryClient.invalidateQueries(keyQueryPath.getProcessmenu)
             } else {
                 exportedSwal.actionInfo('ไม่สามารถลบข้อมูลได้ กรุณาติดต่อเจ้าหน้าที่ !')
             }
@@ -216,9 +213,6 @@ export default function PublicizeVM() {
         ref_form_present,
         ref_form_expose,
         ref_form_publish,
-        qe_present_data,
-        qe_expose_data,
-        qe_publish_data,
         exportedSwal,
         submitForm_Present,
         submitForm_Expose,

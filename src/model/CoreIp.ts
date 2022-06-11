@@ -2,7 +2,7 @@ export interface CoreIp {
     core_id : number;
     core_project_id : number;
     core_expose? : number;
-    core_present? : number;
+    core_publish? : number;
     core_furtherdev? : number;
     core_movant? : number;
     core_fund? : number;

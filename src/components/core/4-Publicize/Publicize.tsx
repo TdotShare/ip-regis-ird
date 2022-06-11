@@ -1,27 +1,36 @@
 import React from 'react'
 import Button from '../../Button'
-import LoadingData from '../../LoadingData'
 import { Public_path } from '../../../config/public_path'
 import PublicizeVM from '../../../viewmodel/4-Publicize/PublicizeVM'
+import { Expose } from '../../../model/4-Publicize/Expose'
+import { Publish } from '../../../model/4-Publicize/Publish'
+import { Present } from '../../../model/4-Publicize/Present'
 
 
 type AppProps = {
     chkbox_expose: JSX.Element,
-    chkbox_present: JSX.Element,
-    core_present: number,
+    chkbox_publish: JSX.Element,
+    core_publish: number,
     core_expose: number,
+    present_data: Present[],
+    expose_data: Expose[],
+    publish_data: Publish[],
+
 };
 
 
 function Publicize({
     chkbox_expose,
-    chkbox_present,
+    chkbox_publish,
     core_expose,
-    core_present
+    core_publish,
+    present_data,
+    expose_data,
+    publish_data,
 }: AppProps) {
 
     const viewModel = PublicizeVM()
-    
+
     return (
         <>
 
@@ -54,37 +63,28 @@ function Publicize({
 
                             <hr />
 
-                            {
-                                viewModel.qe_present_data.isLoading
 
-                                    ?
-
-
-                                    <LoadingData />
-
-                                    :
-
-                                    <table className="table table-bordered">
-                                        <thead>
-                                            <tr>
-                                                <th scope="col">#</th>
-                                                <th scope="col">การนำเสนอผลงาน</th>
-                                                <th scope="col"></th>
+                            <table className="table table-bordered">
+                                <thead>
+                                    <tr>
+                                        <th scope="col">#</th>
+                                        <th scope="col">การนำเสนอผลงาน</th>
+                                        <th scope="col"></th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    {
+                                        present_data.map((el, index) => (
+                                            <tr key={index} >
+                                                <th scope="row">{index + 1}</th>
+                                                <td>{el.present_text}</td>
+                                                <td><button onClick={() => viewModel.actionDelete_Present(el.present_id)} className='btn btn-block btn-danger'>ลบข้อมูล</button></td>
                                             </tr>
-                                        </thead>
-                                        <tbody>
-                                            {
-                                                viewModel.qe_present_data.data?.data.map((el, index) => (
-                                                    <tr key={index} >
-                                                        <th scope="row">{index + 1}</th>
-                                                        <td>{el.present_text}</td>
-                                                        <td><button onClick={() => viewModel.actionDelete_Present(el.present_id)} className='btn btn-block btn-danger'>ลบข้อมูล</button></td>
-                                                    </tr>
-                                                ))
-                                            }
-                                        </tbody>
-                                    </table>
-                            }
+                                        ))
+                                    }
+                                </tbody>
+                            </table>
+
 
 
 
@@ -149,47 +149,37 @@ function Publicize({
 
                                         <hr />
 
-
-                                        {
-                                            viewModel.qe_expose_data.isLoading
-
-                                                ?
-
-
-                                                <LoadingData />
-
-                                                :
-                                                <div className="table-responsive">
-                                                    <table className="table table-bordered">
-                                                        <thead>
-                                                            <tr>
-                                                                <th scope="col">#</th>
-                                                                <th scope="col">วันที่</th>
-                                                                <th scope="col">จัดโดยหน่วยงาน</th>
-                                                                <th scope="col">สถานที่</th>
-                                                                <th scope="col">ประเทศ</th>
-                                                                <th scope="col">เอกสารแนบ</th>
-                                                                <th scope="col"></th>
+                                        <div className="table-responsive">
+                                            <table className="table table-bordered">
+                                                <thead>
+                                                    <tr>
+                                                        <th scope="col">#</th>
+                                                        <th scope="col">วันที่</th>
+                                                        <th scope="col">จัดโดยหน่วยงาน</th>
+                                                        <th scope="col">สถานที่</th>
+                                                        <th scope="col">ประเทศ</th>
+                                                        <th scope="col">เอกสารแนบ</th>
+                                                        <th scope="col"></th>
+                                                    </tr>
+                                                </thead>
+                                                <tbody>
+                                                    {
+                                                        expose_data.map((el, index) => (
+                                                            <tr key={index} >
+                                                                <th scope="row">{index + 1}</th>
+                                                                <td>{el.expose_date}</td>
+                                                                <td>{el.expose_agency}</td>
+                                                                <td>{el.expose_location}</td>
+                                                                <td>{el.expose_country}</td>
+                                                                <td><a target={`_blank`} href={`${Public_path}/${viewModel.id}/expose/${el.expose_file}`} >{el.expose_file}</a></td>
+                                                                <td><button onClick={() => viewModel.actionDelete_Expose(el.expose_id)} className='btn btn-block btn-danger'>ลบข้อมูล</button></td>
                                                             </tr>
-                                                        </thead>
-                                                        <tbody>
-                                                            {
-                                                                viewModel.qe_expose_data.data?.data.map((el, index) => (
-                                                                    <tr key={index} >
-                                                                        <th scope="row">{index + 1}</th>
-                                                                        <td>{el.expose_date}</td>
-                                                                        <td>{el.expose_agency}</td>
-                                                                        <td>{el.expose_location}</td>
-                                                                        <td>{el.expose_country}</td>
-                                                                        <td><a target={`_blank`} href={`${Public_path}/${viewModel.id}/expose/${el.expose_file}`} >{el.expose_file}</a></td>
-                                                                        <td><button onClick={() => viewModel.actionDelete_Expose(el.expose_id)} className='btn btn-block btn-danger'>ลบข้อมูล</button></td>
-                                                                    </tr>
-                                                                ))
-                                                            }
-                                                        </tbody>
-                                                    </table>
-                                                </div>
-                                        }
+                                                        ))
+                                                    }
+                                                </tbody>
+                                            </table>
+                                        </div>
+
                                     </>
 
 
@@ -214,10 +204,10 @@ function Publicize({
                         </div>
                         <div className="card-body">
 
-                            {chkbox_present}
+                            {chkbox_publish}
 
                             {
-                                core_present === 0 ?
+                                core_publish === 0 ?
 
                                     <></>
 
@@ -257,43 +247,33 @@ function Publicize({
 
                                         <hr />
 
-                                        {
-                                            viewModel.qe_publish_data.isLoading
-
-                                                ?
-
-
-                                                <LoadingData />
-
-                                                :
-
-                                                <div className="table-responsive">
-                                                    <table className="table table-bordered">
-                                                        <thead>
-                                                            <tr>
-                                                                <th scope="col">#</th>
-                                                                <th scope="col">หัวเรื่อง</th>
-                                                                <th scope="col">รายละเอียด</th>
-                                                                <th scope="col">เอกสารแนบ</th>
-                                                                <th scope="col"></th>
+                                        <div className="table-responsive">
+                                            <table className="table table-bordered">
+                                                <thead>
+                                                    <tr>
+                                                        <th scope="col">#</th>
+                                                        <th scope="col">หัวเรื่อง</th>
+                                                        <th scope="col">รายละเอียด</th>
+                                                        <th scope="col">เอกสารแนบ</th>
+                                                        <th scope="col"></th>
+                                                    </tr>
+                                                </thead>
+                                                <tbody>
+                                                    {
+                                                        publish_data.map((el, index) => (
+                                                            <tr key={index} >
+                                                                <th scope="row">{index + 1}</th>
+                                                                <td>{el.publish_head}</td>
+                                                                <td>{el.publish_text}</td>
+                                                                <td><a target={`_blank`} href={`${Public_path}/${viewModel.id}/publish/${el.publish_file}`} >{el.publish_file}</a></td>
+                                                                <td><button onClick={() => viewModel.actionDelete_Publish(el.publish_id)} className='btn btn-block btn-danger'>ลบข้อมูล</button></td>
                                                             </tr>
-                                                        </thead>
-                                                        <tbody>
-                                                            {
-                                                                viewModel.qe_publish_data.data?.data.map((el, index) => (
-                                                                    <tr key={index} >
-                                                                        <th scope="row">{index + 1}</th>
-                                                                        <td>{el.publish_head}</td>
-                                                                        <td>{el.publish_text}</td>
-                                                                        <td><a target={`_blank`} href={`${Public_path}/${viewModel.id}/publish/${el.publish_file}`} >{el.publish_file}</a></td>
-                                                                        <td><button onClick={() => viewModel.actionDelete_Publish(el.publish_id)} className='btn btn-block btn-danger'>ลบข้อมูล</button></td>
-                                                                    </tr>
-                                                                ))
-                                                            }
-                                                        </tbody>
-                                                    </table>
-                                                </div>
-                                        }
+                                                        ))
+                                                    }
+                                                </tbody>
+                                            </table>
+                                        </div>
+
                                     </>
 
                             }

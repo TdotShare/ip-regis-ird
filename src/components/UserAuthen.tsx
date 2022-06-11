@@ -1,5 +1,5 @@
 import React from 'react'
-import { useQuery, useQueryClient } from 'react-query';
+import { useQuery } from 'react-query';
 import { useDispatch, useSelector } from 'react-redux';
 import { Navigate } from 'react-router';
 import { APIAuthentication_data } from '../model/Authentication';
@@ -18,7 +18,6 @@ function UserAuthen({ children }: AppProps) {
     const dispatch = useDispatch()
 
     const user = useSelector((state: RootState) => state.user.data)
-
 
     const query_project_data = useQuery<APIAuthentication_data, Error>('getAuthenMe', async () => exportedAPIAuthentication.getMe(user.token))
 

@@ -1,8 +1,7 @@
 import React , { useRef, useState } from 'react'
-import { useQuery, useQueryClient } from 'react-query'
+import { useQueryClient } from 'react-query'
 import { useSelector } from 'react-redux'
 import { useParams } from 'react-router-dom'
-import { APIMovant_data } from '../../model/7-Movant/Movant'
 import { RootState } from '../../store/ConfigureStore'
 import exportedAPIMovant from '../../utils/api/Movant'
 import { routerPathUser } from '../../utils/routerpath'
@@ -25,8 +24,6 @@ export default function MovantVM() {
     const ref_form = useRef<HTMLFormElement>(null);
 
     const user = useSelector((state: RootState) => state.user.data)
-
-    const qe_movant_data = useQuery<APIMovant_data, Error>('getMovant', async () => exportedAPIMovant.getMovant(id, user.token))
 
     const [values] = useState({
         title: `ขอยื่นจดทะเบียน - ${id}`,
@@ -72,6 +69,5 @@ export default function MovantVM() {
         id,
         ref_form,
         submitForm,
-        qe_movant_data
     }
 }

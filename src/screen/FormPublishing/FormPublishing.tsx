@@ -22,17 +22,17 @@ function FormPublishing() {
             />
             <section className="content">
                 <div className="container-fluid">
-                
 
-                    
-                    <HeadMenu 
-                    token={viewModel.user.token}
-                    project_id={viewModel.id}
-                     />
+
+
+                    <HeadMenu
+                        token={viewModel.user.token}
+                        project_id={viewModel.id}
+                    />
 
 
                     {
-                        viewModel.qe_coreip_data.isLoading ?
+                        viewModel.qe_coreip_data.isLoading || viewModel.qe_publishing_data.isLoading ?
 
                             <LoadingData />
 
@@ -50,16 +50,19 @@ function FormPublishing() {
                                         />
                                     }
                                     core_expose={viewModel.qe_coreip_data.data?.data.core_expose === null ? 0 : viewModel.qe_coreip_data.data?.data.core_expose!}
-                                    chkbox_present={
+                                    chkbox_publish={
                                         <ChkboxCore
-                                            chk_name={`chk_present`}
+                                            chk_name={`chk_publish`}
                                             tilte_yes={`เคย (โปรดระบุรายละเอียด วันเดือนปี หน่วยงานที่จัด และแนบหลักฐานการเผยแพร่ผลงาน)`}
                                             tilte_no={`ไม่เคยนำผลงานออกเผยแพร่มาก่อน`}
-                                            chk_getData={(el) => viewModel.updateCoreIp(`core_present`, el)}
-                                            chk_value={viewModel.qe_coreip_data.data?.data.core_present}
+                                            chk_getData={(el) => viewModel.updateCoreIp(`core_publish`, el)}
+                                            chk_value={viewModel.qe_coreip_data.data?.data.core_publish}
                                         />
                                     }
-                                    core_present={viewModel.qe_coreip_data.data?.data.core_present === null ? 0 : viewModel.qe_coreip_data.data?.data.core_present!}
+                                    core_publish={viewModel.qe_coreip_data.data?.data.core_publish === null ? 0 : viewModel.qe_coreip_data.data?.data.core_publish!}
+                                    present_data={viewModel.qe_publishing_data.data?.data.present_data!}
+                                    expose_data={viewModel.qe_publishing_data.data?.data.expose_data!}
+                                    publish_data={viewModel.qe_publishing_data.data?.data.publish_data!}
                                 />
 
                                 <Furtherdev
@@ -73,9 +76,13 @@ function FormPublishing() {
                                         />
                                     }
                                     core_furtherdev={viewModel.qe_coreip_data.data?.data.core_furtherdev === null ? 0 : viewModel.qe_coreip_data.data?.data.core_furtherdev!}
+                                    data_furtherdev={viewModel.qe_publishing_data.data?.data.furtherdev_data!}
                                 />
 
-                                <Keyword />
+                                <Keyword
+                                    data_keyword={viewModel.qe_publishing_data.data?.data.keyword_data!}
+                                    data_searchlist={viewModel.qe_publishing_data.data?.data.searchlist_data!}
+                                />
 
                                 <Movant
                                     chkbox_movant={
@@ -87,6 +94,7 @@ function FormPublishing() {
                                             chk_value={viewModel.qe_coreip_data.data?.data.core_movant}
                                         />
                                     }
+                                    data_movant={viewModel.qe_publishing_data.data?.data.movant_data!}
                                     core_movant={viewModel.qe_coreip_data.data?.data.core_movant === null ? 0 : viewModel.qe_coreip_data.data?.data.core_movant!}
                                 />
 

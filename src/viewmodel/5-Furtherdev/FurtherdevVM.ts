@@ -1,10 +1,10 @@
 import React, { useRef, useState } from 'react'
-import { useQuery, useQueryClient } from 'react-query'
+import { useQueryClient } from 'react-query'
 import { useSelector } from 'react-redux'
 import { useParams } from 'react-router-dom'
-import { APIFurtherdev_data } from '../../model/5-Furtherdev/Furtherdev'
 import { RootState } from '../../store/ConfigureStore'
 import exportedAPIFurtherdev from '../../utils/api/Furtherdev'
+import { keyQueryPath } from '../../utils/keyquery'
 import { routerPathUser } from '../../utils/routerpath'
 import exportedSwal from '../../utils/swal'
 
@@ -26,8 +26,6 @@ export default function FurtherdevVM() {
     const ref_form = useRef<HTMLFormElement>(null);
 
     const user = useSelector((state: RootState) => state.user.data)
-
-    const qe_furtherdev_data = useQuery<APIFurtherdev_data, Error>('getFurtherdev', async () => exportedAPIFurtherdev.getFurtherdev(id, user.token))
 
     const [values] = useState({
         title: `ขอยื่นจดทะเบียน - ${id}`,
@@ -58,7 +56,8 @@ export default function FurtherdevVM() {
         const res = await exportedAPIFurtherdev.createFurtherdev(data, user.token)
 
         if(res.bypass){
-            queryClient.invalidateQueries('getFurtherdev')
+            queryClient.invalidateQueries(keyQueryPath.getFormPublishing)
+            queryClient.invalidateQueries(keyQueryPath.getCoreip)
             exportedSwal.actionSuccess("เพิ่มข้อมูลเรียบร้อย !")
 
         }else{
@@ -77,7 +76,8 @@ export default function FurtherdevVM() {
 
             if (res.bypass) {
                 exportedSwal.actionSuccess("ลบข้อมูลเรียบร้อย !")
-                queryClient.invalidateQueries('getFurtherdev')
+                queryClient.invalidateQueries(keyQueryPath.getFormPublishing)
+                queryClient.invalidateQueries(keyQueryPath.getCoreip)
             } else {
                 exportedSwal.actionInfo('ไม่สามารถลบข้อมูลได้ กรุณาติดต่อเจ้าหน้าที่ !')
             }
@@ -93,7 +93,6 @@ export default function FurtherdevVM() {
         ref_form,
         submitForm,
         actionDelete,
-        qe_furtherdev_data,
         exportedSwal
     }
 }
