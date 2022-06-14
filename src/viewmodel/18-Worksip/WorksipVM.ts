@@ -15,6 +15,7 @@ import { APILinkip_data } from '../../model/18-Workip/Linkip'
 import { APIVideoip_data } from '../../model/18-Workip/Videoip'
 import { APIFileip_data } from '../../model/18-Workip/Fileip'
 import { APIGalleryip_data } from '../../model/18-Workip/Galleryip'
+import { keyQueryPath } from '../../utils/keyquery'
 
 export default function WorksipVM() {
 
@@ -75,7 +76,8 @@ export default function WorksipVM() {
         const res = await exportedAPILinkip.createLinkip(data , user.token)
 
         if(res.bypass){
-            queryClient.invalidateQueries('getLinkip')
+            queryClient.invalidateQueries(keyQueryPath.getFormAttachment)
+            queryClient.invalidateQueries(keyQueryPath.getProcessmenu)
             exportedSwal.actionSuccess("เพิ่มข้อมูลเรียบร้อย !")
 
         }else{
@@ -104,7 +106,8 @@ export default function WorksipVM() {
         const res = await exportedAPIVideoip.createVideoip(data , user.token)
 
         if(res.bypass){
-            queryClient.invalidateQueries('getVideoip')
+            queryClient.invalidateQueries(keyQueryPath.getFormAttachment)
+            queryClient.invalidateQueries(keyQueryPath.getProcessmenu)
             exportedSwal.actionSuccess("เพิ่มข้อมูลเรียบร้อย !")
 
         }else{
@@ -144,7 +147,8 @@ export default function WorksipVM() {
         const res = await exportedAPIFileip.createFileip(postData , user.token)
 
         if(res.bypass){
-            queryClient.invalidateQueries('getFileip')
+            queryClient.invalidateQueries(keyQueryPath.getFormAttachment)
+            queryClient.invalidateQueries(keyQueryPath.getProcessmenu)
             exportedSwal.actionSuccess("เพิ่มข้อมูลเรียบร้อย !")
 
         }else{
@@ -182,7 +186,8 @@ export default function WorksipVM() {
         const res = await exportedAPIGalleryip.createGalleryip(postData , user.token)
 
         if(res.bypass){
-            queryClient.invalidateQueries('getGalleryip')
+            queryClient.invalidateQueries(keyQueryPath.getFormAttachment)
+            queryClient.invalidateQueries(keyQueryPath.getProcessmenu)
             exportedSwal.actionSuccess("เพิ่มข้อมูลเรียบร้อย !")
 
         }else{
@@ -201,7 +206,8 @@ export default function WorksipVM() {
 
             if (res.bypass) {
                 exportedSwal.actionSuccess("ลบข้อมูลเรียบร้อย !")
-                queryClient.invalidateQueries('getGalleryip')
+                queryClient.invalidateQueries(keyQueryPath.getFormAttachment)
+                queryClient.invalidateQueries(keyQueryPath.getProcessmenu)
             } else {
                 exportedSwal.actionInfo('ไม่สามารถลบข้อมูลได้ กรุณาติดต่อเจ้าหน้าที่ !')
             }
@@ -217,7 +223,8 @@ export default function WorksipVM() {
 
             if (res.bypass) {
                 exportedSwal.actionSuccess("ลบข้อมูลเรียบร้อย !")
-                queryClient.invalidateQueries('getFileip')
+                queryClient.invalidateQueries(keyQueryPath.getFormAttachment)
+                queryClient.invalidateQueries(keyQueryPath.getProcessmenu)
             } else {
                 exportedSwal.actionInfo('ไม่สามารถลบข้อมูลได้ กรุณาติดต่อเจ้าหน้าที่ !')
             }
@@ -233,7 +240,8 @@ export default function WorksipVM() {
 
             if (res.bypass) {
                 exportedSwal.actionSuccess("ลบข้อมูลเรียบร้อย !")
-                queryClient.invalidateQueries('getVideoip')
+                queryClient.invalidateQueries(keyQueryPath.getFormAttachment)
+                queryClient.invalidateQueries(keyQueryPath.getProcessmenu)
             } else {
                 exportedSwal.actionInfo('ไม่สามารถลบข้อมูลได้ กรุณาติดต่อเจ้าหน้าที่ !')
             }
@@ -251,7 +259,8 @@ export default function WorksipVM() {
 
             if (res.bypass) {
                 exportedSwal.actionSuccess("ลบข้อมูลเรียบร้อย !")
-                queryClient.invalidateQueries('getLinkip')
+                queryClient.invalidateQueries(keyQueryPath.getFormAttachment)
+                queryClient.invalidateQueries(keyQueryPath.getProcessmenu)
             } else {
                 exportedSwal.actionInfo('ไม่สามารถลบข้อมูลได้ กรุณาติดต่อเจ้าหน้าที่ !')
             }

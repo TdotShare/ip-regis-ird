@@ -119,7 +119,17 @@ function HeadMenu({ project_id, token }: AppProps) {
                                 </th>
                                 <th scope="col">
                                     <Link to={`${routerPathUser.Regis}/confirm/${project_id}`}>
-                                        <button className={splitLocation.includes('confirm') ? `btn btn-block btn-success` : `btn btn-block btn-primary`} style={{ fontSize: fontSizeBtn }} disabled >ส่งคำขอให้เจ้าหน้าที่</button>
+
+                                        {
+                                            qe_processmenu_data.isLoading ?
+
+                                            <button className={splitLocation.includes('confirm') ? `btn btn-block btn-success` : `btn btn-block btn-primary`} style={{ fontSize: fontSizeBtn }} disabled={true} >ส่งคำขอให้เจ้าหน้าที่</button>
+
+                                            :
+
+                                            <button className={splitLocation.includes('confirm') ? `btn btn-block btn-success` : `btn btn-block btn-primary`} style={{ fontSize: fontSizeBtn }} disabled={qe_processmenu_data.data?.data.confirm === 1 ? false : true} >ส่งคำขอให้เจ้าหน้าที่</button>
+
+                                        }
                                     </Link>
                                     {
                                         qe_processmenu_data.isLoading ?
@@ -127,7 +137,7 @@ function HeadMenu({ project_id, token }: AppProps) {
                                             <StatusCores status={0} fontSizeIcon={fontSizeIcon} />
                                             :
 
-                                            <StatusCores status={qe_processmenu_data.data?.data.confirm!} fontSizeIcon={fontSizeIcon} />
+                                            <StatusCores status={qe_processmenu_data.data?.data.confirm!} confirm={true} fontSizeIcon={fontSizeIcon} />
 
                                     }
                                 </th>

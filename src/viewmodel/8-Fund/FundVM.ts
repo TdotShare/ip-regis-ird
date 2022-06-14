@@ -1,11 +1,10 @@
 import React , { useRef, useState } from 'react'
-import { useQuery, useQueryClient } from 'react-query'
+import { useQueryClient } from 'react-query'
 import { useSelector } from 'react-redux'
 import { useParams } from 'react-router-dom'
-import { APIFund_data } from '../../model/8-Fund/Fund'
-//import { APIPeople_data } from '../../model/3-People/People'
 import { RootState } from '../../store/ConfigureStore'
 import exportedAPIFund from '../../utils/api/Fund'
+import { keyQueryPath } from '../../utils/keyquery'
 import { routerPathUser } from '../../utils/routerpath'
 import exportedSwal from '../../utils/swal'
 
@@ -27,8 +26,6 @@ export default function FundVM() {
     const queryClient = useQueryClient()
 
     const user = useSelector((state: RootState) => state.user.data)
-
-    const qe_fund_data = useQuery<APIFund_data, Error>('getFund', async () => exportedAPIFund.getFund(id, user.token))
 
     const [values] = useState({
         title: `ขอยื่นจดทะเบียน - ${id}`,
@@ -70,7 +67,8 @@ export default function FundVM() {
         const res = await exportedAPIFund.createFund(postData, user.token)
 
         if(res.bypass){
-            queryClient.invalidateQueries('getFund')
+            queryClient.invalidateQueries(keyQueryPath.getFormProjects)
+            queryClient.invalidateQueries(keyQueryPath.getProcessmenu)
             exportedSwal.actionSuccess("บันทึกข้อมูลเรียบร้อย !")
 
         }else{
@@ -87,11 +85,11 @@ export default function FundVM() {
         if (confirmDelete) {
             const res = await exportedAPIFund.deleteFund(id, user.token)
 
-            console.log(res)
 
             if (res.bypass) {
                 exportedSwal.actionSuccess("ลบข้อมูลเรียบร้อย !")
-                queryClient.invalidateQueries('getFund')
+                queryClient.invalidateQueries(keyQueryPath.getFormProjects)
+                queryClient.invalidateQueries(keyQueryPath.getProcessmenu)
             } else {
                 exportedSwal.actionInfo('ไม่สามารถลบข้อมูลได้ กรุณาติดต่อเจ้าหน้าที่ !')
             }
@@ -104,7 +102,6 @@ export default function FundVM() {
         id,
         ref_form,
         submitForm,
-        qe_fund_data,
         actionDelete
     }
 }

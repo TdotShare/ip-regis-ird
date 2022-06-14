@@ -5,6 +5,7 @@ import { useParams } from 'react-router-dom'
 import { APIPeople_data } from '../../model/3-People/People'
 import { RootState } from '../../store/ConfigureStore'
 import exportedAPIPeople from '../../utils/api/People'
+import { keyQueryPath } from '../../utils/keyquery'
 import { routerPathUser } from '../../utils/routerpath'
 import exportedSwal from '../../utils/swal'
 
@@ -85,6 +86,7 @@ export default function PeopleVM() {
 
         if (resData.bypass) {
             queryClient.invalidateQueries('getPeople')
+            queryClient.invalidateQueries(keyQueryPath.getProcessmenu)
             exportedSwal.actionSuccess("เพิ่มข้อมูลเรียบร้อย !")
 
         } else {
@@ -108,6 +110,7 @@ export default function PeopleVM() {
             if (res.bypass) {
                 exportedSwal.actionSuccess("ลบข้อมูลเรียบร้อย !")
                 queryClient.invalidateQueries('getPeople')
+                queryClient.invalidateQueries(keyQueryPath.getProcessmenu)
             } else {
                 exportedSwal.actionInfo('ไม่สามารถลบข้อมูลได้ กรุณาติดต่อเจ้าหน้าที่ !')
             }

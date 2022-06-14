@@ -10,7 +10,7 @@ export type APIFormPotentials_data = {
     bypass: boolean,
     data: {
         market_data :  Market[],
-        expand_data : Expand,
+        expand_data : Expand[],
         expandfile_data :  FileExpand[],
         estimate_data : Estimate,
         charges_data : Charges,

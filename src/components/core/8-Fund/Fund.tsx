@@ -1,17 +1,18 @@
 import React from 'react'
 import Button from '../../Button'
-import LoadingData from '../../LoadingData'
 import { Public_path } from '../../../config/public_path'
 import FundVM from '../../../viewmodel/8-Fund/FundVM'
+import { Fund as FundModel } from '../../../model/8-Fund/Fund'
 
 
 
 type AppProps = {
     chkbox_fund: JSX.Element,
     core_fund: number,
+    data_fund: FundModel[]
 };
 
-function Fund({ chkbox_fund, core_fund }: AppProps) {
+function Fund({ chkbox_fund, core_fund, data_fund }: AppProps) {
 
     const viewModel = FundVM()
 
@@ -68,49 +69,36 @@ function Fund({ chkbox_fund, core_fund }: AppProps) {
 
                             <hr />
 
-
-                            {
-                                viewModel.qe_fund_data.isLoading
-
-                                    ?
-
-
-                                    <LoadingData />
-
-                                    :
-
-                                    <div className="table-responsive">
-                                        <table className="table table-bordered">
-                                            <thead>
-                                                <tr>
-                                                    <th scope="col">#</th>
-                                                    <th scope="col">หัวเรื่อง</th>
-                                                    <th scope="col">รายละเอียด</th>
-                                                    <th scope="col">เอกสารแนบ</th>
-                                                    <th scope="col"></th>
+                            <div className="table-responsive">
+                                <table className="table table-bordered">
+                                    <thead>
+                                        <tr>
+                                            <th scope="col">#</th>
+                                            <th scope="col">หัวเรื่อง</th>
+                                            <th scope="col">รายละเอียด</th>
+                                            <th scope="col">เอกสารแนบ</th>
+                                            <th scope="col"></th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        {
+                                            data_fund.map((el, index) => (
+                                                <tr key={index} >
+                                                    <th scope="row">{index + 1}</th>
+                                                    <td>{el.fund_title}</td>
+                                                    <td>{el.fund_detail}</td>
+                                                    <td><a target={`_blank`} href={`${Public_path}/${viewModel.id}/fund/${el.fund_file}`} >{el.fund_file}</a></td>
+                                                    <td><button onClick={() => viewModel.actionDelete(el.fund_id)} className='btn btn-block btn-danger'>ลบข้อมูล</button></td>
                                                 </tr>
-                                            </thead>
-                                            <tbody>
-                                                {
-                                                    viewModel.qe_fund_data.data?.data.map((el, index) => (
-                                                        <tr key={index} >
-                                                            <th scope="row">{index + 1}</th>
-                                                            <td>{el.fund_title}</td>
-                                                            <td>{el.fund_detail}</td>
-                                                            <td><a target={`_blank`} href={`${Public_path}/${viewModel.id}/fund/${el.fund_file}`} >{el.fund_file}</a></td>
-                                                            <td><button onClick={() => viewModel.actionDelete(el.fund_id)} className='btn btn-block btn-danger'>ลบข้อมูล</button></td>
-                                                        </tr>
-                                                    ))
-                                                }
-                                            </tbody>
-                                        </table>
-                                    </div>
-                            }
+                                            ))
+                                        }
+                                    </tbody>
+                                </table>
+                            </div>
+
 
                         </>
                     }
-
-
 
                 </div>
             </div>

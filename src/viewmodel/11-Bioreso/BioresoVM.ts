@@ -3,10 +3,9 @@ import { useQuery, useQueryClient } from 'react-query'
 import { useSelector } from 'react-redux'
 import { useParams } from 'react-router-dom'
 import { APIBiological_data } from '../../model/11-Bioseso/Biological'
-import { APIBioreso_data } from '../../model/11-Bioseso/Bioreso'
-//import { APIPeople_data } from '../../model/3-People/People'
 import { RootState } from '../../store/ConfigureStore'
 import exportedAPIBioreso from '../../utils/api/Bioreso'
+import { keyQueryPath } from '../../utils/keyquery'
 import { routerPathUser } from '../../utils/routerpath'
 import exportedSwal from '../../utils/swal'
 
@@ -27,7 +26,6 @@ export default function BioresoVM() {
     const user = useSelector((state: RootState) => state.user.data)
 
     const qe_biological_data = useQuery<APIBiological_data, Error>('getBiological', async () => exportedAPIBioreso.getBiological(user.token))
-    const qe_bioreso_data = useQuery<APIBioreso_data, Error>('getBioreso', async () => exportedAPIBioreso.getBioreso(id, user.token))
 
     const [values] = useState({
         title: `ขอยื่นจดทะเบียน - ${id}`,
@@ -95,7 +93,8 @@ export default function BioresoVM() {
         const res = await exportedAPIBioreso.createBioreso(postData, user.token)
 
         if (res.bypass) {
-            queryClient.invalidateQueries('getBioreso')
+            queryClient.invalidateQueries(keyQueryPath.getFormProjects)
+            queryClient.invalidateQueries(keyQueryPath.getProcessmenu)
             exportedSwal.actionSuccess("บันทึกข้อมูลเรียบร้อย !")
 
         } else {
@@ -113,11 +112,10 @@ export default function BioresoVM() {
         if (confirmDelete) {
             const res = await exportedAPIBioreso.deleteBioreso(id, user.token)
 
-            console.log(res)
-
             if (res.bypass) {
                 exportedSwal.actionSuccess("ลบข้อมูลเรียบร้อย !")
-                queryClient.invalidateQueries('getBioreso')
+                queryClient.invalidateQueries(keyQueryPath.getFormProjects)
+                queryClient.invalidateQueries(keyQueryPath.getProcessmenu)
             } else {
                 exportedSwal.actionInfo('ไม่สามารถลบข้อมูลได้ กรุณาติดต่อเจ้าหน้าที่ !')
             }
@@ -130,7 +128,6 @@ export default function BioresoVM() {
         id,
         ref_form,
         qe_biological_data,
-        qe_bioreso_data,
         submitForm,
         actionShowOption,
         showOptionText,

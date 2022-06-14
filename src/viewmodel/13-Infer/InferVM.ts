@@ -6,6 +6,7 @@ import { APIInfer_data } from '../../model/13-Infer/Infer'
 //import { APIPeople_data } from '../../model/3-People/People'
 import { RootState } from '../../store/ConfigureStore'
 import exportedAPIInfer from '../../utils/api/Infer'
+import { keyQueryPath } from '../../utils/keyquery'
 import { routerPathUser } from '../../utils/routerpath'
 import exportedSwal from '../../utils/swal'
 
@@ -60,7 +61,8 @@ export default function InferVM() {
         const res = await exportedAPIInfer.createInfer(data, user.token)
 
         if (res.bypass) {
-            queryClient.invalidateQueries('getInfer')
+            queryClient.invalidateQueries(keyQueryPath.getFormProjects)
+            queryClient.invalidateQueries(keyQueryPath.getProcessmenu)
             exportedSwal.actionSuccess("บันทึกข้อมูลเรียบร้อย !")
 
         } else {

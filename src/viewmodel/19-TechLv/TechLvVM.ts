@@ -1,12 +1,10 @@
 import React , { useRef, useState } from 'react'
-import { useQuery, useQueryClient } from 'react-query'
+import { useQueryClient } from 'react-query'
 import { useSelector } from 'react-redux'
 import { useParams } from 'react-router-dom'
-import { APISrlTech_data } from '../../model/19-TechLv/Techsrl'
-import { APITrlTech_data } from '../../model/19-TechLv/Techtrl'
-//import { APIPeople_data } from '../../model/3-People/People'
 import { RootState } from '../../store/ConfigureStore'
 import exportedAPITechLv from '../../utils/api/TechLv'
+import { keyQueryPath } from '../../utils/keyquery'
 import { routerPathUser } from '../../utils/routerpath'
 import exportedSwal from '../../utils/swal'
 
@@ -55,8 +53,8 @@ export default function TechLvVM() {
         ]
     })
 
-    const qe_srl_data = useQuery<APISrlTech_data, Error>('getSrl', async () => exportedAPITechLv.getSrl(id, user.token))
-    const qe_trl_data = useQuery<APITrlTech_data, Error>('getTrl', async () => exportedAPITechLv.getTrl(id, user.token))
+    // const qe_srl_data = useQuery<APISrlTech_data, Error>('getSrl', async () => exportedAPITechLv.getSrl(id, user.token))
+    // const qe_trl_data = useQuery<APITrlTech_data, Error>('getTrl', async () => exportedAPITechLv.getTrl(id, user.token))
 
     const submitForm_srl = async (event: React.FormEvent<HTMLFormElement>) => {
 
@@ -80,7 +78,8 @@ export default function TechLvVM() {
         const res = await exportedAPITechLv.createSrl(data , user.token)
 
         if(res.bypass){
-            queryClient.invalidateQueries('getSrl')
+            queryClient.invalidateQueries(keyQueryPath.getFormPotential)
+            queryClient.invalidateQueries(keyQueryPath.getProcessmenu)
             exportedSwal.actionSuccess("เพิ่มข้อมูลเรียบร้อย !")
 
         }else{
@@ -113,7 +112,8 @@ export default function TechLvVM() {
         const res = await exportedAPITechLv.createTrl(data , user.token)
 
         if(res.bypass){
-            queryClient.invalidateQueries('getTrl')
+            queryClient.invalidateQueries(keyQueryPath.getFormPotential)
+            queryClient.invalidateQueries(keyQueryPath.getProcessmenu)
             exportedSwal.actionSuccess("เพิ่มข้อมูลเรียบร้อย !")
 
         }else{
@@ -132,7 +132,5 @@ export default function TechLvVM() {
         data_srl,
         submitForm_trl,
         submitForm_srl,
-        qe_srl_data,
-        qe_trl_data
     }
 }

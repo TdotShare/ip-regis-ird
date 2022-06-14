@@ -36,15 +36,15 @@ function Movant({ chkbox_movant, core_movant, data_movant }: AppProps) {
                             <div className="form-row">
                                 <div className="form-group col-md">
                                     <label >เลขที่คำขอ</label>
-                                    <input type="text" className="form-control" name="movant_number" defaultValue={data_movant.movant_number !== null ? data_movant.movant_number : ''} />
+                                    <input type="text" className="form-control" name="movant_number" defaultValue={data_movant !== null ? data_movant.movant_number : ''} />
                                 </div>
                                 <div className="form-group col-md">
                                     <label >ยื่นคำขอเมื่อวันที่</label>
-                                    <input type="text" placeholder='31-12-2539' className="form-control" name="movant_date" defaultValue={data_movant.movant_date !== null ? data_movant.movant_date : ''} />
+                                    <input type="text" placeholder='31-12-2539' className="form-control" name="movant_date" defaultValue={data_movant !== null ? data_movant.movant_date : ''} />
                                 </div>
                                 <div className="form-group col-md">
                                     <label >ประเทศที่ยื่น</label>
-                                    <input type="text" className="form-control" name="movant_country" defaultValue={data_movant.movant_country !== null ? data_movant.movant_country : ''} />
+                                    <input type="text" className="form-control" name="movant_country" defaultValue={data_movant !== null ? data_movant.movant_country : ''} />
                                 </div>
                             </div>
 

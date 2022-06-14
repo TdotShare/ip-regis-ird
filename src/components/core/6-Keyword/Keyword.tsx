@@ -11,7 +11,7 @@ type AppProps = {
 };
 
 
-function Keyword({ data_keyword , data_searchlist }: AppProps) {
+function Keyword({ data_keyword, data_searchlist }: AppProps) {
 
     const viewModel = KeywordVM()
 
@@ -23,87 +23,104 @@ function Keyword({ data_keyword , data_searchlist }: AppProps) {
                 </div>
                 <div className="card-body">
 
-                        <form onSubmit={viewModel.submitForm_keyword}>
+                    <form onSubmit={viewModel.submitForm_keyword}>
 
-                            <div className="form-row">
-                                <div className="form-group col-md-12">
-                                    <label >keyword ที่ใช้ในการสืบค้น</label>
-                                    <input name="keyword_use" type="text" className="form-control" defaultValue={data_keyword.keyword_use !== null ? data_keyword.keyword_use : ''} />
-                                </div>
+                        <div className="form-row">
+                            <div className="form-group col-md-12">
+                                <label >keyword ที่ใช้ในการสืบค้น</label>
+                                <input name="keyword_use" type="text" className="form-control" defaultValue={data_keyword !== null ? data_keyword.keyword_use : ''} />
                             </div>
+                        </div>
 
 
-                            <div className="form-row">
-                                <div className="form-group col-md">
-                                    <label >ผลของการสืบค้นพบว่า</label>
-                                    <select name='keyword_result' className="custom-select" defaultValue={data_keyword.keyword_result !== null ? data_keyword.keyword_result : ""} >
-                                        <option value={""}>เลือกผลการสืบค้น</option>
-                                        <option value={1}>เหมือนหรือคล้ายกับงานที่ปรากฏอยู่ก่อนแล้ว </option>
-                                        <option value={0}>ไม่เหมือนหรือคล้ายกับงานที่ปรากฏอยู่แล้ว</option>
-                                    </select>
-                                </div>
+                        <div className="form-row">
+                            <div className="form-group col-md">
+                                <label >ผลของการสืบค้นพบว่า</label>
+                                <select name='keyword_result' className="custom-select" defaultValue={data_keyword !== null ? data_keyword.keyword_result : ""} >
+                                    <option value={""}>เลือกผลการสืบค้น</option>
+                                    <option value={1}>เหมือนหรือคล้ายกับงานที่ปรากฏอยู่ก่อนแล้ว </option>
+                                    <option value={0}>ไม่เหมือนหรือคล้ายกับงานที่ปรากฏอยู่แล้ว</option>
+                                </select>
                             </div>
+                        </div>
 
-                            <hr />
+                        <hr />
 
-                            <table className="table table-striped table-bordered">
-                                <thead>
-                                    <tr>
-                                        <th scope="col">#</th>
-                                        <th scope="col">Website ที่ใช้ในการสืบค้น </th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    <tr>
-                                        <th scope="row">
-                                            <div className="form-check">
-                                                <input className="form-check-input position-static" defaultChecked={data_keyword.keyword_web_th === 1 ? true : false} name='keyword_web_th' type="checkbox" value={'1'} />
-                                            </div>
-                                        </th>
-                                        <td>ประเทศไทย : https://www.ipthailand.go.th</td>
-                                    </tr>
-                                    <tr>
-                                        <th scope="row">
-                                            <div className="form-check">
-                                                <input className="form-check-input position-static" defaultChecked={data_keyword.keyword_web_epo === 1 ? true : false} name='keyword_web_epo' type="checkbox" value={'1'} />
-                                            </div>
-                                        </th>
-                                        <td>ยุโรป : https://www.epo.org </td>
-                                    </tr>
-                                    <tr>
-                                        <th scope="row">
-                                            <div className="form-check">
-                                                <input className="form-check-input position-static" defaultChecked={data_keyword.keyword_web_us === 1 ? true : false} name='keyword_web_us' type="checkbox" value={'1'} />
-                                            </div>
-                                        </th>
-                                        <td>สหรัฐอเมริกา : https://www.uspto.gov</td>
-                                    </tr>
-                                    <tr>
-                                        <th scope="row">
-                                            <div className="form-check">
-                                                <input className="form-check-input position-static" defaultChecked={data_keyword.keyword_web_jp === 1 ? true : false} name='keyword_web_jp' type="checkbox" value={'1'} />
-                                            </div>
-                                        </th>
-                                        <td>ญี่ปุ่น : https://www.jpo.go.jp</td>
-                                    </tr>
-                                </tbody>
-                            </table>
+                        <table className="table table-striped table-bordered">
+                            <thead>
+                                <tr>
+                                    <th scope="col">#</th>
+                                    <th scope="col">Website ที่ใช้ในการสืบค้น </th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <th scope="row">
+                                        <div className="form-check">
+                                            {
+                                                data_keyword === null ?
+                                                    <input className="form-check-input position-static" defaultChecked={false} name='keyword_web_th' type="checkbox" value={'1'} />
+                                                    :
+                                                    <input className="form-check-input position-static" defaultChecked={data_keyword.keyword_web_th === 1 ? true : false} name='keyword_web_th' type="checkbox" value={'1'} />
+                                            }
 
-                            <div className="form-row">
-                                <div className="form-group col-md-12">
-                                    <label >อื่นๆ โปรดระบุ</label>
-                                    <input type="text" className="form-control" defaultValue={data_keyword.keyword_web_other !== null ? data_keyword.keyword_web_other : ''} name="keyword_web_other" />
-                                </div>
+                                        </div>
+                                    </th>
+                                    <td>ประเทศไทย : https://www.ipthailand.go.th</td>
+                                </tr>
+                                <tr>
+                                    <th scope="row">
+                                        <div className="form-check">
+                                            {
+                                                data_keyword === null ?
+                                                    <input className="form-check-input position-static" defaultChecked={false} name='keyword_web_epo' type="checkbox" value={'1'} />
+                                                    :
+                                                    <input className="form-check-input position-static" defaultChecked={data_keyword.keyword_web_epo === 1 ? true : false} name='keyword_web_epo' type="checkbox" value={'1'} />
+                                            }
+
+                                        </div>
+                                    </th>
+                                    <td>ยุโรป : https://www.epo.org </td>
+                                </tr>
+                                <tr>
+                                    <th scope="row">
+                                        <div className="form-check">
+                                            {
+                                                data_keyword === null ?
+                                                    <input className="form-check-input position-static" defaultChecked={false} name='keyword_web_us' type="checkbox" value={'1'} />
+                                                    :
+                                                    <input className="form-check-input position-static" defaultChecked={data_keyword.keyword_web_us === 1 ? true : false} name='keyword_web_us' type="checkbox" value={'1'} />
+                                            }
+                                        </div>
+                                    </th>
+                                    <td>สหรัฐอเมริกา : https://www.uspto.gov</td>
+                                </tr>
+                                <tr>
+                                    <th scope="row">
+                                        <div className="form-check">
+                                            {
+                                                data_keyword === null ?
+                                                    <input className="form-check-input position-static" defaultChecked={false} name='keyword_web_jp' type="checkbox" value={'1'} />
+                                                    :
+                                                    <input className="form-check-input position-static" defaultChecked={data_keyword.keyword_web_jp === 1 ? true : false} name='keyword_web_jp' type="checkbox" value={'1'} />
+                                            }
+                                        </div>
+                                    </th>
+                                    <td>ญี่ปุ่น : https://www.jpo.go.jp</td>
+                                </tr>
+                            </tbody>
+                        </table>
+
+                        <div className="form-row">
+                            <div className="form-group col-md-12">
+                                <label >อื่นๆ โปรดระบุ</label>
+                                <input type="text" className="form-control" defaultValue={data_keyword !== null ? data_keyword.keyword_web_other : ''} name="keyword_web_other" />
                             </div>
+                        </div>
 
-                            <Button className='btn btn-block btn-primary'>บันทึกข้อมูล</Button>
+                        <Button className='btn btn-block btn-primary'>บันทึกข้อมูล</Button>
 
-                        </form>
-
-                    
-
-
-
+                    </form>
                 </div>
 
             </div>

@@ -1,10 +1,22 @@
 import React from 'react'
 import Button from '../../Button'
-import LoadingData from '../../LoadingData'
 import { Public_path } from '../../../config/public_path'
 import WorksipVM from '../../../viewmodel/18-Worksip/WorksipVM'
+import { Galleryip } from '../../../model/18-Workip/Galleryip'
+import { Fileip } from '../../../model/18-Workip/Fileip'
+import { Linkip } from '../../../model/18-Workip/Linkip'
+import { Videoip } from '../../../model/18-Workip/Videoip'
 
-function Worksip() {
+
+type AppProps = {
+    data_galleryip: Galleryip[],
+    data_fileip: Fileip[],
+    data_linkip: Linkip[],
+    data_videoip: Videoip[]
+
+}
+
+function Worksip({ data_galleryip, data_fileip, data_linkip, data_videoip }: AppProps) {
 
     const viewModel = WorksipVM()
 
@@ -35,39 +47,31 @@ function Worksip() {
 
                     <hr />
 
-                    {
-                        viewModel.qe_galleryip_data.isLoading ?
 
-                            <LoadingData />
-
-                            :
-                            <div className="table-responsive">
-                                <table className="table table-bordered">
-                                    <thead>
-                                        <tr>
-                                            <th scope="col">#</th>
-                                            <th scope="col">รายละเอียดรูปภาพ</th>
-                                            <th scope="col">รูปภาพ</th>
-                                            <th scope="col"></th>
+                    <div className="table-responsive">
+                        <table className="table table-bordered">
+                            <thead>
+                                <tr>
+                                    <th scope="col">#</th>
+                                    <th scope="col">รายละเอียดรูปภาพ</th>
+                                    <th scope="col">รูปภาพ</th>
+                                    <th scope="col"></th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                {
+                                    data_galleryip.map((el, index) => (
+                                        <tr key={index} >
+                                            <th scope="row">{index + 1}</th>
+                                            <td>{el.gallery_detail}</td>
+                                            <td><a target={`_blank`} href={`${Public_path}/${viewModel.id}/gallery/${el.gallery_file}`} >{el.gallery_file}</a></td>
+                                            <td><button onClick={() => viewModel.actionDeleteGalleryip(el.gallery_id)} className='btn btn-block btn-danger'>ลบข้อมูล</button></td>
                                         </tr>
-                                    </thead>
-                                    <tbody>
-                                        {
-                                            viewModel.qe_galleryip_data.data?.data.map((el, index) => (
-                                                <tr key={index} >
-                                                    <th scope="row">{index + 1}</th>
-                                                    <td>{el.gallery_detail}</td>
-                                                    <td><a target={`_blank`} href={`${Public_path}/${viewModel.id}/gallery/${el.gallery_file}`} >{el.gallery_file}</a></td>
-                                                    <td><button onClick={() => viewModel.actionDeleteGalleryip(el.gallery_id)} className='btn btn-block btn-danger'>ลบข้อมูล</button></td>
-                                                </tr>
-                                            ))
-                                        }
-                                    </tbody>
-                                </table>
-                            </div>
-                    }
-
-
+                                    ))
+                                }
+                            </tbody>
+                        </table>
+                    </div>
 
                 </div>
             </div>
@@ -97,37 +101,31 @@ function Worksip() {
 
                     <hr />
 
-                    {
-                        viewModel.qe_fileip_data.isLoading ?
-
-                            <LoadingData />
-
-                            :
-                            <div className="table-responsive">
-                                <table className="table table-bordered">
-                                    <thead>
-                                        <tr>
-                                            <th scope="col">#</th>
-                                            <th scope="col">รายละเอียดไฟล์</th>
-                                            <th scope="col">ไฟล์แนบ</th>
-                                            <th scope="col"></th>
+                    <div className="table-responsive">
+                        <table className="table table-bordered">
+                            <thead>
+                                <tr>
+                                    <th scope="col">#</th>
+                                    <th scope="col">รายละเอียดไฟล์</th>
+                                    <th scope="col">ไฟล์แนบ</th>
+                                    <th scope="col"></th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                {
+                                    data_fileip.map((el, index) => (
+                                        <tr key={index} >
+                                            <th scope="row">{index + 1}</th>
+                                            <td>{el.fileip_detail}</td>
+                                            <td><a target={`_blank`} href={`${Public_path}/${viewModel.id}/fileip/${el.fileip_file}`} >{el.fileip_file}</a></td>
+                                            <td><button onClick={() => viewModel.actionDeleteFileip(el.fileip_id)} className='btn btn-block btn-danger'>ลบข้อมูล</button></td>
                                         </tr>
-                                    </thead>
-                                    <tbody>
-                                        {
-                                            viewModel.qe_fileip_data.data?.data.map((el, index) => (
-                                                <tr key={index} >
-                                                    <th scope="row">{index + 1}</th>
-                                                    <td>{el.fileip_detail}</td>
-                                                    <td><a target={`_blank`} href={`${Public_path}/${viewModel.id}/fileip/${el.fileip_file}`} >{el.fileip_file}</a></td>
-                                                    <td><button onClick={() => viewModel.actionDeleteFileip(el.fileip_id)} className='btn btn-block btn-danger'>ลบข้อมูล</button></td>
-                                                </tr>
-                                            ))
-                                        }
-                                    </tbody>
-                                </table>
-                            </div>
-                    }
+                                    ))
+                                }
+                            </tbody>
+                        </table>
+                    </div>
+
 
                 </div>
             </div>
@@ -153,36 +151,30 @@ function Worksip() {
 
                     <hr />
 
-                    {
-                        viewModel.qe_linkip_data.isLoading ?
 
-                            <LoadingData />
-
-                            :
-
-                            <div className="table-responsive">
-                                <table className="table table-bordered">
-                                    <thead>
-                                        <tr>
-                                            <th scope="col">#</th>
-                                            <th scope="col">url</th>
-                                            <th scope="col"></th>
+                    <div className="table-responsive">
+                        <table className="table table-bordered">
+                            <thead>
+                                <tr>
+                                    <th scope="col">#</th>
+                                    <th scope="col">url</th>
+                                    <th scope="col"></th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                {
+                                    data_linkip.map((el, index) => (
+                                        <tr key={index} >
+                                            <th scope="row">{index + 1}</th>
+                                            <td>{el.link_working}</td>
+                                            <td><button onClick={() => viewModel.actionDeleteLinkip(el.link_id)} className='btn btn-block btn-danger'>ลบข้อมูล</button></td>
                                         </tr>
-                                    </thead>
-                                    <tbody>
-                                        {
-                                            viewModel.qe_linkip_data.data?.data.map((el, index) => (
-                                                <tr key={index} >
-                                                    <th scope="row">{index + 1}</th>
-                                                    <td>{el.link_working}</td>
-                                                    <td><button onClick={() => viewModel.actionDeleteLinkip(el.link_id)} className='btn btn-block btn-danger'>ลบข้อมูล</button></td>
-                                                </tr>
-                                            ))
-                                        }
-                                    </tbody>
-                                </table>
-                            </div>
-                    }
+                                    ))
+                                }
+                            </tbody>
+                        </table>
+                    </div>
+
 
                 </div>
             </div>
@@ -208,34 +200,27 @@ function Worksip() {
 
                     <hr />
 
-                    {
-                        viewModel.qe_videoip_data.isLoading ?
-
-                            <LoadingData />
-
-                            :
-
-                            <table className="table table-bordered">
-                                <thead>
-                                    <tr>
-                                        <th scope="col">#</th>
-                                        <th scope="col">url</th>
-                                        <th scope="col"></th>
+                    <table className="table table-bordered">
+                        <thead>
+                            <tr>
+                                <th scope="col">#</th>
+                                <th scope="col">url</th>
+                                <th scope="col"></th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {
+                                data_videoip.map((el, index) => (
+                                    <tr key={index} >
+                                        <th scope="row">{index + 1}</th>
+                                        <td>{el.video_url}</td>
+                                        <td><button onClick={() => viewModel.actionDeleteVideoip(el.video_id)} className='btn btn-block btn-danger'>ลบข้อมูล</button></td>
                                     </tr>
-                                </thead>
-                                <tbody>
-                                    {
-                                        viewModel.qe_videoip_data.data?.data.map((el, index) => (
-                                            <tr key={index} >
-                                                <th scope="row">{index + 1}</th>
-                                                <td>{el.video_url}</td>
-                                                <td><button onClick={() => viewModel.actionDeleteVideoip(el.video_id)} className='btn btn-block btn-danger'>ลบข้อมูล</button></td>
-                                            </tr>
-                                        ))
-                                    }
-                                </tbody>
-                            </table>
-                    }
+                                ))
+                            }
+                        </tbody>
+                    </table>
+
 
                 </div>
             </div>

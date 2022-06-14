@@ -1,16 +1,17 @@
 import React from 'react'
 import Button from '../../Button'
-import LoadingData from '../../LoadingData'
 import MarketVM from '../../../viewmodel/16-market/MarketVM'
+import { Market as MarketModel } from '../../../model/16-Market/Market';
 
 
 type AppProps = {
     chkbox_market: JSX.Element,
     core_market: number,
+    data_market: MarketModel[],
 };
 
 
-function Market({ chkbox_market, core_market }: AppProps) {
+function Market({ chkbox_market, core_market, data_market }: AppProps) {
 
     const viewModel = MarketVM()
 
@@ -61,42 +62,35 @@ function Market({ chkbox_market, core_market }: AppProps) {
                             </form>
 
                             <hr />
-                            {
-                                viewModel.qe_market_data.isLoading
 
-                                    ?
-
-                                    <LoadingData />
-
-                                    :
-                                    <div className="table-responsive">
-                                        <table className="table table-bordered">
-                                            <thead>
-                                                <tr>
-                                                    <th scope="col">#</th>
-                                                    <th scope="col">บริษัท</th>
-                                                    <th scope="col">ผู้ประสานงาน</th>
-                                                    <th scope="col">โทรศัพท์</th>
-                                                    <th scope="col"></th>
+                            <div className="table-responsive">
+                                <table className="table table-bordered">
+                                    <thead>
+                                        <tr>
+                                            <th scope="col">#</th>
+                                            <th scope="col">บริษัท</th>
+                                            <th scope="col">ผู้ประสานงาน</th>
+                                            <th scope="col">โทรศัพท์</th>
+                                            <th scope="col"></th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        {
+                                            data_market.map((el, index) => (
+                                                <tr key={index} >
+                                                    <th scope="row">{index + 1}</th>
+                                                    <td>{el.market_company_name}</td>
+                                                    <td>{el.market_coordinator}</td>
+                                                    <td>{el.market_tel}</td>
+                                                    <td><button onClick={() => viewModel.actionDelete(el.market_id)} className='btn btn-block btn-danger'>ลบข้อมูล</button></td>
                                                 </tr>
-                                            </thead>
-                                            <tbody>
-                                                {
-                                                    viewModel.qe_market_data.data?.data.map((el, index) => (
-                                                        <tr key={index} >
-                                                            <th scope="row">{index + 1}</th>
-                                                            <td>{el.market_company_name}</td>
-                                                            <td>{el.market_coordinator}</td>
-                                                            <td>{el.market_tel}</td>
-                                                            <td><button onClick={() => viewModel.actionDelete(el.market_id)} className='btn btn-block btn-danger'>ลบข้อมูล</button></td>
-                                                        </tr>
-                                                    ))
-                                                }
+                                            ))
+                                        }
 
-                                            </tbody>
-                                        </table>
-                                    </div>
-                            }
+                                    </tbody>
+                                </table>
+                            </div>
+
 
                         </>
                 }

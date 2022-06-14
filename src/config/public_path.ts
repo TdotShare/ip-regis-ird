@@ -1,1 +1,1 @@
-export const Public_path  =  "https://mis-ird.rmuti.ac.th/service/regisip/public/upload"
+export const Public_path  =  process.env.NODE_ENV === 'production' ? "https://mis-ird.rmuti.ac.th/service/regisip/public/upload" : "http://127.0.0.1:8000/public/upload"

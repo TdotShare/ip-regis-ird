@@ -1,5 +1,5 @@
 import React , { useRef, useState } from 'react'
-import { useQuery, useQueryClient } from 'react-query'
+import { useQueryClient } from 'react-query'
 import { useSelector } from 'react-redux'
 import { useParams } from 'react-router-dom'
 import { RootState } from '../../store/ConfigureStore'
@@ -9,10 +9,7 @@ import exportedAPIFileExpand from '../../utils/api/FileExpand'
 import exportedAPIExpand from '../../utils/api/Expand'
 import { routerPathUser } from '../../utils/routerpath'
 import exportedSwal from '../../utils/swal'
-import { APICharges_data } from '../../model/17-Assessment/Charges'
-import { APIEstimate_data } from '../../model/17-Assessment/Estimate'
-import { APIExpand_data } from '../../model/17-Assessment/Expand'
-import { APIFileExpand_data } from '../../model/17-Assessment/FileExpand'
+import { keyQueryPath } from '../../utils/keyquery'
 
 export default function AssessmentVM() {
 
@@ -46,10 +43,10 @@ export default function AssessmentVM() {
         ]
     })
 
-    const qe_charges_data = useQuery<APICharges_data, Error>('getCharges', async () => exportedAPICharges.getCharges(id, user.token))
-    const qe_estimate_data = useQuery<APIEstimate_data, Error>('getEstimate', async () => exportedAPIEstimate.getEstimate(id, user.token))
-    const qe_expand_data = useQuery<APIExpand_data, Error>('getExpand', async () => exportedAPIExpand.getExpand(id, user.token))
-    const qe_file_expand_data = useQuery<APIFileExpand_data, Error>('getFileExpand', async () => exportedAPIFileExpand.getFileExpand(id, user.token))
+    // const qe_charges_data = useQuery<APICharges_data, Error>('getCharges', async () => exportedAPICharges.getCharges(id, user.token))
+    // const qe_estimate_data = useQuery<APIEstimate_data, Error>('getEstimate', async () => exportedAPIEstimate.getEstimate(id, user.token))
+    // const qe_expand_data = useQuery<APIExpand_data, Error>('getExpand', async () => exportedAPIExpand.getExpand(id, user.token))
+    // const qe_file_expand_data = useQuery<APIFileExpand_data, Error>('getFileExpand', async () => exportedAPIFileExpand.getFileExpand(id, user.token))
 
     const [showOptionText , setOptionText ] = useState(0)
 
@@ -72,7 +69,8 @@ export default function AssessmentVM() {
         const res = await exportedAPIExpand.createExpand(data , user.token)
 
         if(res.bypass){
-            queryClient.invalidateQueries('getExpand')
+            queryClient.invalidateQueries(keyQueryPath.getFormPotential)
+            queryClient.invalidateQueries(keyQueryPath.getProcessmenu)
             exportedSwal.actionSuccess("เพิ่มข้อมูลเรียบร้อย !")
 
         }else{
@@ -110,7 +108,8 @@ export default function AssessmentVM() {
         const res = await exportedAPIFileExpand.createFileExpand(postData , user.token)
 
         if(res.bypass){
-            queryClient.invalidateQueries('getFileExpand')
+            queryClient.invalidateQueries(keyQueryPath.getFormPotential)
+            queryClient.invalidateQueries(keyQueryPath.getProcessmenu)
             exportedSwal.actionSuccess("เพิ่มข้อมูลเรียบร้อย !")
 
         }else{
@@ -142,7 +141,8 @@ export default function AssessmentVM() {
         const res = await exportedAPIEstimate.createEstimate(data , user.token)
 
         if(res.bypass){
-            queryClient.invalidateQueries('getEstimate')
+            queryClient.invalidateQueries(keyQueryPath.getFormPotential)
+            queryClient.invalidateQueries(keyQueryPath.getProcessmenu)
             exportedSwal.actionSuccess("เพิ่มข้อมูลเรียบร้อย !")
 
         }else{
@@ -168,7 +168,8 @@ export default function AssessmentVM() {
         const res = await exportedAPICharges.createCharges(data , user.token)
 
         if(res.bypass){
-            queryClient.invalidateQueries('getCharges')
+            queryClient.invalidateQueries(keyQueryPath.getFormPotential)
+            queryClient.invalidateQueries(keyQueryPath.getProcessmenu)
             exportedSwal.actionSuccess("เพิ่มข้อมูลเรียบร้อย !")
 
         }else{
@@ -184,11 +185,10 @@ export default function AssessmentVM() {
         if (confirmDelete) {
             const res = await exportedAPIExpand.deleteExpand(id, user.token)
 
-            console.log(res)
-
             if (res.bypass) {
                 exportedSwal.actionSuccess("ลบข้อมูลเรียบร้อย !")
-                queryClient.invalidateQueries('getExpand')
+                queryClient.invalidateQueries(keyQueryPath.getFormPotential)
+                queryClient.invalidateQueries(keyQueryPath.getProcessmenu)
             } else {
                 exportedSwal.actionInfo('ไม่สามารถลบข้อมูลได้ กรุณาติดต่อเจ้าหน้าที่ !')
             }
@@ -203,11 +203,11 @@ export default function AssessmentVM() {
         if (confirmDelete) {
             const res = await exportedAPIFileExpand.deleteFileExpand(id, user.token)
 
-            console.log(res)
 
             if (res.bypass) {
                 exportedSwal.actionSuccess("ลบข้อมูลเรียบร้อย !")
-                queryClient.invalidateQueries('getFileExpand')
+                queryClient.invalidateQueries(keyQueryPath.getFormPotential)
+                queryClient.invalidateQueries(keyQueryPath.getProcessmenu)
             } else {
                 exportedSwal.actionInfo('ไม่สามารถลบข้อมูลได้ กรุณาติดต่อเจ้าหน้าที่ !')
             }
@@ -220,10 +220,6 @@ export default function AssessmentVM() {
         id,
         ref_form,
         showOptionText,
-        qe_charges_data,
-        qe_estimate_data,
-        qe_expand_data,
-        qe_file_expand_data,
         actionShowOption,
         submitForm_expand,
         submitForm_uploadfile_expand,

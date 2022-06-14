@@ -1,18 +1,19 @@
 import React from 'react'
 import Button from '../../Button'
-import LoadingData from '../../LoadingData'
 import { Public_path } from '../../../config/public_path'
 import ResultsVM from '../../../viewmodel/12-Results/ResultsVM'
+import { Results as ResultsModel } from '../../../model/12-Results/Results'
 
 
 
 type AppProps = {
     chkbox_results: JSX.Element,
     core_results: number,
+    data_results: ResultsModel[]
 };
 
 
-function Results({ chkbox_results, core_results }: AppProps) {
+function Results({ chkbox_results, core_results, data_results }: AppProps) {
 
     const viewModel = ResultsVM()
 
@@ -99,49 +100,39 @@ function Results({ chkbox_results, core_results }: AppProps) {
 
                                 <hr />
 
-                                {
-                                    viewModel.qe_results_data.isLoading
-
-
-                                        ?
-
-                                        <LoadingData />
-
-                                        :
-
-                                        <div className='card'>
-                                            <div className='card-body'>
-                                                <div className="table-responsive">
-                                                    <table className="table table-bordered">
-                                                        <thead>
-                                                            <tr>
-                                                                <th scope="col">#</th>
-                                                                <th scope="col">หัวเรื่อง</th>
-                                                                <th scope="col">การดำเนินการ</th>
-                                                                <th scope="col">รายละเอียด</th>
-                                                                <th scope="col">ไฟล์</th>
-                                                                <th scope="col"></th>
+                                <div className='card'>
+                                    <div className='card-body'>
+                                        <div className="table-responsive">
+                                            <table className="table table-bordered">
+                                                <thead>
+                                                    <tr>
+                                                        <th scope="col">#</th>
+                                                        <th scope="col">หัวเรื่อง</th>
+                                                        <th scope="col">การดำเนินการ</th>
+                                                        <th scope="col">รายละเอียด</th>
+                                                        <th scope="col">ไฟล์</th>
+                                                        <th scope="col"></th>
+                                                    </tr>
+                                                </thead>
+                                                <tbody>
+                                                    {
+                                                        data_results.map((el, index) => (
+                                                            <tr key={index} >
+                                                                <th scope="row">{index + 1}</th>
+                                                                <td>{el.results_head}</td>
+                                                                <td>{el.results_text}</td>
+                                                                <td>{el.results_detail}</td>
+                                                                <td><a target={`_blank`} href={`${Public_path}/${viewModel.id}/results/${el.results_file}`} >{el.results_file}</a></td>
+                                                                <td><button onClick={() => viewModel.actionDelete(el.results_id)} className='btn btn-block btn-danger'>ลบข้อมูล</button></td>
                                                             </tr>
-                                                        </thead>
-                                                        <tbody>
-                                                            {
-                                                                viewModel.qe_results_data.data?.data.map((el, index) => (
-                                                                    <tr key={index} >
-                                                                        <th scope="row">{index + 1}</th>
-                                                                        <td>{el.results_head}</td>
-                                                                        <td>{el.results_text}</td>
-                                                                        <td>{el.results_detail}</td>
-                                                                        <td><a target={`_blank`} href={`${Public_path}/${viewModel.id}/results/${el.results_file}`} >{el.results_file}</a></td>
-                                                                        <td><button onClick={() => viewModel.actionDelete(el.results_id)} className='btn btn-block btn-danger'>ลบข้อมูล</button></td>
-                                                                    </tr>
-                                                                ))
-                                                            }
-                                                        </tbody>
-                                                    </table>
-                                                </div>
-                                            </div>
+                                                        ))
+                                                    }
+                                                </tbody>
+                                            </table>
                                         </div>
-                                }
+                                    </div>
+                                </div>
+
 
                             </>
                     }
