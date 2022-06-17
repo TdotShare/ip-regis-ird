@@ -5,6 +5,7 @@ import { useParams } from 'react-router-dom'
 import { APIPublicip_data } from '../../model/20-Publicip/Publicip'
 import { RootState } from '../../store/ConfigureStore'
 import exportedAPIPublicip from '../../utils/api/Publicip'
+import { keyQueryPath } from '../../utils/keyquery'
 import { routerPathUser } from '../../utils/routerpath'
 import exportedSwal from '../../utils/swal'
 
@@ -58,6 +59,7 @@ export default function PublicipVM() {
 
         if(res.bypass){
             queryClient.invalidateQueries('getPublicip')
+            queryClient.invalidateQueries(keyQueryPath.getProcessmenu)
             exportedSwal.actionSuccess("บันทึกข้อมูลเรียบร้อย !")
 
         }else{

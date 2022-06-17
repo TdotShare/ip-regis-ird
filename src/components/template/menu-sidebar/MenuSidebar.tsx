@@ -1,7 +1,13 @@
 import React from 'react'
 import { adminMenuList, userMenuList } from '../../../utils/menulist'
 import MenuItem from '../../menu-item/MenuItem'
-function MenuSidebar() {
+
+
+type AppPros = {
+    role: string;
+}
+
+function MenuSidebar({ role }: AppPros) {
     return (
         <>
 
@@ -16,13 +22,32 @@ function MenuSidebar() {
                     }
 
 
-                    <li className="nav-header">EXAMPLES</li>
+
 
                     {
-                        adminMenuList.map((el, index) => (
-                            <MenuItem key={index} name={el.name} icon={el.icon} url={el.url} path={el.path} />
-                        ))
+                        role === 'admin' ?
+
+                            <>
+
+                                <li className="nav-header">Admin</li>
+
+
+                                {
+                                    adminMenuList.map((el, index) => (
+                                        <MenuItem key={index} name={el.name} icon={el.icon} url={el.url} path={el.path} />
+                                    ))
+                                }
+                            </>
+
+                            :
+
+                            <></>
+
+
+
                     }
+
+
 
                 </ul>
             </nav>

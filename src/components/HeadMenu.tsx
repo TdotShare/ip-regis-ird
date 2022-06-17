@@ -1,18 +1,21 @@
 import { useQuery } from 'react-query';
 import { Link, useLocation } from 'react-router-dom'
+import { Project } from '../model/2-Project/Project';
 import { APIProcessMenu_data } from '../model/ProcessMenu';
 import exportedAPIFormCoreip from '../utils/api/FormCoreip';
 import { keyQueryPath } from '../utils/keyquery';
 import { routerPathUser } from '../utils/routerpath'
+import LoadingData from './LoadingData';
 import StatusCores from './StatusCores';
 
 
 type AppProps = {
     project_id: number,
     token: string,
+    project_data?: Project,
 };
 
-function HeadMenu({ project_id, token }: AppProps) {
+function HeadMenu({ project_id, token, project_data }: AppProps) {
 
     const location = useLocation();
 
@@ -23,7 +26,6 @@ function HeadMenu({ project_id, token }: AppProps) {
 
     const fontSizeBtn = 13
     const fontSizeIcon = 13
-
 
     return (
         <div className='card'>
@@ -89,6 +91,8 @@ function HeadMenu({ project_id, token }: AppProps) {
 
                                     }
                                 </th>
+                            </tr>
+                            <tr>
                                 <th scope="col">
                                     <Link to={`${routerPathUser.Regis}/potentials/${project_id}`}>
                                         <button className={splitLocation.includes('potentials') ? `btn btn-block btn-success` : `btn btn-block btn-primary`} style={{ fontSize: fontSizeBtn }} >การประเมินศักยภาพผลงาน</button>
@@ -100,6 +104,20 @@ function HeadMenu({ project_id, token }: AppProps) {
                                             :
 
                                             <StatusCores status={qe_processmenu_data.data?.data.potentials!} fontSizeIcon={fontSizeIcon} />
+
+                                    }
+                                </th>
+                                <th scope="col">
+                                    <Link to={`${routerPathUser.Regis}/public/${project_id}`}>
+                                        <button className={splitLocation.includes('public') ? `btn btn-block btn-success` : `btn btn-block btn-primary`} style={{ fontSize: fontSizeBtn }} >การประชาสัมพันธ์</button>
+                                    </Link>
+                                    {
+                                        qe_processmenu_data.isLoading ?
+
+                                            <StatusCores status={0} fontSizeIcon={fontSizeIcon} />
+                                            :
+
+                                            <StatusCores status={qe_processmenu_data.data?.data.public!} fontSizeIcon={fontSizeIcon} />
 
                                     }
                                 </th>
@@ -118,28 +136,43 @@ function HeadMenu({ project_id, token }: AppProps) {
                                     }
                                 </th>
                                 <th scope="col">
-                                    <Link to={`${routerPathUser.Regis}/confirm/${project_id}`}>
 
-                                        {
-                                            qe_processmenu_data.isLoading ?
-
-                                            <button className={splitLocation.includes('confirm') ? `btn btn-block btn-success` : `btn btn-block btn-primary`} style={{ fontSize: fontSizeBtn }} disabled={true} >ส่งคำขอให้เจ้าหน้าที่</button>
-
-                                            :
-
-                                            <button className={splitLocation.includes('confirm') ? `btn btn-block btn-success` : `btn btn-block btn-primary`} style={{ fontSize: fontSizeBtn }} disabled={qe_processmenu_data.data?.data.confirm === 1 ? false : true} >ส่งคำขอให้เจ้าหน้าที่</button>
-
-                                        }
-                                    </Link>
                                     {
                                         qe_processmenu_data.isLoading ?
 
-                                            <StatusCores status={0} fontSizeIcon={fontSizeIcon} />
+                                            <LoadingData />
+
                                             :
 
-                                            <StatusCores status={qe_processmenu_data.data?.data.confirm!} confirm={true} fontSizeIcon={fontSizeIcon} />
+                                            qe_processmenu_data.data?.data.checked === 1 ?
 
+                                                <>
+                                                    <Link to={`${routerPathUser.Regis}/view/${project_id}`}>
+                                                        {
+                                                            <button className={splitLocation.includes('view') ? `btn btn-block btn-success` : `btn btn-block btn-primary`} style={{ fontSize: fontSizeBtn }} >ตรวจสอบข้อมูล</button>
+                                                        }
+                                                    </Link>
+
+                                                    <StatusCores status={qe_processmenu_data.data?.data.confirm!} confirm={true} fontSizeIcon={fontSizeIcon} />
+                                                </>
+
+
+                                                :
+
+                                                <>
+                                                    <Link to={`${routerPathUser.Regis}/confirm/${project_id}`}>
+                                                        {
+                                                            <button className={splitLocation.includes('confirm') ? `btn btn-block btn-success` : `btn btn-block btn-primary`} style={{ fontSize: fontSizeBtn }} disabled={qe_processmenu_data.data?.data.confirm === 1 ? false : true} >ส่งคำขอให้เจ้าหน้าที่</button>
+                                                        }
+                                                    </Link>
+
+                                                    <StatusCores status={qe_processmenu_data.data?.data.confirm!} confirm={true} fontSizeIcon={fontSizeIcon} />
+                                                </>
                                     }
+
+
+
+
                                 </th>
                             </tr>
                         </thead>

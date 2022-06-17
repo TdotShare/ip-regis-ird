@@ -127,7 +127,7 @@ function Bioreso({ chkbox_bioreso, core_bioreso, data_bioreso }: AppProps) {
                                                         <th scope="row">{index + 1}</th>
                                                         <td>{el.bioreso_text} {el.bioreso_bio_id === 7 ? `(${el.bioreso_other_name})` : ""}</td>
                                                         <td>{el.bioreso_detail}</td>
-                                                        <td><a target={`_blank`} href={`${Public_path}/${viewModel.id}/fund/${el.bioreso_file}`} >{el.bioreso_file}</a></td>
+                                                        <td><a target={`_blank`} href={`${Public_path}/${viewModel.id}/bio/${el.bioreso_file}`} >{el.bioreso_file}</a></td>
                                                         <td><button onClick={() => viewModel.actionDelete(el.bioreso_id)} className='btn btn-block btn-danger'>ลบข้อมูล</button></td>
                                                     </tr>
                                                 ))

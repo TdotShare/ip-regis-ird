@@ -4,8 +4,10 @@ export interface ProcessMenu {
     projects : number;
     details : number;
     potentials : number;
+    public : number;
     attachments : number;
     confirm : number;
+    checked : number;
 }
 
 

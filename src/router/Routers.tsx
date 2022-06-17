@@ -9,7 +9,6 @@ import {
 } from "react-router-dom";
 
 import PrivateRoute from './PrivateRoute';
-//import PublicRoute from './PublicRoute';
 
 import Main from '../components/template/Main';
 
@@ -39,12 +38,7 @@ import FormDetails from '../screen/FormDetails/FormDetails';
 import FormPotential from '../screen/FormPotential/FormPotential';
 import FormAttachment from '../screen/FormAttachment/FormAttachment';
 import FormConfirm from '../screen/FormConfirm/FormConfirm';
-
-
-
-
-
-
+import FormPublic from '../screen/FormPublic/FormPublic';
 
 
 function Routers() {
@@ -55,8 +49,8 @@ function Routers() {
         <BrowserRouter  basename="/regisip" >
             <Routes>
                 <Route path="/login" element={<AuthLogin />} />
-                <Route path="/login/callback_oauth" element={<AuthLogin />} />
-                <Route path="/" element={<UserAuthen><PrivateRoute authentication={data.auth} /></UserAuthen> }>
+                <Route path="/login/callback" element={<AuthLogin />} />
+                <Route path="/" element={<PrivateRoute authentication={data.auth} />}>
                     <Route path="/" element={<Main />}>
                         <Route path="/" element={<Navigate to={routerPathUser.Regis} />} />
                         <Route path={routerPathUser.Regis} element={<Regis />} />
@@ -67,8 +61,9 @@ function Routers() {
                         <Route path={`${routerPathUser.Regis}/projects/:id`} element={<ProdAuthen><FormProjects /></ProdAuthen> } />
                         <Route path={`${routerPathUser.Regis}/details/:id`} element={<ProdAuthen><FormDetails /></ProdAuthen> } />
                         <Route path={`${routerPathUser.Regis}/potentials/:id`} element={<ProdAuthen><FormPotential /></ProdAuthen> } />
+                        <Route path={`${routerPathUser.Regis}/public/:id`} element={<ProdAuthen><FormPublic /></ProdAuthen> } />
                         <Route path={`${routerPathUser.Regis}/attachments/:id`} element={<ProdAuthen><FormAttachment /></ProdAuthen> } />
-                        <Route path={`${routerPathUser.Regis}/confirm/:id`} element={<FormConfirm /> } />
+                        <Route path={`${routerPathUser.Regis}/confirm/:id`} element={<ProdAuthen><FormConfirm /></ProdAuthen> } />
                         <Route path="/logout" element={<AuthLogout />} />
                         <Route path="/account" element={<RequireAuth><Account /></RequireAuth>} />
                         <Route path="/project" element={<RequireAuth><Project /></RequireAuth>} />
@@ -81,7 +76,6 @@ function Routers() {
         </BrowserRouter>
     )
 }
-
 
 function RequireAuth({ children }: { children: JSX.Element }) {
 

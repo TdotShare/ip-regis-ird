@@ -10,76 +10,52 @@ function Publicip() {
     const viewModel = PublicipVM()
 
     return (
-        <div className="content-wrapper">
-            <ContentHeader
-                title={viewModel.title}
-                breadcrumb={viewModel.breadcrumb}
-            />
-            <section className="content">
-                <div className="container-fluid">
 
-                    <MenuTab project_id={viewModel.id} collapsed={true} />
+        <div className="card card-outline card-primary">
+            <div className="card-header">
+                <h3 className="card-title">การประชาสัมพันธ์ผลงานการประดิษฐ์นี้โดยมหาวิทยาลัย </h3>
+            </div>
+            <div className="card-body">
+                {
+                    viewModel.qe_publicip_data.isLoading ?
 
-                    <div style={{ paddingBottom: "1%" }}></div>
+                        <LoadingData />
 
+                        :
 
-                    <div className="card card-outline card-primary">
-                        <div className="card-header">
-                            <h3 className="card-title">การประชาสัมพันธ์ผลงานการประดิษฐ์นี้โดยมหาวิทยาลัย </h3>
-                        </div>
-                        <div className="card-body">
-                            
-                            {
-                                viewModel.qe_publicip_data.isLoading ?
+                        <form onSubmit={viewModel.submitForm}>
 
-                                    <LoadingData />
+                            <div className="form-row">
+                                <div className="form-group col-md">
+                                    <select name='public_agree_status' className="custom-select"
+                                        defaultValue={viewModel.qe_publicip_data.data?.data?.public_agree_status ? viewModel.qe_publicip_data.data?.data.public_agree_status : ""}
+                                    >
+                                        <option value={""}>คุณยินยอมหรือไม่ ?</option>
+                                        <option value={1}>ยินยอม</option>
+                                        <option value={2}>ไม่ยินยอม</option>
+                                    </select>
+                                </div>
+                            </div>
 
-                                    :
+                            <div className="form-row">
+                                <div className="form-group col-md">
+                                    <label ><span style={{ color: 'red' }}>***</span> หากไม่ยินยอมโปรดระบุ</label>
+                                    <input name='public_agree_text'
+                                        type="text"
+                                        className="form-control"
+                                        defaultValue={viewModel.qe_publicip_data.data?.data?.public_agree_text ? viewModel.qe_publicip_data.data?.data.public_agree_text : ""}
+                                    />
+                                </div>
+                            </div>
 
-                                    <form onSubmit={viewModel.submitForm}>
+                            <Button type='submit' className='btn btn-block btn-primary'>บันทึกข้อมูล</Button>
 
-                                        <div className="form-row">
-                                            <div className="form-group col-md">
-                                                <select name='public_agree_status' className="custom-select" 
-                                                defaultValue={viewModel.qe_publicip_data.data?.data?.public_agree_status ? viewModel.qe_publicip_data.data?.data.public_agree_status : ""} 
-                                                >
-                                                    <option value={""}>คุณยินยอมหรือไม่ ?</option>
-                                                    <option value={1}>ยินยอม</option>
-                                                    <option value={2}>ไม่ยินยอม</option>
-                                                </select>
-                                            </div>
-                                        </div>
+                        </form>
+                }
+            </div>
 
-                                        <div className="form-row">
-                                            <div className="form-group col-md">
-                                                <label ><span style={{ color: 'red' }}>***</span> หากไม่ยินยอมโปรดระบุ</label>
-                                                <input name='public_agree_text'
-                                                type="text" 
-                                                className="form-control"
-                                                defaultValue={viewModel.qe_publicip_data.data?.data?.public_agree_text ? viewModel.qe_publicip_data.data?.data.public_agree_text : ""} 
-                                                 />
-                                            </div>
-                                        </div>
-
-                                        <Button type='submit' className='btn btn-block btn-primary'>บันทึกข้อมูล</Button>
-
-                                    </form>
-
-
-                            }
-
-
-
-
-
-                        </div>
-
-                    </div>
-
-
-                </div>
-            </section>
         </div>
+
     )
 }
 

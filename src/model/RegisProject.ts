@@ -11,6 +11,8 @@ export interface RegisProject {
     project_sd_instead : string;
     status_name : string
     project_status : number;
+    project_tel : string;
+    project_email : string;
     project_create_by : string;
     project_create_at : string;
     project_update_at : string;

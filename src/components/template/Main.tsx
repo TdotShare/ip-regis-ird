@@ -46,7 +46,7 @@ function Main() {
                         <UserPanel name={`${user.firstname_th} ${user.lastname_th}`} />
 
                         {/* Sidebar Menu */}
-                        <MenuSidebar />
+                        <MenuSidebar role={user.role} />
                         {/* /.sidebar-menu */}
                     </div>
                 </aside>

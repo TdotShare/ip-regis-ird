@@ -17,7 +17,7 @@ export default function StatusCores({ status, fontSizeIcon, confirm }: AppProps)
 
                     confirm ?
 
-                        <span style={{ fontSize: fontSizeIcon }} ><i style={{ color: `green` }} className="fas fa-exclamation-circle"></i>  ส่งตรวจสอบได้แล้ว </span>
+                        <span style={{ fontSize: fontSizeIcon }} ><i style={{ color: `green` }} className="fas fa-exclamation-circle"></i>  ส่งตรวจสอบข้อมูล </span>
 
                         :
 

@@ -4,6 +4,7 @@ import { useSelector } from 'react-redux'
 import { useParams } from 'react-router-dom'
 import { RootState } from '../../store/ConfigureStore'
 import exportedAPIMovant from '../../utils/api/Movant'
+import { keyQueryPath } from '../../utils/keyquery'
 import { routerPathUser } from '../../utils/routerpath'
 import exportedSwal from '../../utils/swal'
 
@@ -53,6 +54,7 @@ export default function MovantVM() {
 
         if(res.bypass){
             queryClient.invalidateQueries('getMovant')
+            queryClient.invalidateQueries(keyQueryPath.getProcessmenu)
             exportedSwal.actionSuccess("บันทึกข้อมูลเรียบร้อย !")
 
         }else{
