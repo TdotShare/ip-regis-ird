@@ -62,6 +62,7 @@ export default function PublicizeVM() {
             exportedSwal.actionSuccess("เพิ่มข้อมูลเรียบร้อย !")
             queryClient.invalidateQueries(keyQueryPath.getFormPublishing)
             queryClient.invalidateQueries(keyQueryPath.getProcessmenu)
+            queryClient.invalidateQueries(keyQueryPath.getWarnip)
         } else {
             exportedSwal.actionInfo(resData.message)
         }
@@ -81,6 +82,7 @@ export default function PublicizeVM() {
                 exportedSwal.actionSuccess("ลบข้อมูลเรียบร้อย !")
                 queryClient.invalidateQueries(keyQueryPath.getFormPublishing)
                 queryClient.invalidateQueries(keyQueryPath.getProcessmenu)
+                queryClient.invalidateQueries(keyQueryPath.getWarnip)
             } else {
                 exportedSwal.actionInfo('ไม่สามารถลบข้อมูลได้ กรุณาติดต่อเจ้าหน้าที่ !')
             }
@@ -118,6 +120,7 @@ export default function PublicizeVM() {
             exportedSwal.actionSuccess("เพิ่มข้อมูลเรียบร้อย !")
             queryClient.invalidateQueries(keyQueryPath.getFormPublishing)
             queryClient.invalidateQueries(keyQueryPath.getProcessmenu)
+            queryClient.invalidateQueries(keyQueryPath.getWarnip)
         }else{
             exportedSwal.actionInfo(resData.message)
         }
@@ -140,6 +143,7 @@ export default function PublicizeVM() {
                 exportedSwal.actionSuccess("ลบข้อมูลเรียบร้อย !")
                 queryClient.invalidateQueries(keyQueryPath.getFormPublishing)
                 queryClient.invalidateQueries(keyQueryPath.getProcessmenu)
+                queryClient.invalidateQueries(keyQueryPath.getWarnip)
             } else {
                 exportedSwal.actionInfo('ไม่สามารถลบข้อมูลได้ กรุณาติดต่อเจ้าหน้าที่ !')
             }
@@ -179,6 +183,7 @@ export default function PublicizeVM() {
             exportedSwal.actionSuccess("เพิ่มข้อมูลเรียบร้อย !")
             queryClient.invalidateQueries(keyQueryPath.getFormPublishing)
             queryClient.invalidateQueries(keyQueryPath.getProcessmenu)
+            queryClient.invalidateQueries(keyQueryPath.getWarnip)
         }else{
             exportedSwal.actionInfo(resData.message)
         }
@@ -200,6 +205,7 @@ export default function PublicizeVM() {
                 exportedSwal.actionSuccess("ลบข้อมูลเรียบร้อย !")
                 queryClient.invalidateQueries(keyQueryPath.getFormPublishing)
                 queryClient.invalidateQueries(keyQueryPath.getProcessmenu)
+                queryClient.invalidateQueries(keyQueryPath.getWarnip)
             } else {
                 exportedSwal.actionInfo('ไม่สามารถลบข้อมูลได้ กรุณาติดต่อเจ้าหน้าที่ !')
             }

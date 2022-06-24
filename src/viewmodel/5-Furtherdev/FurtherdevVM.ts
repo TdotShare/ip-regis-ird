@@ -58,6 +58,7 @@ export default function FurtherdevVM() {
         if(res.bypass){
             queryClient.invalidateQueries(keyQueryPath.getFormPublishing)
             queryClient.invalidateQueries(keyQueryPath.getCoreip)
+            queryClient.invalidateQueries(keyQueryPath.getWarnip)
             exportedSwal.actionSuccess("เพิ่มข้อมูลเรียบร้อย !")
 
         }else{
@@ -78,6 +79,7 @@ export default function FurtherdevVM() {
                 exportedSwal.actionSuccess("ลบข้อมูลเรียบร้อย !")
                 queryClient.invalidateQueries(keyQueryPath.getFormPublishing)
                 queryClient.invalidateQueries(keyQueryPath.getCoreip)
+                queryClient.invalidateQueries(keyQueryPath.getWarnip)
             } else {
                 exportedSwal.actionInfo('ไม่สามารถลบข้อมูลได้ กรุณาติดต่อเจ้าหน้าที่ !')
             }

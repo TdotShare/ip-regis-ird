@@ -64,6 +64,7 @@ export default function ResultsVM() {
                 exportedSwal.actionSuccess("ลบข้อมูลเรียบร้อย !")
                 queryClient.invalidateQueries(keyQueryPath.getFormProjects)
                 queryClient.invalidateQueries(keyQueryPath.getProcessmenu)
+                queryClient.invalidateQueries(keyQueryPath.getWarnip)
             } else {
                 exportedSwal.actionInfo('ไม่สามารถลบข้อมูลได้ กรุณาติดต่อเจ้าหน้าที่ !')
             }
@@ -127,6 +128,7 @@ export default function ResultsVM() {
         if(res.bypass){
             queryClient.invalidateQueries(keyQueryPath.getFormProjects)
             queryClient.invalidateQueries(keyQueryPath.getProcessmenu)
+            queryClient.invalidateQueries(keyQueryPath.getWarnip)
             exportedSwal.actionSuccess("บันทึกข้อมูลเรียบร้อย !")
 
         }else{

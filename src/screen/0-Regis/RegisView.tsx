@@ -28,7 +28,6 @@ function RegisView() {
 
                     <HeadMenu project_id={viewModel.id} token={viewModel.user.token} />
 
-
                     {
                         viewModel.query_project_data.isLoading ?
 

@@ -1,7 +1,7 @@
 import React from 'react'
 import { useState } from 'react'
 import { useQuery, useQueryClient } from 'react-query'
-import { useSelector } from 'react-redux'
+import { useDispatch, useSelector } from 'react-redux'
 import { APIProject_data } from '../../model/2-Project/Project'
 import { RootState } from '../../store/ConfigureStore'
 import exportedAPIProject from '../../utils/api/Project'
@@ -31,8 +31,10 @@ export default function RegisVM() {
         ]
     })
 
-    const qe_project_data = useQuery<APIProject_data, Error>([ 'getProjectAll' , page ], async () => exportedAPIProject.getProjectAll(page , user.token))
 
+    const dispatch = useDispatch()
+
+    const qe_project_data = useQuery<APIProject_data, Error>([ 'getProjectAll' , page ], async () => exportedAPIProject.getProjectAll(page , user.token))
 
     const actionDelete = async (id: number) => {
 
@@ -52,9 +54,12 @@ export default function RegisVM() {
 
     return {
         ...values,
+        queryClient,
         qe_project_data,
+        exportedSwal,
         actionDelete,
         setPage,
+        dispatch,
         user,
     }
 }

@@ -55,6 +55,7 @@ export default function MovantVM() {
         if(res.bypass){
             queryClient.invalidateQueries('getMovant')
             queryClient.invalidateQueries(keyQueryPath.getProcessmenu)
+            queryClient.invalidateQueries(keyQueryPath.getWarnip)
             exportedSwal.actionSuccess("บันทึกข้อมูลเรียบร้อย !")
 
         }else{

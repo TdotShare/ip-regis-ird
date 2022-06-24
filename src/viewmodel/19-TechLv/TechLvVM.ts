@@ -80,6 +80,7 @@ export default function TechLvVM() {
         if(res.bypass){
             queryClient.invalidateQueries(keyQueryPath.getFormPotential)
             queryClient.invalidateQueries(keyQueryPath.getProcessmenu)
+            queryClient.invalidateQueries(keyQueryPath.getWarnip)
             exportedSwal.actionSuccess("เพิ่มข้อมูลเรียบร้อย !")
 
         }else{
@@ -114,6 +115,7 @@ export default function TechLvVM() {
         if(res.bypass){
             queryClient.invalidateQueries(keyQueryPath.getFormPotential)
             queryClient.invalidateQueries(keyQueryPath.getProcessmenu)
+            queryClient.invalidateQueries(keyQueryPath.getWarnip)
             exportedSwal.actionSuccess("เพิ่มข้อมูลเรียบร้อย !")
 
         }else{

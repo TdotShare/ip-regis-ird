@@ -5,5 +5,6 @@ export const keyQueryPath =  {
     getFormDetails : `getFormDetails`,
     getFormAttachment : `getFormAttachment`,
     getProcessmenu : `getProcessmenu`,
-    getCoreip : `getCoreip`
+    getCoreip : `getCoreip`,
+    getWarnip : `getWarnip`
 }

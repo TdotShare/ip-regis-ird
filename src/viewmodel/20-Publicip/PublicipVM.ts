@@ -60,6 +60,7 @@ export default function PublicipVM() {
         if(res.bypass){
             queryClient.invalidateQueries('getPublicip')
             queryClient.invalidateQueries(keyQueryPath.getProcessmenu)
+            queryClient.invalidateQueries(keyQueryPath.getWarnip)
             exportedSwal.actionSuccess("บันทึกข้อมูลเรียบร้อย !")
 
         }else{

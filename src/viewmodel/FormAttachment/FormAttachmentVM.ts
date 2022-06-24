@@ -3,6 +3,7 @@ import { useQuery, useQueryClient } from 'react-query'
 import { useSelector } from 'react-redux'
 import { useParams } from 'react-router-dom'
 import { APIFormAttachments_data } from '../../model/CoreForms/FormAttachments'
+import { APIWarnIp_data } from '../../model/WarnIp'
 import { RootState } from '../../store/ConfigureStore'
 import exportedAPICoreForms from '../../utils/api/CoreForm'
 import exportedAPIFormCoreip from '../../utils/api/FormCoreip'
@@ -20,6 +21,7 @@ export default function FormAttachmentVM() {
 
     const user = useSelector((state: RootState) => state.user.data)
     const qe_attachments_data = useQuery<APIFormAttachments_data, Error>(keyQueryPath.getFormAttachment, async () => exportedAPICoreForms.getFormAttachments(id, user.token))
+    const qe_warnip_data = useQuery<APIWarnIp_data, Error>(keyQueryPath.getWarnip, async () => exportedAPIFormCoreip.getWarnMsg(id, user.token))
 
     const [values] = useState({
         title: `ขอยื่นจดทะเบียน - ${id}`,
@@ -56,6 +58,7 @@ export default function FormAttachmentVM() {
         user,
         queryClient,
         updateCoreIp,
-        qe_attachments_data
+        qe_attachments_data,
+        qe_warnip_data
     }
 }

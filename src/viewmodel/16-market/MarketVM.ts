@@ -58,6 +58,7 @@ export default function MarketVM() {
         if(res.bypass){
             queryClient.invalidateQueries(keyQueryPath.getFormPotential)
             queryClient.invalidateQueries(keyQueryPath.getProcessmenu)
+            queryClient.invalidateQueries(keyQueryPath.getWarnip)
             exportedSwal.actionSuccess("เพิ่มข้อมูลเรียบร้อย !")
 
         }else{
@@ -77,6 +78,7 @@ export default function MarketVM() {
                 exportedSwal.actionSuccess("ลบข้อมูลเรียบร้อย !")
                 queryClient.invalidateQueries(keyQueryPath.getFormPotential)
                 queryClient.invalidateQueries(keyQueryPath.getProcessmenu)
+                queryClient.invalidateQueries(keyQueryPath.getWarnip)
             } else {
                 exportedSwal.actionInfo('ไม่สามารถลบข้อมูลได้ กรุณาติดต่อเจ้าหน้าที่ !')
             }

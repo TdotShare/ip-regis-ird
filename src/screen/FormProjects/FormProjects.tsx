@@ -8,6 +8,7 @@ import Results from '../../components/core/12-Results/Results'
 import HeadMenu from '../../components/HeadMenu'
 import FormProjectsVM from '../../viewmodel/FormProjects/FormProjectsVM'
 import LoadingData from '../../components/LoadingData'
+import WarnList from '../../components/WarnList'
 
 
 function FormProjects() {
@@ -27,6 +28,17 @@ function FormProjects() {
                         token={viewModel.user.token}
                         project_id={viewModel.id}
                     />
+
+                    {
+                        viewModel.qe_warnip_data.isLoading ?
+
+                            <></>
+
+                            :
+
+                            <WarnList title={`ข้อมูลโครงการวิจัย`} item={viewModel.qe_warnip_data.data?.data.projects!} />
+
+                    }
 
                     {
                         viewModel.qe_coreip_data.isLoading || viewModel.qe_projects_data.isLoading ?
@@ -65,7 +77,7 @@ function FormProjects() {
                                             chk_getData={(el) => viewModel.updateCoreIp(`core_bioreso`, el)}
                                             chk_value={viewModel.qe_coreip_data.data?.data.core_bioreso}
                                         />
-                                    }                            
+                                    }
                                     core_bioreso={viewModel.qe_coreip_data.data?.data.core_bioreso === null ? 0 : viewModel.qe_coreip_data.data?.data.core_bioreso!}
                                     data_bioreso={viewModel.qe_projects_data.data?.data.bioreso_data!}
                                 />
@@ -82,7 +94,7 @@ function FormProjects() {
                                     }
                                     core_results={viewModel.qe_coreip_data.data?.data.core_results === null ? 0 : viewModel.qe_coreip_data.data?.data.core_results!}
                                     data_results={viewModel.qe_projects_data.data?.data.results_data!}
-                                    
+
                                 />
 
 

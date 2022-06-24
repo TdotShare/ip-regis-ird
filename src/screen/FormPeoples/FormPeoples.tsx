@@ -2,6 +2,7 @@ import React from 'react'
 import ContentHeader from '../../components/content-header/ContentHeader'
 import People from '../../components/core/3-People/People'
 import HeadMenu from '../../components/HeadMenu'
+import WarnList from '../../components/WarnList'
 import FormPeoplesVM from '../../viewmodel/FormPeoples/FormPeoplesVM'
 
 
@@ -22,6 +23,17 @@ function FormPeoples() {
                         token={viewModel.user.token}
                         project_id={viewModel.id}
                     />
+
+                    {
+                        viewModel.qe_warnip_data.isLoading ?
+
+                            <></>
+
+                            :
+
+                            <WarnList title={`รายชื่อผู้ประดิษฐ์ - ผู้สร้างสรรค์`} item={viewModel.qe_warnip_data.data?.data.peoples!} />
+
+                    }
 
                     <People />
 

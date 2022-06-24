@@ -4,6 +4,7 @@ import { useSelector } from 'react-redux'
 import { useParams } from 'react-router-dom'
 import { APIFormPublishing_data } from '../../model/CoreForms/FormPublishing'
 import { APICoreIp_data } from '../../model/CoreIp'
+import { APIWarnIp_data } from '../../model/WarnIp'
 import { RootState } from '../../store/ConfigureStore'
 import exportedAPICoreForms from '../../utils/api/CoreForm'
 import exportedAPIFormCoreip from '../../utils/api/FormCoreip'
@@ -21,7 +22,9 @@ export default function FormPublishingVM() {
     const user = useSelector((state: RootState) => state.user.data)
     const qe_coreip_data = useQuery<APICoreIp_data, Error>(keyQueryPath.getCoreip, async () => exportedAPIFormCoreip.getCoreIp(id, user.token))
     const qe_publishing_data = useQuery<APIFormPublishing_data, Error>(keyQueryPath.getFormPublishing, async () => exportedAPICoreForms.getFormPublishing(id, user.token))
+    const qe_warnip_data = useQuery<APIWarnIp_data, Error>(keyQueryPath.getWarnip, async () => exportedAPIFormCoreip.getWarnMsg(id, user.token))
 
+    
     const [values] = useState({
         title: `ขอยื่นจดทะเบียน - ${id}`,
         breadcrumb: [
@@ -45,6 +48,7 @@ export default function FormPublishingVM() {
             exportedSwal.actionSuccess(`อัปเดตข้อมูลสำเร็จ !`)
             queryClient.invalidateQueries(keyQueryPath.getCoreip)
             queryClient.invalidateQueries(keyQueryPath.getProcessmenu)
+            queryClient.invalidateQueries(keyQueryPath.getWarnip)
         }else{
             exportedSwal.actionSuccess(`ไม่สามารถอัปเดตข้อมูลได้ !`)
         }
@@ -58,6 +62,7 @@ export default function FormPublishingVM() {
         queryClient,
         updateCoreIp,
         qe_coreip_data,
-        qe_publishing_data
+        qe_publishing_data,
+        qe_warnip_data
     }
 }

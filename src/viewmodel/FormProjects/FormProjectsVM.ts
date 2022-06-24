@@ -4,6 +4,7 @@ import { useSelector } from 'react-redux'
 import { useParams } from 'react-router-dom'
 import { APIFormProjects_data } from '../../model/CoreForms/FormProjects'
 import { APICoreIp_data } from '../../model/CoreIp'
+import { APIWarnIp_data } from '../../model/WarnIp'
 import { RootState } from '../../store/ConfigureStore'
 import exportedAPICoreForms from '../../utils/api/CoreForm'
 import exportedAPIFormCoreip from '../../utils/api/FormCoreip'
@@ -21,6 +22,7 @@ export default function FormProjectsVM() {
     const user = useSelector((state: RootState) => state.user.data)
     const qe_coreip_data = useQuery<APICoreIp_data, Error>(keyQueryPath.getCoreip, async () => exportedAPIFormCoreip.getCoreIp(id, user.token))
     const qe_projects_data = useQuery<APIFormProjects_data, Error>(keyQueryPath.getFormProjects, async () => exportedAPICoreForms.getFormProjects(id, user.token))
+    const qe_warnip_data = useQuery<APIWarnIp_data, Error>(keyQueryPath.getWarnip, async () => exportedAPIFormCoreip.getWarnMsg(id, user.token))
 
     const [values] = useState({
         title: `ขอยื่นจดทะเบียน - ${id}`,
@@ -45,6 +47,7 @@ export default function FormProjectsVM() {
             exportedSwal.actionSuccess(`อัปเดตข้อมูลสำเร็จ !`)
             queryClient.invalidateQueries(keyQueryPath.getCoreip)
             queryClient.invalidateQueries(keyQueryPath.getProcessmenu)
+            queryClient.invalidateQueries(keyQueryPath.getWarnip)
         }else{
             exportedSwal.actionSuccess(`ไม่สามารถอัปเดตข้อมูลได้ !`)
         }
@@ -58,6 +61,7 @@ export default function FormProjectsVM() {
         queryClient,
         updateCoreIp,
         qe_coreip_data,
-        qe_projects_data
+        qe_projects_data,
+        qe_warnip_data
     }
 }

@@ -63,6 +63,7 @@ export default function InferVM() {
         if (res.bypass) {
             queryClient.invalidateQueries(keyQueryPath.getFormProjects)
             queryClient.invalidateQueries(keyQueryPath.getProcessmenu)
+            queryClient.invalidateQueries(keyQueryPath.getWarnip)
             exportedSwal.actionSuccess("บันทึกข้อมูลเรียบร้อย !")
 
         } else {

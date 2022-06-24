@@ -3,6 +3,7 @@ import ContentHeader from '../../components/content-header/ContentHeader'
 import Worksip from '../../components/core/18-Worksip/Worksip'
 import HeadMenu from '../../components/HeadMenu'
 import LoadingData from '../../components/LoadingData'
+import WarnList from '../../components/WarnList'
 import FormAttachmentVM from '../../viewmodel/FormAttachment/FormAttachmentVM'
 
 
@@ -22,6 +23,17 @@ export default function FormAttachment() {
                     <HeadMenu
                         token={viewModel.user.token}
                         project_id={viewModel.id} />
+
+                    {
+                        viewModel.qe_warnip_data.isLoading ?
+
+                            <></>
+
+                            :
+
+                            <WarnList title={`เอกสารแนบ`} item={viewModel.qe_warnip_data.data?.data.attachments!} />
+
+                    }
 
                     {
                         viewModel.qe_attachments_data.isLoading ?

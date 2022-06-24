@@ -6,6 +6,7 @@ import Assessment from '../../components/core/17-Assessment/Assessment'
 import TechLv from '../../components/core/19-TechLv/TechLv'
 import HeadMenu from '../../components/HeadMenu'
 import LoadingData from '../../components/LoadingData'
+import WarnList from '../../components/WarnList'
 import FormPotentialVM from '../../viewmodel/FormPotential/FormPotentialVM'
 
 
@@ -26,6 +27,17 @@ export default function FormPotential() {
                         token={viewModel.user.token}
                         project_id={viewModel.id}
                     />
+
+                    {
+                        viewModel.qe_warnip_data.isLoading ?
+
+                            <></>
+
+                            :
+
+                            <WarnList title={`การประเมินศักยภาพผลงาน`} item={viewModel.qe_warnip_data.data?.data.potentials!} />
+
+                    }
 
                     {
                         viewModel.qe_coreip_data.isLoading || viewModel.qe_potential_data.isLoading ?

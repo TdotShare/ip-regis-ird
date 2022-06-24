@@ -7,6 +7,7 @@ import Keyword from '../../components/core/6-Keyword/Keyword'
 import Movant from '../../components/core/7-Movant/Movant'
 import HeadMenu from '../../components/HeadMenu'
 import LoadingData from '../../components/LoadingData'
+import WarnList from '../../components/WarnList'
 import FormPublishingVM from '../../viewmodel/FormPublishing/FormPublishingVM'
 
 
@@ -29,6 +30,17 @@ function FormPublishing() {
                         token={viewModel.user.token}
                         project_id={viewModel.id}
                     />
+
+                    {
+                        viewModel.qe_warnip_data.isLoading ?
+
+                            <></>
+
+                            :
+
+                            <WarnList title='ข้อมูลการเผยแพร่' item={viewModel.qe_warnip_data.data?.data.publishing!}/>
+
+                    }
 
 
                     {

@@ -69,6 +69,7 @@ export default function KeywordVM() {
         if(res.bypass){
             queryClient.invalidateQueries(keyQueryPath.getFormPublishing)
             queryClient.invalidateQueries(keyQueryPath.getCoreip)
+            queryClient.invalidateQueries(keyQueryPath.getWarnip)
             exportedSwal.actionSuccess("บันทึกข้อมูลเรียบร้อย !")
 
         }else{
@@ -100,6 +101,7 @@ export default function KeywordVM() {
         if(res.bypass){
             queryClient.invalidateQueries(keyQueryPath.getFormPublishing)
             queryClient.invalidateQueries(keyQueryPath.getCoreip)
+            queryClient.invalidateQueries(keyQueryPath.getWarnip)
             exportedSwal.actionSuccess("บันทึกข้อมูลเรียบร้อย !")
 
         }else{
@@ -122,6 +124,7 @@ export default function KeywordVM() {
                 exportedSwal.actionSuccess("ลบข้อมูลเรียบร้อย !")
                 queryClient.invalidateQueries(keyQueryPath.getFormPublishing)
                 queryClient.invalidateQueries(keyQueryPath.getCoreip)
+                queryClient.invalidateQueries(keyQueryPath.getWarnip)
             } else {
                 exportedSwal.actionInfo('ไม่สามารถลบข้อมูลได้ กรุณาติดต่อเจ้าหน้าที่ !')
             }

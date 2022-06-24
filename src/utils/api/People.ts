@@ -24,6 +24,17 @@ const createPeople = async (data : any , token : String) => {
     return res.data
 }
 
+const updatePeople = async (data : any , token : String) => {
+    const res = await axios.post<APIResponse_data>(`${API}/user/people/update`, data , {
+        headers: {
+            'Authorization': `Bearer ${token}`
+        },
+    });
+
+    return res.data
+}
+
+
 const deletePeople = async (id : number , token : String) => {
     const res = await axios.delete<APIResponse_data>(`${API}/user/people/delete/${id}` , {
         headers: {
@@ -39,7 +50,8 @@ const deletePeople = async (id : number , token : String) => {
 const exportedAPIPeople = {
     getProple,
     createPeople,
-    deletePeople
+    deletePeople,
+    updatePeople
 };
 
 export default exportedAPIPeople;
